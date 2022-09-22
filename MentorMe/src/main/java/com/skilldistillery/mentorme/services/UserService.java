@@ -4,7 +4,6 @@ import com.skilldistillery.mentorme.entities.User;
 
 public interface UserService {
 	
-	public User create(User user);
 	
 	public User show(int userId);
 	

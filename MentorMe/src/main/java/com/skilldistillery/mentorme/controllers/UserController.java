@@ -28,28 +28,30 @@ public class UserController {
 	@Autowired
 	private UserService userServ;
 	
-	@PostMapping("register")
-	public User createUser(HttpServletResponse res, @RequestBody User user) {
+	@GetMapping("{userId}")
+	public User getById(@PathVariable int userId, HttpServletResponse res) {
 		try {
-			User newUser = userServ.create(user);
+			User user = userServ.show(userId);
 			res.setStatus(200);
-			return newUser;
+			return user;
 		} catch (Exception e) {
+			e.printStackTrace();
 			res.setStatus(400);
 			return null;
 		}
 	}
 	
-	
 	@GetMapping("account/{username}")
 	public User getByUsername(@PathVariable String username, HttpServletResponse res) {
 		User user = null;
 		user = userRepo.findByUsername(username);
-		if(user == null) {
+		if(user != null && user.getActive()) {
+			res.setStatus(200);
+			return user;
+		}else {
 			res.setStatus(404);
+			return null;
 		}
-		
-		return user;
 	}
 	
 	@PutMapping("auth/{userId}")

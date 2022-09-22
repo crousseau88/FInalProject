@@ -19,16 +19,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private AuthService authServ;
 
-	@Override
-	public User create(User user) {
-		User newUser = authServ.register(user);
-		return newUser;
-	}
 
+
+	
 	@Override
 	public User show(int userId) {
 		Optional<User> optUser = userRepo.findById(userId);
-		if (optUser.isPresent() && optUser.get().getActive()) {
+		if (optUser.isPresent()) {
 			User user = optUser.get();
 			return user;
 		} else {
