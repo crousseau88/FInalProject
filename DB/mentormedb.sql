@@ -474,11 +474,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mentormedb`;
-INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (1, 1, 7, 1, NULL, NULL);
-INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (2, 2, 7, 1, NULL, NULL);
-INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (3, 3, 7, 1, NULL, NULL);
-INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (4, 4, 8, NULL, 1, 'Mentor 8 marking reply id 4 as not helpful');
-INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (5, 4, 9, NULL, 1, 'Mentor 9 marking reply id 4 as not helpful');
+INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (1, 1, 7, 1, 0, NULL);
+INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (2, 2, 7, 1, 0, NULL);
+INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (3, 3, 7, 1, 0, NULL);
+INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (4, 4, 8, 0, 1, 'Mentor 8 marking reply id 4 as not helpful');
+INSERT INTO `reply_review` (`id`, `reply_id`, `user_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (5, 4, 9, 0, 1, 'Mentor 9 marking reply id 4 as not helpful');
 
 COMMIT;
 
@@ -552,18 +552,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mentormedb`;
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (1, 2, 1, 1, NULL, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (2, 2, 2, 1, NULL, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (3, 2, 3, 1, NULL, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (4, 2, 4, 1, NULL, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (5, 4, 1, 1, NULL, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (6, 4, 2, 1, NULL, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (7, 2, 7, NULL, 1, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (8, 2, 8, NULL, 1, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (9, 2, 9, NULL, 1, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (10, 4, 8, NULL, 1, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (11, 4, 9, NULL, 1, NULL);
-INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (12, 5, 8, NULL, 1, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (1, 2, 1, 1, 0, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (2, 2, 2, 1, 0, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (3, 2, 3, 1, 0, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (4, 2, 4, 1, 0, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (5, 4, 1, 1, 0, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (6, 4, 2, 1, 0, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (7, 2, 7, 0, 1, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (8, 2, 8, 0, 1, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (9, 2, 9, 0, 1, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (10, 4, 8, 0, 1, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (11, 4, 9, 0, 1, NULL);
+INSERT INTO `post_review` (`id`, `user_id`, `post_id`, `helpful`, `inappropriate`, `flag_remarks`) VALUES (12, 5, 8, 0, 1, NULL);
 
 COMMIT;
 
