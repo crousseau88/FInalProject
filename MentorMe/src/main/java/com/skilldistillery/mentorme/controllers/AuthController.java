@@ -16,7 +16,7 @@ import com.skilldistillery.mentorme.entities.User;
 import com.skilldistillery.mentorme.services.AuthService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost:4200"})
+@CrossOrigin({"*", "http://localhost/"})
 public class AuthController {
 	@Autowired
 	private AuthService authService;
@@ -44,15 +44,15 @@ public class AuthController {
 	}
 	
 	// SMOKE TEST ONLY, DELETE/COMMENT OUT LATER
-	@GetMapping("test/users/{userId}")
-	public User getUserForTest(
-	  @PathVariable Integer userId,
-	  HttpServletResponse res
-	) {
-	  User user = authService.getUserById(userId);
-	  if (user == null) {
-	    res.setStatus(404);
-	  }
-	  return user;
-	}
+//	@GetMapping("test/users/{userId}")
+//	public User getUserForTest(
+//	  @PathVariable Integer userId,
+//	  HttpServletResponse res
+//	) {
+//	  User user = authService.getUserById(userId);
+//	  if (user == null) {
+//	    res.setStatus(404);
+//	  }
+//	  return user;
+//	}
 }

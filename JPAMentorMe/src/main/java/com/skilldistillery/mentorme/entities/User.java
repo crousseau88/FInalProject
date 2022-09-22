@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -27,6 +29,9 @@ public class User {
 	private boolean active;
 
 	private String role;
+	
+	@Column(name="profile_img")
+	private String profileImg;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -39,28 +44,36 @@ public class User {
 	@Column(name = "about_me")
 	private String aboutMe;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<BootcampReview> reviews;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "mentor_followers", joinColumns = @JoinColumn(name = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "mentee_id"))
 	private List<User> menteeFollowers;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="menteeFollowers")
 	private List<User> mentorFollowing;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "sender")
 	private List<DirectMessage> sentMessages;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "recipient")
 	private List<DirectMessage> recievedMessages;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "userPostReview")
 	private List<PostReview> postReviews;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "userPost")
 	private List<Post> posts;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "userReplyReview")
 	private List<ReplyReview> replyReviews;
 	
@@ -71,6 +84,18 @@ public class User {
 	}
 	
 	
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
+
 
 	public List<ReplyReview> getReplyReviews() {
 		return replyReviews;
