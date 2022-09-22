@@ -7,6 +7,17 @@
 
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<class>com.skilldistillery.mentorme.entities.Bootcamp</class>
+		<class>com.skilldistillery.mentorme.entities.BootcampAdvice</class>
+		<class>com.skilldistillery.mentorme.entities.BootcampReview</class>
+		<class>com.skilldistillery.mentorme.entities.BootcampTech</class>
+		<class>com.skilldistillery.mentorme.entities.DirectMessage</class>
+		<class>com.skilldistillery.mentorme.entities.Post</class>
+		<class>com.skilldistillery.mentorme.entities.PostReview</class>
+		<class>com.skilldistillery.mentorme.entities.Reply</class>
+		<class>com.skilldistillery.mentorme.entities.ReplyReview</class>
+		<class>com.skilldistillery.mentorme.entities.Tool</class>
 		<class>com.skilldistillery.mentorme.entities.User</class>
 		
 
