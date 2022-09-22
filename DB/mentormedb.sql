@@ -30,7 +30,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `last_name` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `about_me` TEXT(500) NULL,
-  PRIMARY KEY (`id`))
+  `profile_img` VARCHAR(2000) NULL DEFAULT 'https://i.pinimg.com/564x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
@@ -343,21 +345,21 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mentormedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (1, 'admin', 'admin', 1, 'ADMIN', 'admin', 'admin', 'admin@admin.com', 'ADMIN');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (2, 'guest', 'guest', 1, 'MENTEE', 'guest', 'guest', 'guest@guest.com', 'TEST MENTEE');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (3, 'mentor', 'mentor', 1, 'MENTOR', 'mentor', 'mentor', 'mentor@mentor.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (4, 'guest2', 'guest2', 1, 'MENTEE', 'guest2', 'guest2', 'guest2@guest2.com', 'TEST MENTEE');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (5, 'guest3', 'guest3', 1, 'MENTEE', 'guest3', 'guest3', 'guest3@guest3.com', 'TEST MENTEE');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (6, 'guest4', 'guest4', 1, 'MENTEE', 'guest4', 'guest4', 'guest4@guest4.com', 'TEST MENTEE');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (7, 'guest5', 'guest5', 1, 'MENTEE', 'guest5', 'guest5', 'guest5@guest5.com', 'TEST MENTEE');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (8, 'mentor2', 'mentor2', 1, 'MENTOR', 'mentor2', 'mentor2', 'mentor2@mentor2.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (9, 'mentor3', 'mentor3', 1, 'MENTOR', 'mentor3', 'mentor3', 'mentor3@mentor3.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (10, 'mentor4', 'mentor4', 1, 'MENTOR', 'mentor4', 'mentor4', 'mentor4@mentor4.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (11, 'mentor5', 'mentor5', 1, 'MENTOR', 'mentor5', 'mentor5', 'mentor5@mentor5.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (12, 'mentor6', 'mentor6', 1, 'MENTOR', 'mentor6', 'mentor6', 'mentor6@mentor6.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (13, 'mentor7', 'mentor7', 1, 'MENTOR', 'mentor7', 'mentor7', 'mentor7@mentor7.com', 'TEST MENTOR');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (14, 'admin2', 'admin2', 1, 'ADMIN', 'admin2', 'admin2', 'admin2@admin2.com', 'ADMIN2');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`) VALUES (15, 'admin3', 'admin3', 1, 'ADMIN', 'admin3', 'admin3', 'admin3@admin3.com', 'ADMIN3');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (1, 'admin', 'admin', 1, 'ADMIN', 'admin', 'admin', 'admin@admin.com', 'ADMIN', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (2, 'guest', 'guest', 1, 'MENTEE', 'guest', 'guest', 'guest@guest.com', 'TEST MENTEE', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (3, 'mentor', 'mentor', 1, 'MENTOR', 'mentor', 'mentor', 'mentor@mentor.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (4, 'guest2', 'guest2', 1, 'MENTEE', 'guest2', 'guest2', 'guest2@guest2.com', 'TEST MENTEE', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (5, 'guest3', 'guest3', 1, 'MENTEE', 'guest3', 'guest3', 'guest3@guest3.com', 'TEST MENTEE', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (6, 'guest4', 'guest4', 1, 'MENTEE', 'guest4', 'guest4', 'guest4@guest4.com', 'TEST MENTEE', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (7, 'guest5', 'guest5', 1, 'MENTEE', 'guest5', 'guest5', 'guest5@guest5.com', 'TEST MENTEE', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (8, 'mentor2', 'mentor2', 1, 'MENTOR', 'mentor2', 'mentor2', 'mentor2@mentor2.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (9, 'mentor3', 'mentor3', 1, 'MENTOR', 'mentor3', 'mentor3', 'mentor3@mentor3.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (10, 'mentor4', 'mentor4', 1, 'MENTOR', 'mentor4', 'mentor4', 'mentor4@mentor4.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (11, 'mentor5', 'mentor5', 1, 'MENTOR', 'mentor5', 'mentor5', 'mentor5@mentor5.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (12, 'mentor6', 'mentor6', 1, 'MENTOR', 'mentor6', 'mentor6', 'mentor6@mentor6.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (13, 'mentor7', 'mentor7', 1, 'MENTOR', 'mentor7', 'mentor7', 'mentor7@mentor7.com', 'TEST MENTOR', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (14, 'admin2', 'admin2', 1, 'ADMIN', 'admin2', 'admin2', 'admin2@admin2.com', 'ADMIN2', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `role`, `first_name`, `last_name`, `email`, `about_me`, `profile_img`) VALUES (15, 'admin3', 'admin3', 1, 'ADMIN', 'admin3', 'admin3', 'admin3@admin3.com', 'ADMIN3', NULL);
 
 COMMIT;
 
