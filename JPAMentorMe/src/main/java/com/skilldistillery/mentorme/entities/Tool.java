@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Tool {
@@ -25,10 +27,22 @@ public class Tool {
 	private String website;
 	
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="bootcamp_advice_id")
+	private BootcampAdvice bootcampAdvice;
 
 ////////////////////////////////////GENERATED//////////////////////////
 	public Tool() {
 		super();
+	}
+
+	public BootcampAdvice getBootcampAdvice() {
+		return bootcampAdvice;
+	}
+
+	public void setBootcampAdvice(BootcampAdvice bootcampAdvice) {
+		this.bootcampAdvice = bootcampAdvice;
 	}
 
 	public int getId() {

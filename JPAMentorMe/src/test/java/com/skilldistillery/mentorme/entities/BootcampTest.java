@@ -2,6 +2,7 @@ package com.skilldistillery.mentorme.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +14,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class BootcampTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Bootcamp bootcamp;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,34 +33,31 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		bootcamp = em.find(Bootcamp.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		bootcamp = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertNotNull(bootcamp);
+		assertEquals("Skill Distillery", bootcamp.getName());
 	}
 	@Test
-	void test_mapping() {
-		assertNotNull(user.getPostReviews());
-		assertNotNull(user.getMenteeFollowers());
-		assertNotNull(user.getMentorFollowing());
-		assertNotNull(user.getPostReviews());
-		assertNotNull(user.getReplyReviews());
-		assertNotNull(user.getPosts());
+	void test_mapping_tech() {
+		assertNotNull(bootcamp.getBootcampTech());
+		assertTrue(bootcamp.getBootcampTech().size() > 1);
 	}
 	@Test
-	void test_mapping_messages() {
-		assertNotNull(user.getSentMessages());
-		assertNotNull(user.getRecievedMessages());
-		
+	void test_mapping_reviews() {
+		assertNotNull(bootcamp.getReviews());
+		assertTrue(bootcamp.getReviews().size() > 1);
 	}
+	
+	
 
 }

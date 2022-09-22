@@ -2,13 +2,17 @@ package com.skilldistillery.mentorme.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="reply_review")
 public class ReplyReview {
 	
 	@Id
@@ -19,16 +23,35 @@ public class ReplyReview {
 	
 	private boolean inappropriate;
 	
-	private Reply reply;
 	
-	private User user;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userReplyReview;
 	
-	@JoinColumn(name="flag_remarks")
+	@Column(name="flag_remarks")
 	private String flagRemarks;
+	
+	@ManyToOne
+	@JoinColumn(name = "reply_id")
+	private Reply reply;
 
 	public ReplyReview() {
 		super();
 	}
+	
+	
+
+	public User getUserReplyReview() {
+		return userReplyReview;
+	}
+
+
+
+	public void setUserReplyReview(User userReplyReview) {
+		this.userReplyReview = userReplyReview;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -62,13 +85,7 @@ public class ReplyReview {
 		this.reply = reply;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 
 	public String getFlagRemarks() {
 		return flagRemarks;
@@ -98,7 +115,7 @@ public class ReplyReview {
 	@Override
 	public String toString() {
 		return "ReplyReview [id=" + id + ", helpful=" + helpful + ", inappropriate=" + inappropriate + ", reply="
-				+ reply + ", user=" + user + ", flagRemarks=" + flagRemarks + "]";
+				+ reply +  ", flagRemarks=" + flagRemarks + "]";
 	}
 
 }

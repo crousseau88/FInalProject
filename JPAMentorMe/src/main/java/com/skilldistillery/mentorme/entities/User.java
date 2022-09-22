@@ -1,5 +1,6 @@
 package com.skilldistillery.mentorme.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -33,11 +38,130 @@ public class User {
 
 	@Column(name = "about_me")
 	private String aboutMe;
-
+	
+	@OneToMany(mappedBy = "user")
+	private List<BootcampReview> reviews;
+	
+	@ManyToMany
+	@JoinTable(name = "mentor_followers", joinColumns = @JoinColumn(name = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "mentee_id"))
+	private List<User> menteeFollowers;
+	
+	@ManyToMany(mappedBy="menteeFollowers")
+	private List<User> mentorFollowing;
+	
+	@OneToMany(mappedBy = "sender")
+	private List<DirectMessage> sentMessages;
+	
+	@OneToMany(mappedBy = "recipient")
+	private List<DirectMessage> recievedMessages;
+	
+	@OneToMany(mappedBy = "userPostReview")
+	private List<PostReview> postReviews;
+	
+	@OneToMany(mappedBy = "userPost")
+	private List<Post> posts;
+	
+	@OneToMany(mappedBy = "userReplyReview")
+	private List<ReplyReview> replyReviews;
+	
 	//////////////////////////////////// GENERATED////////////////////////////
 
 	public User() {
 		super();
+	}
+	
+	
+
+	public List<ReplyReview> getReplyReviews() {
+		return replyReviews;
+	}
+
+
+
+	public void setReplyReviews(List<ReplyReview> replyReviews) {
+		this.replyReviews = replyReviews;
+	}
+
+
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+
+
+	public List<PostReview> getPostReviews() {
+		return postReviews;
+	}
+
+
+
+	public void setPostReviews(List<PostReview> postReviews) {
+		this.postReviews = postReviews;
+	}
+
+
+
+	public List<DirectMessage> getSentMessages() {
+		return sentMessages;
+	}
+
+
+
+	public void setSentMessages(List<DirectMessage> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+
+
+
+	public List<DirectMessage> getRecievedMessages() {
+		return recievedMessages;
+	}
+
+
+
+	public void setRecievedMessages(List<DirectMessage> recievedMessages) {
+		this.recievedMessages = recievedMessages;
+	}
+
+
+
+	public List<User> getMenteeFollowers() {
+		return menteeFollowers;
+	}
+
+
+
+	public void setMenteeFollowers(List<User> menteeFollowers) {
+		this.menteeFollowers = menteeFollowers;
+	}
+
+
+
+	public List<User> getMentorFollowing() {
+		return mentorFollowing;
+	}
+
+
+
+	public void setMentorFollowing(List<User> mentorFollowing) {
+		this.mentorFollowing = mentorFollowing;
+	}
+
+
+
+	public List<BootcampReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<BootcampReview> reviews) {
+		this.reviews = reviews;
 	}
 
 	public String getPassword() {

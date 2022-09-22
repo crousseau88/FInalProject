@@ -1,5 +1,6 @@
 package com.skilldistillery.mentorme.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +21,24 @@ public class BootcampTech {
 	
 	@Column(name="tech_name")
 	private String techName;
-
+	
+	@ManyToMany(mappedBy="bootcampTech")
+	private List<Bootcamp> bootcamps;
+	
 	////////////////////////////GENERATED/////////////////////////
+	
+	
 	
 	public int getId() {
 		return id;
+	}
+
+	public List<Bootcamp> getBootcamps() {
+		return bootcamps;
+	}
+
+	public void setBootcamps(List<Bootcamp> bootcamps) {
+		this.bootcamps = bootcamps;
 	}
 
 	public BootcampTech() {

@@ -1,12 +1,16 @@
 package com.skilldistillery.mentorme.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -30,13 +34,57 @@ public class Post {
 	
 	private String subject;
 	
+	@OneToMany(mappedBy = "post")
+	private List<PostReview> postReviews;
 	
-	//add relationship 
-	private User user;
+	@OneToMany(mappedBy = "post")
+	private List<Reply> replies;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userPost;
 
 	public Post() {
 		super();
 	}
+	
+	
+
+	public List<Reply> getReplies() {
+		return replies;
+	}
+
+
+
+	public void setReplies(List<Reply> replies) {
+		this.replies = replies;
+	}
+
+
+
+	public User getUserPost() {
+		return userPost;
+	}
+
+
+
+	public void setUserPost(User userPost) {
+		this.userPost = userPost;
+	}
+
+
+
+	public List<PostReview> getPostReviews() {
+		return postReviews;
+	}
+
+
+
+	public void setPostReviews(List<PostReview> postReviews) {
+		this.postReviews = postReviews;
+	}
+
+
 
 	public int getId() {
 		return id;

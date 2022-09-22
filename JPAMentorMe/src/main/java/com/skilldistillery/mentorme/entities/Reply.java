@@ -1,12 +1,17 @@
 package com.skilldistillery.mentorme.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,10 +22,7 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private Post post;
-	
-	private User user;
-	
+	@Column(name="reply")
 	private String text;
 	
 	@CreationTimestamp
@@ -31,9 +33,20 @@ public class Reply {
 	
 	private Boolean enabled;
 	
+	@ManyToOne
+	@JoinColumn(name = "post_id")
+	private Post post;
 	
 	//Does this need to exist?
-	private int replyId;
+	@ManyToOne
+	@JoinColumn(name="reply_id")
+	private Reply reply;
+	
+	@OneToMany(mappedBy = "reply")
+	private List<Reply> replies;
+	
+	@OneToMany(mappedBy = "reply")
+	private List<ReplyReview> replyReviews;
 
 
 	public Reply() {
@@ -41,13 +54,23 @@ public class Reply {
 	}
 
 
-	public int getId() {
-		return id;
+	public List<ReplyReview> getReplyReviews() {
+		return replyReviews;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setReplyReviews(List<ReplyReview> replyReviews) {
+		this.replyReviews = replyReviews;
+	}
+
+
+	public List<Reply> getReplies() {
+		return replies;
+	}
+
+
+	public void setReplies(List<Reply> replies) {
+		this.replies = replies;
 	}
 
 
@@ -61,14 +84,27 @@ public class Reply {
 	}
 
 
-	public User getUser() {
-		return user;
+	public Reply getReply() {
+		return reply;
 	}
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setReply(Reply reply) {
+		this.reply = reply;
 	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	
 
 
 	public String getText() {
@@ -111,13 +147,13 @@ public class Reply {
 	}
 
 
-	public int getReplyId() {
-		return replyId;
+	public Reply getReplyId() {
+		return reply;
 	}
 
 
-	public void setReplyId(int replyId) {
-		this.replyId = replyId;
+	public void setReplyId(Reply reply) {
+		this.reply = reply;
 	}
 
 
@@ -142,8 +178,8 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [id=" + id + ", post=" + post + ", user=" + user + ", text=" + text + ", created=" + created
-				+ ", updated=" + updated + ", enabled=" + enabled + ", replyId=" + replyId + "]";
+		return "Reply [id=" + id + ", text=" + text + ", created=" + created
+				+ ", updated=" + updated + ", enabled=" + enabled + ", replyId=" + reply + "]";
 	}
 	
 }

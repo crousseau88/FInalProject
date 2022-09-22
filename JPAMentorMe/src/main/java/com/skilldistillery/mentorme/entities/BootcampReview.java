@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,9 +26,9 @@ public class BootcampReview {
 	private int overallRating;
 	
 	@Column(name="curriculum_rating")
-	private int curriculumRating;
+	private Integer curriculumRating;
 	
-	@Column(name="instructor_rating")
+	@Column(name="instructors_rating")
 	private int instructorRating;
 	
 	@Column(name="job_assistance_rating")
@@ -41,11 +43,42 @@ public class BootcampReview {
 	@Column(name="review_date")
 	@CreationTimestamp
 	private LocalDateTime reviewDate;
+	
+	@ManyToOne
+	@JoinColumn(name="bootcamp_id")
+	private Bootcamp bootcamp;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	
 
 /////////////////////////////////////////GENERATED/////////////////////
 	public BootcampReview() {
 		super();
 	}
+
+	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public Bootcamp getBootcamp() {
+		return bootcamp;
+	}
+
+
+	public void setBootcamp(Bootcamp bootcamp) {
+		this.bootcamp = bootcamp;
+	}
+
 
 	public int getId() {
 		return id;
@@ -63,11 +96,11 @@ public class BootcampReview {
 		this.overallRating = overallRating;
 	}
 
-	public int getCurriculumRating() {
+	public Integer getCurriculumRating() {
 		return curriculumRating;
 	}
 
-	public void setCurriculumRating(int curriculumRating) {
+	public void setCurriculumRating(Integer curriculumRating) {
 		this.curriculumRating = curriculumRating;
 	}
 

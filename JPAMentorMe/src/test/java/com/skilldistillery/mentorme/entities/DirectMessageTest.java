@@ -2,6 +2,7 @@ package com.skilldistillery.mentorme.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +14,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class DirectMessageTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private DirectMessage message;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,34 +33,29 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		message = em.find(DirectMessage.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		message = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertNotNull(message);
+		assertNotNull(message.getSender());
+		assertNotNull(message.getRecipient());
 	}
 	@Test
-	void test_mapping() {
-		assertNotNull(user.getPostReviews());
-		assertNotNull(user.getMenteeFollowers());
-		assertNotNull(user.getMentorFollowing());
-		assertNotNull(user.getPostReviews());
-		assertNotNull(user.getReplyReviews());
-		assertNotNull(user.getPosts());
+	void test_mapping_tools() {
+		assertNotNull(message);
+		assertEquals("Test direct message (mentee2 to mentor 3)", message.getContent());
 	}
-	@Test
-	void test_mapping_messages() {
-		assertNotNull(user.getSentMessages());
-		assertNotNull(user.getRecievedMessages());
-		
-	}
+	
+
+	
+	
 
 }

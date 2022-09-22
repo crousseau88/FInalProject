@@ -1,32 +1,59 @@
 package com.skilldistillery.mentorme.entities;
 
+
+
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
 @Entity
+@Table(name = "post_review")
 public class PostReview {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	
-	private User user;
-	
-	private Post post;
-	
+
 	private boolean helpful;
-	
+
 	private boolean inappropriate;
-	
-	@JoinColumn(name="flag_remarks")
+
+	@Column(name = "flag_remarks")
 	private String flagRemarks;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User userPostReview;
+	
+	@ManyToOne
+	@JoinColumn(name = "post_id")
+	private Post post;
 
 	public PostReview() {
 		super();
+	}
+
+	public User getUserPostReview() {
+		return userPostReview;
+	}
+
+	public void setUserPostReview(User userPostReview) {
+		this.userPostReview = userPostReview;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public int getId() {
@@ -37,21 +64,7 @@ public class PostReview {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
+	
 
 	public boolean isHelpful() {
 		return helpful;
@@ -93,6 +106,7 @@ public class PostReview {
 		PostReview other = (PostReview) obj;
 		return id == other.id;
 	}
-	
-	
+
+
+
 }

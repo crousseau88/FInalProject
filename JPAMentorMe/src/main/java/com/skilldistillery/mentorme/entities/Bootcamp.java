@@ -1,5 +1,6 @@
 package com.skilldistillery.mentorme.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Bootcamp {
@@ -26,11 +31,37 @@ public class Bootcamp {
 	private int lengthWeeks;
 	
 	private String description;
+	
+	@ManyToMany
+	@JoinTable(name = "bootcamp_tech_joiner", joinColumns = @JoinColumn(name = "bootcamp_id"), inverseJoinColumns = @JoinColumn(name = "bootcamp_tech_id"))
+	private List<BootcampTech> bootcampTech;
 
+	@OneToMany(mappedBy = "bootcamp")
+	private List<BootcampReview> reviews;
 	
 /////////////////////////////GENERATED///////////////////////////////
 	public Bootcamp() {
 		super();
+	}
+
+
+	public List<BootcampReview> getReviews() {
+		return reviews;
+	}
+
+
+	public void setReviews(List<BootcampReview> reviews) {
+		this.reviews = reviews;
+	}
+
+
+	public List<BootcampTech> getBootcampTech() {
+		return bootcampTech;
+	}
+
+
+	public void setBootcampTech(List<BootcampTech> bootcampTech) {
+		this.bootcampTech = bootcampTech;
 	}
 
 

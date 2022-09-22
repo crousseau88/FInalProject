@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="direct_message")
 public class DirectMessage {
 	
 	@Id
@@ -22,9 +25,11 @@ public class DirectMessage {
 	
 	private boolean enabled;
 	
+	@ManyToOne
 	@JoinColumn(name="sender_id")
 	private User sender;
 	
+	@ManyToOne
 	@JoinColumn(name="recipient_id")
 	private User recipient;
 
@@ -32,6 +37,8 @@ public class DirectMessage {
 		super();
 	}
 
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
