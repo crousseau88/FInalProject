@@ -50,7 +50,8 @@ class PostReviewTest {
 	}
 	@Test
 	void test_mapping_tools() {
-		assertEquals("", post.getFlagRemarks());
+		assertEquals(null, post.getFlagRemarks());
+		assertTrue(post.isHelpful());
 		
 	}
 	

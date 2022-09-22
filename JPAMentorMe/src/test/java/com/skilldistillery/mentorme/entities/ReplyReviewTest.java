@@ -51,7 +51,7 @@ class ReplyReviewTest {
 	}
 	@Test
 	void test_mapping_tools() {
-		assertEquals("TEST REPLY: Mentee 2 to Mentor 3", reply.getReply());
+		assertEquals("TEST REPLY: Mentee 2 to Mentor 3", reply.getReply().getText());
 		
 	}
 	
