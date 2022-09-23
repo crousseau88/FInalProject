@@ -10,13 +10,21 @@ import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { UserComponent } from './components/user/user.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { AccountComponent } from './components/account/account.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
     LogoutComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent,
+    RegisterComponent,
+    NavigationComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

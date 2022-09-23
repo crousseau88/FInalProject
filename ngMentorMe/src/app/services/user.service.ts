@@ -11,7 +11,7 @@ import { User } from '../models/user';
 })
 export class UserService {
   private url = environment.baseUrl + 'api/';
-  constructor(private http: HttpClient, private datepipe: DatePipe) { }
+  constructor(private http: HttpClient) { }
 
   index() {
     return this.http.get<User[]>(this.url + '/users').pipe( //controller needed for all users
@@ -25,7 +25,8 @@ export class UserService {
   }
 
   byUsername(username: string) {
-    return this.http.get<User>(this.url + '/account/' + username).pipe( 
+    console.log(username);
+    return this.http.get<User>(this.url + '/account/' + username).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError( ()=> new Error (
@@ -64,6 +65,17 @@ export class UserService {
         console.log(err);
         return throwError( ()=> new Error (
           'userService.destroy():error deleting User' + err
+        ));
+      }
+    ));
+  }
+
+  show(username: string) {
+    return this.http.get<User>(this.url + 'account/' + username).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError( ()=> new Error (
+          'userService.show():error retrieving User' + err
         ));
       }
     ));

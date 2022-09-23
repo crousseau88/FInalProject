@@ -1,0 +1,30 @@
+<form class="css-form form-control" >
+  <label for="username">Username</label>
+  <input class="css-form form-control" [(ngModel)]="newUser.username" type="text" id="username" name="username" required>
+
+  <label for="password">Password</label>
+  <input class="css-form form-control" [(ngModel)]="newUser.password"type="password" id="password" name="password"  required>
+
+  <label for="email">Email</label>
+  <input class="css-form form-control" [(ngModel)]="newUser.email" type="email" id="email" name="email"  required><br>
+
+  <label for="role">Role</label><br>
+  <select name="role" class="form-control" [(ngModel)]="newUser.role">
+    <option value="mentor">Mentor</option>
+    <option value="mentee">Mentee</option>
+  </select>
+
+  <label for="firstName">First Name </label>
+  <input class="css-form form-control" [(ngModel)]="newUser.firstName" type="text" id="firstName" name="firstName"><br>
+  <label for="lastName">Last Name </label>
+  <input class="css-form form-control" [(ngModel)]="newUser.lastName" type="text" id="lastName" name="lastName"><br>
+
+  <label for="aboutMe">About Me</label>
+  <textarea class="css-form form-control" [(ngModel)]="newUser.aboutMe" type="text" id="aboutMe" name="aboutMe" cols="20" rows="5"></textarea><br>
+
+  <label for="profileImg">Profile Picture URL</label>
+  <input class="css-form form-control" [(ngModel)]="newUser.profileImg" type="profileImg" id="profileImg" name="profileImg"  required><br>
+
+  <button (click)="register(newUser)">Register</button>
+
+</form>

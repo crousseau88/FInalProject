@@ -3,7 +3,7 @@ export class User {
   id: number =0 ;
   username: string = '';
   password: string= '';
-  active: boolean = false;
+  active: boolean = true;
   role: string= '';
   firstName: string= '';
   lastName: string= '';
@@ -15,7 +15,7 @@ export class User {
     id: number =0 ,
     username: string = '',
     password: string= '',
-    active: boolean = false,
+    active: boolean = true,
     role: string= '',
     firstName: string= '',
     lastName: string= '',
