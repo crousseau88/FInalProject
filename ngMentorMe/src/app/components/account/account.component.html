@@ -28,7 +28,7 @@
   <input class="css-form form-control" [(ngModel)]="user.profileImg" type="profileImg" id="profileImg" name="profileImg" value="{{user.profileImg}}"  required><br>
 
   <button (click)="updateUser(user)">Update</button>
-
+  <button (click)="[deleteUser(user.id), routeHomeAfterDelete()]" class="btn btn-danger">DELETE ACCOUNT</button>
 </form>
 
 </div>
