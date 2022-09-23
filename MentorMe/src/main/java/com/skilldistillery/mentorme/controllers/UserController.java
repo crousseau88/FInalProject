@@ -98,9 +98,9 @@ public class UserController {
 		return updatedUser;
 	}
 	
-	@DeleteMapping("auth/{userId}")
-	public void deactivateUser(@PathVariable int userId, HttpServletResponse res) {
-		if(userServ.destroy(userId)) {
+	@DeleteMapping("account")
+	public void deactivateUser(Principal principal, HttpServletResponse res) {
+		if(userServ.destroy(principal.getName())) {
 			res.setStatus(200);
 		}else {
 			res.setStatus(400);
