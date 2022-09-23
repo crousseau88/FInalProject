@@ -43,6 +43,11 @@ export class AccountComponent implements OnInit {
         }
       });
   }
+
+  routeHomeAfterDelete() {
+    this.authservice.logout();
+    this.router.navigateByUrl('/home');
+  }
   deleteUser(id: number) {
     this.accountservice.destroy(id).subscribe({
       next: () => {

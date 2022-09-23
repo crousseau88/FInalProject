@@ -70,7 +70,7 @@ export class AccountService {
     ));
   }
   destroy(id: number) {
-    return this.http.delete<void>(this.url + 'auth/' + id).pipe(
+    return this.http.delete<void>(this.url + 'account' , this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError( ()=> new Error (
