@@ -1,5 +1,7 @@
 package com.skilldistillery.mentorme.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,33 @@ public class UserController {
 
 	@Autowired
 	private UserService userServ;
+	
+	@GetMapping("{username}/followers")
+	public List<User> getUsersFollowers(@PathVariable String username, HttpServletResponse res){
+		List<User> followers = null;
+		try {
+			followers = userServ.getUsersFollowers(username);
+			res.setStatus(200);
+			return followers;
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return followers;
+	}
+	@GetMapping("{username}/following")
+	public List<User> getUsersFollowing(@PathVariable String username, HttpServletResponse res){
+		List<User> followers = null;
+		try {
+			followers = userServ.getUsersFollowing(username);
+			res.setStatus(200);
+			return followers;
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return followers;
+	}
 	
 	@GetMapping("{userId}")
 	public User getById(@PathVariable int userId, HttpServletResponse res) {

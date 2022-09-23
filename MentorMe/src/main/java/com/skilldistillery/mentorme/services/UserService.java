@@ -1,5 +1,7 @@
 package com.skilldistillery.mentorme.services;
 
+import java.util.List;
+
 import com.skilldistillery.mentorme.entities.User;
 
 public interface UserService {
@@ -10,5 +12,9 @@ public interface UserService {
 	public User update(int userId, User user);
 	
 	public boolean destroy(int userId);
+
+	List<User> getUsersFollowers(String username);
+
+	List<User> getUsersFollowing(String username);
 
 }

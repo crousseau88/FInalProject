@@ -1,5 +1,6 @@
 package com.skilldistillery.mentorme.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,25 @@ public class UserServiceImpl implements UserService {
 		deactivateMe.setActive(false);
 		userRepo.saveAndFlush(deactivateMe);
 		return (!deactivateMe.getActive());
+	}
+	
+	@Override
+	public List<User> getUsersFollowers(String username){
+		User user = userRepo.findByUsername(username);
+		List<User> followers = null;
+		if(user != null) {
+			followers = userRepo.getUsersBymenteeFollowers(user);
+		}
+		return followers;
+	}
+	@Override
+	public List<User> getUsersFollowing(String username){
+		User user = userRepo.findByUsername(username);
+		List<User> following = null;
+		if(user != null) {
+			following = userRepo.getUsersBymentorFollowing(user);
+		}
+		return following;
 	}
 
 }
