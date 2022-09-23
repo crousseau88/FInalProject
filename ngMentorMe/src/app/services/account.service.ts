@@ -1,20 +1,20 @@
-import { DatePipe } from '@angular/common';
+import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs';
-import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AccountService {
+
   private url = environment.baseUrl + 'api/';
   constructor(
     private http: HttpClient,
-    private authservice: AuthService) { }
+    private auth: AuthService
+    ) { }
 
   index() {
     return this.http.get<User[]>(this.url + '/users').pipe( //controller needed for all users
@@ -26,7 +26,15 @@ export class UserService {
       }
     ));
   }
-
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
   byUsername(username: string) {
     console.log(username);
     return this.http.get<User>(this.url + '/account/' + username).pipe(
@@ -38,7 +46,6 @@ export class UserService {
       }
     ));
   }
-
 
 
   create(user: User) {
@@ -53,7 +60,7 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.put<User>(this.url + 'auth/', user).pipe(
+    return this.http.put<User>(this.url + 'account', user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError( ()=> new Error (

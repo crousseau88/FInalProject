@@ -1,5 +1,6 @@
 package com.skilldistillery.mentorme.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -82,12 +83,12 @@ public class UserController {
 		}
 	}
 	
-	@PutMapping("auth/{userId}")
-	public User updateUser(@PathVariable int userId, @RequestBody User user, HttpServletResponse res) {
+	@PutMapping("account")
+	public User updateUser( @RequestBody User user, HttpServletResponse res, Principal principal) {
 		User updatedUser = null;
 		
 		try {
-			updatedUser = userServ.update(userId, user);
+			updatedUser = userServ.update(principal.getName(), user);
 			res.setStatus(200);
 		} catch (Exception e) {
 			res.setStatus(400);

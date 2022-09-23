@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
 
     allUsers: User[]= [];//display all users
 
+    editUser: User | null = null;
 
   constructor(
     private userService: UserService,
@@ -54,4 +55,5 @@ export class UserComponent implements OnInit {
   }
   this.reload();
 }
+
 }

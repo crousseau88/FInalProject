@@ -35,12 +35,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User update(int userId, User user) {
-		Optional<User> userOpt = userRepo.findById(userId);
-		if (userOpt.isPresent() && userOpt.get().getActive()) {
-			String encodedPW = encoder.encode(user.getPassword());
-			User oldUser = userOpt.get();
-			oldUser.setPassword(encodedPW);
+	public User update(String username, User user) {
+		User oldUser = userRepo.findByUsername(username);
+		if (oldUser != null && oldUser.getActive()) {
 			oldUser.setAboutMe(user.getAboutMe());
 			oldUser.setRole(user.getRole());
 			oldUser.setFirstName(user.getFirstName());
