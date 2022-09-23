@@ -8,7 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
 })
 export class AccountComponent implements OnInit {
   user: User = new User();
@@ -19,29 +19,30 @@ export class AccountComponent implements OnInit {
 
   newUser: User = new User();
 
-  allUsers: User[]= [];//display all users
-
+  allUsers: User[] = []; //display all users
+  allFollowers: User[] = [];
+  allFollowing: User[] = [];
   editUser: User | null = null;
   constructor(
     private userService: UserService,
     private accountservice: AccountService,
     private route: ActivatedRoute,
     private authservice: AuthService,
-    private router:  Router) {
-
-   }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-
-      this.authservice.getLoggedInUser().subscribe({
-        next: (user) => {
-          this.user = user;
-        },
-        error: (err) => {
-          console.error('Error retrieving user');
-          console.error(err);
-        }
-      });
+    this.authservice.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.user = user;
+        this.allfollowers(this.user);
+        this.allfollowing(this.user.username);
+      },
+      error: (err) => {
+        console.error('Error retrieving user');
+        console.error(err);
+      },
+    });
   }
 
   routeHomeAfterDelete() {
@@ -56,7 +57,7 @@ export class AccountComponent implements OnInit {
       error: (err) => {
         console.error('Error deleting user');
         console.error(err);
-      }
+      },
     });
   }
 
@@ -72,19 +73,45 @@ export class AccountComponent implements OnInit {
         console.error(err);
       },
     });
-}
+  }
 
-reload(): void {
-  this.accountservice.index().subscribe({
-    next: (users) => {
-      this.users = users;
-    },
-    error: (problem) => {
-      console.error('UserListHttpComponent.reload(): error loading users:');
-      console.error(problem);
-    },
-  });
-}
-}
+  reload(): void {
+    this.accountservice.index().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (problem) => {
+        console.error('UserListHttpComponent.reload(): error loading users:');
+        console.error(problem);
+      },
+    });
+  }
 
+  allfollowers(user: User) {
+    this.accountservice.getfollowers(user.username).subscribe({
+      next: (followers) => {
+        this.allFollowers = followers;
+      },
+      error: (problem) => {
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWERS:'
+        );
+        console.error(problem);
+      },
+    });
+  }
 
+  allfollowing(username: string) {
+    this.accountservice.getfollowing(username).subscribe({
+      next: (followers) => {
+        this.allFollowing = followers;
+      },
+      error: (problem) => {
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWING'
+        );
+        console.error(problem);
+      },
+    });
+  }
+}
