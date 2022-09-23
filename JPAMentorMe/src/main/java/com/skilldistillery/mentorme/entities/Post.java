@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Post {
 	
@@ -34,9 +36,11 @@ public class Post {
 	
 	private String subject;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "post")
 	private List<PostReview> postReviews;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "post")
 	private List<Reply> replies;
 	
