@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Bootcamp {
 
@@ -32,10 +34,12 @@ public class Bootcamp {
 	
 	private String description;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "bootcamp_tech_joiner", joinColumns = @JoinColumn(name = "bootcamp_id"), inverseJoinColumns = @JoinColumn(name = "bootcamp_tech_id"))
 	private List<BootcampTech> bootcampTech;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "bootcamp")
 	private List<BootcampReview> reviews;
 	
