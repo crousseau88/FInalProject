@@ -1,4 +1,34 @@
 <p>account works!</p>
 
+<button (click)="editUser=user">Update User?</button>
+<div *ngIf="editUser">
+<form class="css-form form-control" >
 
-<h1>{{user.username}}</h1>
+  <label for="password">Password</label>
+  <input class="css-form form-control" type="password" id="password" name="password"  required >
+
+  <label for="email">Email</label>
+  <input class="css-form form-control" [(ngModel)]="user.email" type="email" id="email" name="email"  required value="{{user.email}}"><br>
+
+  <label for="role">Role</label><br>
+  <select name="role" class="form-control" [(ngModel)]="user.role">
+    <option value="mentor">Mentor</option>
+    <option value="mentee">Mentee</option>
+  </select>
+
+  <label for="firstName">First Name </label>
+  <input class="css-form form-control" [(ngModel)]="user.firstName" type="text" id="firstName" name="firstName" value="{{user.firstName}}"><br>
+  <label for="lastName">Last Name </label>
+  <input class="css-form form-control" [(ngModel)]="user.lastName" type="text" id="lastName" name="lastName" value="{{user.lastName}}"><br>
+
+  <label for="aboutMe">About Me</label>
+  <textarea class="css-form form-control" [(ngModel)]="user.aboutMe" type="text" id="aboutMe" value="{{user.aboutMe}}" name="aboutMe" cols="20" rows="5"></textarea><br>
+
+  <label for="profileImg">Profile Picture URL</label>
+  <input class="css-form form-control" [(ngModel)]="user.profileImg" type="profileImg" id="profileImg" name="profileImg" value="{{user.profileImg}}"  required><br>
+
+  <button (click)="updateUser(user)">Update</button>
+
+</form>
+
+</div>

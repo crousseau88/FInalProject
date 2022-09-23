@@ -9,7 +9,7 @@ public interface UserService {
 	
 	public User show(int userId);
 	
-	public User update(int userId, User user);
+	public User update(String username, User user);
 	
 	public boolean destroy(int userId);
 
