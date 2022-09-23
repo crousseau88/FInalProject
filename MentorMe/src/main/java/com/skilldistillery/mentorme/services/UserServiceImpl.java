@@ -52,12 +52,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean destroy(int userId) {
-		Optional<User> userOpt = userRepo.findById(userId);
-		User deactivateMe = userOpt.get();
-		deactivateMe.setActive(false);
-		userRepo.saveAndFlush(deactivateMe);
-		return (!deactivateMe.getActive());
+	public boolean destroy(String username) {
+		User user = userRepo.findByUsername(username);
+		if(user != null) {
+			user.setActive(false);
+			userRepo.saveAndFlush(user);
+		}
+		return (!user.getActive());
 	}
 	
 	@Override

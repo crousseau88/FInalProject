@@ -11,7 +11,7 @@ public interface UserService {
 	
 	public User update(String username, User user);
 	
-	public boolean destroy(int userId);
+	public boolean destroy(String username);
 
 	List<User> getUsersFollowers(String username);
 
