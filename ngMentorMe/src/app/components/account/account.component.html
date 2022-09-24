@@ -1,10 +1,16 @@
 <!-- ********************USER PERSONAL ACCOUNT PAGE******************** -->
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
 <div>
-  <p>PLACEHOLDER: user profile image</p>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
-    <img img src="{{ user.profileImg }}" alt="" style="width: auto" />
+    <img
+      img
+      src="{{ user.profileImg }}"
+      alt=""
+      style="width: auto"
+      height="75"
+      width="75"
+    />
   </picture>
 </div>
 <div>
@@ -15,32 +21,37 @@
 </div>
 
 <div>
-  <p>PLACEHOLDER: about me section</p>
+  <h4>PLACEHOLDER: about me section</h4>
   <p>{{ user.aboutMe }}</p>
 </div>
-<!-- **********INTERACTIVE MENTOR INFORMATION********** -->
+<!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="user.role === 'MENTOR'">
-  <p>PLACEHOLDER: bootcamps attended by mentor</p>
+  <h4>Bootcamp(s) {{ user.username }} has attended.</h4>
   <!-- iterate over the mentors bootcamps array and populate anchors with it -->
-  <h1 *ngFor="let bootcamp of bootcamps" (click)="bootcampReviews(user.username)">{{bootcamp.name}}</h1>
-</div>
+  <div *ngFor="let bootcamp of bootcamps" (click)="showReview()">
+    {{ bootcamp.name }}
 
-<div *ngIf="user.role === 'MENTOR'"  >
-  <p>PLACEHOLDER: Reviews</p>
-  <!-- iterate over the mentors bootcamps array and populate anchors with it -->
-  <ul *ngFor="let review of bootReviews">
-    <li (click)="bootcampAdvice(review.id)">{{review.bootcampReview}}</li>
-    <div *ngIf="advice">
-      <p (click)="bootcampTools(advice.id)">{{advice.title}}</p>
+    <div *ngIf="showReviews">
+      <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p>
+      <!-- iterate over the mentors bootcamps array and populate anchors with it -->
+      <ul *ngFor="let review of bootReviews">
+        <li (click)="bootcampAdvice(review.id)">{{ review.bootcampReview }}</li>
+        <div *ngIf="advice">
+          <p (click)="bootcampTools(advice.id)">
+            CLick here for tools {{ advice.title }}
+          </p>
+        </div>
+        <div *ngIf="tools">
+          <li *ngFor="let tool of tools">{{ tool.name }}</li>
+        </div>
+      </ul>
     </div>
-    <div *ngIf="tools">
-      <li *ngFor="let tool of tools">{{tool.name}}</li>
-    </div>
-  </ul>
+  </div>
 </div>
 
 <div>
-  <p>PLACEHOLDER: mentors posts (accordian)</p>
+  <br />
+  <h4>PLACEHOLDER: mentors posts (accordian)</h4>
   <!-- Need iteration over posts made by mentor that have the replies and reviews appended to it. Button functionality to update/delete/reply needs to come with it -->
   <!-- Present each post as an accordian with the subject of the post being the header, in order by most recent to oldest -->
 </div>
@@ -58,6 +69,13 @@
       required
     />
 
+    <button (click)="updateUser(user)">Update</button>
+    <button
+      (click)="[deleteUser(user.id), routeHomeAfterDelete()]"
+      class="btn btn-danger"
+    >
+      DELETE ACCOUNT
+    </button>
     <label for="email">Email</label>
     <input
       class="css-form form-control"
@@ -117,26 +135,19 @@
       value="{{ user.profileImg }}"
       required
     /><br />
-
-    <button (click)="updateUser(user)">Update</button>
-    <button
-      (click)="[deleteUser(user.id), routeHomeAfterDelete()]"
-      class="btn btn-danger"
-    >
-      DELETE ACCOUNT
-    </button>
   </form>
 </div>
 
 <div>
-  <h1>Currently Following</h1>
+  <br />
+  <h4>Currently Following</h4>
   <ul>
     <li *ngFor="let follow of allFollowers">{{ follow.username }}</li>
   </ul>
 </div>
 
 <div>
-  <h1>My Followers</h1>
+  <h4>My Followers</h4>
   <ul>
     <li *ngFor="let follow of allFollowing">{{ follow.username }}</li>
   </ul>

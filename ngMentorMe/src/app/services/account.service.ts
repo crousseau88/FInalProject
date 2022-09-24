@@ -123,47 +123,63 @@ export class AccountService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
+          () => new Error('userService.show():error retrieving Bootcamps' + err)
+        );
+      })
+    );
+  }
+  // getClickedBootcamp(username: string, bootcampReviewId: number) {
+  //   return this.http.get<Bootcamp>(this.url + 'bootcamps/' + username).pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError(
+  //         () => new Error('userService.show():error retrieving Bootcamps' + err)
+  //       );
+  //     })
+  //   );
+  // }
+
+  getBootcampReviews(username: string) {
+    return this.http
+      .get<BootcampReview[]>(this.url + 'bootcamps/' + 'reviews/' + username)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'userService.show():error retrieving BootcampReviews' + err
+              )
+          );
+        })
+      );
+  }
+
+  getBootcampAdvice(reviewId: number) {
+    return this.http.get<BootcampAdvice>(this.url + 'advice/' + reviewId).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
           () =>
-            new Error('userService.show():error retrieving Bootcamps' + err)
-            );
-          })
+            new Error(
+              'userService.show():error retrieving BootcampAdvice' + err
+            )
         );
-      }
+      })
+    );
+  }
 
-      getBootcampReviews(username: string) {
-        return this.http.get<BootcampReview[]>(this.url + 'bootcamps/' + 'reviews/' + username ).pipe(
-           catchError((err: any) => {
-              console.log(err);
-              return throwError(
-                () =>
-                  new Error('userService.show():error retrieving BootcampReviews' + err)
-              );
-            })
+  getTools(adviceId: number) {
+    return this.http.get<Tools[]>(this.url + 'tools/' + adviceId).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'userService.show():error retrieving BootcampAdvice' + err
+            )
         );
-      }
-
-      getBootcampAdvice(reviewId: number) {
-        return this.http.get<BootcampAdvice>(this.url + 'advice/' + reviewId).pipe(
-            catchError((err: any) => {
-              console.log(err);
-              return throwError(
-                () =>
-                  new Error('userService.show():error retrieving BootcampAdvice' + err)
-                  );
-                })
-            );
-          }
-
-          getTools(adviceId: number) {
-            return this.http.get<Tools[]>(this.url + 'tools/' + adviceId).pipe(
-                catchError((err: any) => {
-                  console.log(err);
-                  return throwError(
-                    () =>
-                      new Error('userService.show():error retrieving BootcampAdvice' + err)
-                      );
-                    })
-                );
-              }
-          }
-
+      })
+    );
+  }
+}

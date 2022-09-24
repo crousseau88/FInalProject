@@ -20,6 +20,7 @@ export class AccountComponent implements OnInit {
   users: User[] = []; //mentors/mentees
 
   selected: User | null = null;
+  selectedBootcamp: Bootcamp | null = null;
 
   newUser: User = new User();
 
@@ -27,11 +28,13 @@ export class AccountComponent implements OnInit {
   allFollowers: User[] = [];
   allFollowing: User[] = [];
   editUser: User | null = null;
-  userIsMentor: boolean = false;
-  bootcamps: Bootcamp [] = [];
-  bootReviews: BootcampReview [] = [];
+  bootcamps: Bootcamp[] = [];
+  bootReviews: BootcampReview[] = [];
   advice: BootcampAdvice | null = null;
-  tools: Tools [] = [];
+  tools: Tools[] = [];
+
+  userIsMentor: boolean = false;
+  showReviews: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -49,7 +52,6 @@ export class AccountComponent implements OnInit {
         this.allfollowing(this.user.username);
         this.bootcampsAttended(this.user.username);
         this.bootcampReviews(this.user.username);
-
       },
       error: (err) => {
         console.error('Error retrieving user');
@@ -133,48 +135,63 @@ export class AccountComponent implements OnInit {
     console.log(this.user.role === 'MENTOR');
     if (this.user.role === 'MENTOR') {
       this.userIsMentor = true;
-    }
-    else {
+    } else {
       this.userIsMentor = false;
     }
   }
 
+  showReview() {
+    console.log('Show Review boolean before IF statement: ' + this.showReview);
+    if (!this.showReviews) {
+      this.showReviews = true;
+      this.bootcampReviews(this.user.username);
+      console.log('Show Review boolean AFTER IF statement: ' + this.showReview);
+    } else {
+      this.showReviews = false;
+    }
+  }
+
   bootcampsAttended(username: string) {
- this.accountservice.getBootcamps(username).subscribe({
-    next: (bootcamps) => {
-      this.bootcamps = bootcamps;
-    },
-    error: (problem) => {
-      console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
-      console.error(problem);
-    }
-  });
-}
-bootcampReviews(username: string) {
+    this.accountservice.getBootcamps(username).subscribe({
+      next: (bootcamps) => {
+        this.bootcamps = bootcamps;
+      },
+      error: (problem) => {
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWING'
+        );
+        console.error(problem);
+      },
+    });
+  }
+  bootcampReviews(username: string) {
+    this.accountservice.getBootcampReviews(username).subscribe({
+      next: (bootcamps) => {
+        this.bootReviews = bootcamps;
+        console.log(this.bootReviews);
+      },
+      error: (problem) => {
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWING'
+        );
+        console.error(problem);
+      },
+    });
+  }
 
-  this.accountservice.getBootcampReviews(username).subscribe({
-    next: (bootcamps) => {
-      this.bootReviews = bootcamps;
-      console.log(this.bootReviews);
-    },
-    error: (problem) => {
-      console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
-      console.error(problem);
-    }
-  });
-}
-
-bootcampAdvice(reviewId: number) {
-  this.accountservice.getBootcampAdvice(reviewId).subscribe({
-    next: (advice) => {
-      this.advice = advice;
-      console.log(this.advice);
-    },
-    error: (problem) => {
-      console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
-      console.error(problem);
-    }
-  });
+  bootcampAdvice(reviewId: number) {
+    this.accountservice.getBootcampAdvice(reviewId).subscribe({
+      next: (advice) => {
+        this.advice = advice;
+        console.log(this.advice);
+      },
+      error: (problem) => {
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWING'
+        );
+        console.error(problem);
+      },
+    });
   }
 
   bootcampTools(adviceId: number) {
@@ -184,10 +201,11 @@ bootcampAdvice(reviewId: number) {
         console.log(this.tools);
       },
       error: (problem) => {
-        console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWING'
+        );
         console.error(problem);
-      }
+      },
     });
-    }
   }
-
+}
