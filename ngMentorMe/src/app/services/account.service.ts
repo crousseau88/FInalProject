@@ -8,6 +8,7 @@ import { Bootcamp } from '../models/bootcamp';
 import { BootcampReview } from '../models/bootcamp-review';
 import { BootcampAdvice } from '../models/bootcamp-advice';
 import { Tools } from '../models/tools';
+import { Post } from '../models/post';
 
 @Injectable({
   providedIn: 'root',
@@ -178,6 +179,17 @@ export class AccountService {
             new Error(
               'userService.show():error retrieving BootcampAdvice' + err
             )
+        );
+      })
+    );
+  }
+
+  getPosts(username: string) {
+    return this.http.get<Post[]>(this.url + 'posts/' + username).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('userService.show():error retrieving Posts' + err)
         );
       })
     );
