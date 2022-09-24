@@ -10,4 +10,6 @@ public interface ReplyService {
 
 	Reply addAReplyToAPost(int postId, Reply reply, String username);
 
+	boolean removeAReplyFromAPost(int postId, int replyId, String username);
+
 }

@@ -1,6 +1,7 @@
 package com.skilldistillery.mentorme.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,8 +52,21 @@ public class Post {
 	public Post() {
 		super();
 	}
-	
-	
+	public void addReply(Reply reply) {
+		if(replies == null) {
+			replies = new ArrayList<>();
+		} if(!replies.contains(reply)) {
+			replies.add(reply);
+			reply.setCreated(LocalDateTime.now());
+			reply.setPost(this);
+		}
+	}
+	public void removeReply(Reply reply) {
+		if (replies != null && replies.contains(reply)) {
+			replies.remove(reply);
+			reply.setEnabled(false);
+		}
+	}
 
 	public List<Reply> getReplies() {
 		return replies;
