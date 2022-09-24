@@ -23,6 +23,8 @@ export class AccountComponent implements OnInit {
   allFollowers: User[] = [];
   allFollowing: User[] = [];
   editUser: User | null = null;
+  userIsMentor: boolean = false;
+
   constructor(
     private userService: UserService,
     private accountservice: AccountService,
@@ -113,5 +115,12 @@ export class AccountComponent implements OnInit {
         console.error(problem);
       },
     });
+  }
+  // BOOLEAN SWITCH FUNCTIONS
+
+  userRoleIsMentor() {
+    if (this.user.role === 'MENTOR') {
+      this.userIsMentor = true;
+    }
   }
 }

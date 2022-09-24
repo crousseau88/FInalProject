@@ -1,5 +1,37 @@
-<p>account works!</p>
+<!-- ********************USER PERSONAL ACCOUNT PAGE******************** -->
+<!-- **********NON-INTERACTIVE INFORMATION********** -->
+<div>
+  <p>PLACEHOLDER: user profile image</p>
+  <picture>
+    <!-- need to know how to reference the database to invoke the default image -->
+    <img img src="{{ user.profileImg }}" alt="" style="width: auto" />
+  </picture>
+</div>
+<div>
+  <p>PLACEHOLDER: basic user profile information</p>
+  <h6>{{ user.role }}</h6>
+  <h6>{{ user.username }}</h6>
+  <h6>{{ user.firstName }} {{ user.lastName }}</h6>
+</div>
 
+<div>
+  <p>PLACEHOLDER: about me section</p>
+  <p>{{ user.aboutMe }}</p>
+</div>
+<!-- **********INTERACTIVE MENTOR INFORMATION********** -->
+<div *ngIf="userRoleIsMentor()">
+  <p>PLACEHOLDER: bootcamps attended by mentor</p>
+  <!-- iterate over the mentors bootcamps array and populate anchors with it -->
+  <!-- <a>{{user.nameOfBootCampHere}}</a> -->
+</div>
+
+<div>
+  <p>PLACEHOLDER: mentors posts (accordian)</p>
+  <!-- Need iteration over posts made by mentor that have the replies and reviews appended to it. Button functionality to update/delete/reply needs to come with it -->
+  <!-- Present each post as an accordian with the subject of the post being the header, in order by most recent to oldest -->
+</div>
+
+<!-- **********UPDATE USER PROFILE********** -->
 <button (click)="editUser = user">Update User?</button>
 <div *ngIf="editUser">
   <form class="css-form form-control">
@@ -95,3 +127,5 @@
     <li *ngFor="let follow of allFollowing">{{ follow.username }}</li>
   </ul>
 </div>
+
+<!-- ********************USER VISITOR ACCOUNT PAGE******************** -->
