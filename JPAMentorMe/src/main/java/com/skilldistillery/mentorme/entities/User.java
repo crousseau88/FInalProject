@@ -77,6 +77,10 @@ public class User {
 	@OneToMany(mappedBy = "userReplyReview")
 	private List<ReplyReview> replyReviews;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Reply> replies;
+	
 	//////////////////////////////////// GENERATED////////////////////////////
 
 	public User() {
@@ -99,6 +103,18 @@ public class User {
 
 	public List<ReplyReview> getReplyReviews() {
 		return replyReviews;
+	}
+
+
+
+	public List<Reply> getReplies() {
+		return replies;
+	}
+
+
+
+	public void setReplies(List<Reply> replies) {
+		this.replies = replies;
 	}
 
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,9 +53,19 @@ public class ReplyController {
 			res.setStatus(200);
 			return newReply;
 		} catch(Exception e) {
-			
+			res.setStatus(400);
 		}
 		return newReply;
+	}
+	@DeleteMapping("replies/{postId}/{replyId}")
+	public void deleteAReplyToAPost(@PathVariable int postId, @PathVariable int replyId, HttpServletResponse res, Principal principal) {
+		boolean worked = false;
+		try {
+			worked = replyServ.removeAReplyFromAPost(postId, replyId, principal.getName());
+			res.setStatus(200);
+		} catch(Exception e) {
+			res.setStatus(400);
+		}
 	}
 
 }
