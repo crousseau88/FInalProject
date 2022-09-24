@@ -1,5 +1,6 @@
 package com.skilldistillery.mentorme.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,5 +72,25 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		
 		return false;
+	}
+	@Override
+	public Reply updateAReplyOnAPost(int postId, int replyId, Reply reply, String username) {
+		User user = userRepo.findByUsername(username);
+		Optional<Reply> replyOpt = replyRepo.findById(replyId);
+		if(replyOpt.isPresent() && replyOpt.get().getUser() == user) {
+			Reply oldReply = replyOpt.get();
+			Optional<Post> postOpt = postRepo.findById(postId);
+			if(postOpt.isPresent()) {
+				Post post = postOpt.get();
+				oldReply.setText(reply.getText());
+				oldReply.setUpdated(LocalDateTime.now());
+				postRepo.saveAndFlush(post);
+				replyRepo.saveAndFlush(oldReply);
+				return oldReply;
+			}
+		}
+		
+		
+		return null;
 	}
 }

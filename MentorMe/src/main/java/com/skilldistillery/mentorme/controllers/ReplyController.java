@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,6 +67,21 @@ public class ReplyController {
 		} catch(Exception e) {
 			res.setStatus(400);
 		}
+	}
+	
+	@PutMapping("replies/{postId}/{replyId}")
+	public Reply updateAReply(@PathVariable int postId, @PathVariable int replyId, @RequestBody Reply reply, HttpServletResponse res, Principal principal) {
+		Reply newReply = null;
+		try {
+			newReply = replyServ.updateAReplyOnAPost(postId, replyId, reply, principal.getName());
+			res.setStatus(200);
+			return newReply;
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		
+		return newReply;
 	}
 
 }

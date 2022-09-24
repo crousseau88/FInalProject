@@ -12,4 +12,6 @@ public interface ReplyService {
 
 	boolean removeAReplyFromAPost(int postId, int replyId, String username);
 
+	Reply updateAReplyOnAPost(int postId, int replyId, Reply reply, String username);
+
 }
