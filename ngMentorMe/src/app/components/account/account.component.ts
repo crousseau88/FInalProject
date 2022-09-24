@@ -8,6 +8,8 @@ import { UserService } from 'src/app/services/user.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Bootcamp } from 'src/app/models/bootcamp';
 import { BootcampReview } from 'src/app/models/bootcamp-review';
+import { Post } from 'src/app/models/post';
+
 
 @Component({
   selector: 'app-account',
@@ -32,7 +34,7 @@ export class AccountComponent implements OnInit {
   bootReviews: BootcampReview[] = [];
   advice: BootcampAdvice | null = null;
   tools: Tools[] = [];
-
+  posts: Post[] = [];
   userIsMentor: boolean = false;
   showReviews: boolean = false;
 
@@ -52,6 +54,7 @@ export class AccountComponent implements OnInit {
         this.allfollowing(this.user.username);
         this.bootcampsAttended(this.user.username);
         this.bootcampReviews(this.user.username);
+        this.userPosts(this.user.username);
       },
       error: (err) => {
         console.error('Error retrieving user');
@@ -208,4 +211,21 @@ export class AccountComponent implements OnInit {
       },
     });
   }
+
+  userPosts(username: string) {
+    console.log("look here" + this.posts);
+    this.accountservice.getPosts(username).subscribe({
+      next: (posts) => {
+        this.posts = posts;
+        console.log(this.posts);
+      },
+      error: (problem) => {
+        console.error(
+          'UserListHttpComponent.reload(): error loading FOLLOWING'
+        );
+        console.error(problem);
+      },
+    });
+  }
+
 }

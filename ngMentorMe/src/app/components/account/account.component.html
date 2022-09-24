@@ -19,11 +19,12 @@
   <h6>{{ user.username }}</h6>
   <h6>{{ user.firstName }} {{ user.lastName }}</h6>
 </div>
-
+<hr>
 <div>
   <h4>PLACEHOLDER: about me section</h4>
   <p>{{ user.aboutMe }}</p>
 </div>
+<hr>
 <!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="user.role === 'MENTOR'">
   <h4>Bootcamp(s) {{ user.username }} has attended.</h4>
@@ -48,14 +49,35 @@
     </div>
   </div>
 </div>
-
+<hr>
 <div>
   <br />
   <h4>PLACEHOLDER: mentors posts (accordian)</h4>
   <!-- Need iteration over posts made by mentor that have the replies and reviews appended to it. Button functionality to update/delete/reply needs to come with it -->
   <!-- Present each post as an accordian with the subject of the post being the header, in order by most recent to oldest -->
+<div  *ngFor="let post of posts">
+  <p>{{post.text}}</p>
+</div>
 </div>
 
+<!-- **********Post Replies********** -->
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<hr>
 <!-- **********UPDATE USER PROFILE********** -->
 <button (click)="editUser = user">Update User?</button>
 <div *ngIf="editUser">
@@ -137,7 +159,7 @@
     /><br />
   </form>
 </div>
-
+<hr>
 <div>
   <br />
   <h4>Currently Following</h4>
