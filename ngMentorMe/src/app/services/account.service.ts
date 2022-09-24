@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+import { Bootcamp } from '../models/bootcamp';
+import { BootcampReview } from '../models/bootcamp-review';
+import { BootcampAdvice } from '../models/bootcamp-advice';
+import { Tools } from '../models/tools';
 
 @Injectable({
   providedIn: 'root',
@@ -113,4 +117,53 @@ export class AccountService {
       })
     );
   }
-}
+
+  getBootcamps(username: string) {
+    return this.http.get<Bootcamp[]>(this.url + 'bootcamps/' + username).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('userService.show():error retrieving Bootcamps' + err)
+            );
+          })
+        );
+      }
+
+      getBootcampReviews(username: string) {
+        return this.http.get<BootcampReview[]>(this.url + 'bootcamps/' + 'reviews/' + username ).pipe(
+           catchError((err: any) => {
+              console.log(err);
+              return throwError(
+                () =>
+                  new Error('userService.show():error retrieving BootcampReviews' + err)
+              );
+            })
+        );
+      }
+
+      getBootcampAdvice(reviewId: number) {
+        return this.http.get<BootcampAdvice>(this.url + 'advice/' + reviewId).pipe(
+            catchError((err: any) => {
+              console.log(err);
+              return throwError(
+                () =>
+                  new Error('userService.show():error retrieving BootcampAdvice' + err)
+                  );
+                })
+            );
+          }
+
+          getTools(adviceId: number) {
+            return this.http.get<Tools[]>(this.url + 'tools/' + adviceId).pipe(
+                catchError((err: any) => {
+                  console.log(err);
+                  return throwError(
+                    () =>
+                      new Error('userService.show():error retrieving BootcampAdvice' + err)
+                      );
+                    })
+                );
+              }
+          }
+

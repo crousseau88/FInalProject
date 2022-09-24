@@ -19,10 +19,24 @@
   <p>{{ user.aboutMe }}</p>
 </div>
 <!-- **********INTERACTIVE MENTOR INFORMATION********** -->
-<div *ngIf="userRoleIsMentor()">
+<div *ngIf="user.role === 'MENTOR'">
   <p>PLACEHOLDER: bootcamps attended by mentor</p>
   <!-- iterate over the mentors bootcamps array and populate anchors with it -->
-  <!-- <a>{{user.nameOfBootCampHere}}</a> -->
+  <h1 *ngFor="let bootcamp of bootcamps" (click)="bootcampReviews(user.username)">{{bootcamp.name}}</h1>
+</div>
+
+<div *ngIf="user.role === 'MENTOR'"  >
+  <p>PLACEHOLDER: Reviews</p>
+  <!-- iterate over the mentors bootcamps array and populate anchors with it -->
+  <ul *ngFor="let review of bootReviews">
+    <li (click)="bootcampAdvice(review.id)">{{review.bootcampReview}}</li>
+    <div *ngIf="advice">
+      <p (click)="bootcampTools(advice.id)">{{advice.title}}</p>
+    </div>
+    <div *ngIf="tools">
+      <li *ngFor="let tool of tools">{{tool.name}}</li>
+    </div>
+  </ul>
 </div>
 
 <div>

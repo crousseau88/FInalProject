@@ -1,9 +1,13 @@
+import { Tools } from './../../models/tools';
+import { BootcampAdvice } from './../../models/bootcamp-advice';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { AccountService } from 'src/app/services/account.service';
+import { Bootcamp } from 'src/app/models/bootcamp';
+import { BootcampReview } from 'src/app/models/bootcamp-review';
 
 @Component({
   selector: 'app-account',
@@ -24,6 +28,10 @@ export class AccountComponent implements OnInit {
   allFollowing: User[] = [];
   editUser: User | null = null;
   userIsMentor: boolean = false;
+  bootcamps: Bootcamp [] = [];
+  bootReviews: BootcampReview [] = [];
+  advice: BootcampAdvice | null = null;
+  tools: Tools [] = [];
 
   constructor(
     private userService: UserService,
@@ -39,6 +47,9 @@ export class AccountComponent implements OnInit {
         this.user = user;
         this.allfollowers(this.user);
         this.allfollowing(this.user.username);
+        this.bootcampsAttended(this.user.username);
+        this.bootcampReviews(this.user.username);
+
       },
       error: (err) => {
         console.error('Error retrieving user');
@@ -119,8 +130,64 @@ export class AccountComponent implements OnInit {
   // BOOLEAN SWITCH FUNCTIONS
 
   userRoleIsMentor() {
+    console.log(this.user.role === 'MENTOR');
     if (this.user.role === 'MENTOR') {
       this.userIsMentor = true;
     }
+    else {
+      this.userIsMentor = false;
+    }
   }
+
+  bootcampsAttended(username: string) {
+ this.accountservice.getBootcamps(username).subscribe({
+    next: (bootcamps) => {
+      this.bootcamps = bootcamps;
+    },
+    error: (problem) => {
+      console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
+      console.error(problem);
+    }
+  });
 }
+bootcampReviews(username: string) {
+
+  this.accountservice.getBootcampReviews(username).subscribe({
+    next: (bootcamps) => {
+      this.bootReviews = bootcamps;
+      console.log(this.bootReviews);
+    },
+    error: (problem) => {
+      console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
+      console.error(problem);
+    }
+  });
+}
+
+bootcampAdvice(reviewId: number) {
+  this.accountservice.getBootcampAdvice(reviewId).subscribe({
+    next: (advice) => {
+      this.advice = advice;
+      console.log(this.advice);
+    },
+    error: (problem) => {
+      console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
+      console.error(problem);
+    }
+  });
+  }
+
+  bootcampTools(adviceId: number) {
+    this.accountservice.getTools(adviceId).subscribe({
+      next: (tools) => {
+        this.tools = tools;
+        console.log(this.tools);
+      },
+      error: (problem) => {
+        console.error('UserListHttpComponent.reload(): error loading FOLLOWING');
+        console.error(problem);
+      }
+    });
+    }
+  }
+
