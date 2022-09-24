@@ -13,5 +13,9 @@ public interface PostService {
 	List<Post> showPostsByUserId(int userId);
 
 	Post makePost(Post post, String username);
+
+	Post updatePost(Post post, int postId, String username);
+
+	boolean deletePost(int postId, String username);
 	
 }

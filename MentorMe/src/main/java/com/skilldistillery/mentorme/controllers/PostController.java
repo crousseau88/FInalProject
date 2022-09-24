@@ -1,6 +1,7 @@
 package com.skilldistillery.mentorme.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mentorme.entities.Post;
-import com.skilldistillery.mentorme.entities.PostReview;
 import com.skilldistillery.mentorme.repositories.PostRepository;
 import com.skilldistillery.mentorme.services.PostService;
 
@@ -35,19 +35,26 @@ public class PostController {
 	@GetMapping("posts")
 	public List<Post> getAllPosts(HttpServletResponse res) {
 		List<Post> posts = null;
+		List<Post> results = new ArrayList<>();
 		try {
-			res.setStatus(200);
 			posts = postRepo.findAll();
+			for (Post post : posts) {
+				if(post.isEnabled()) {
+					results.add(post);
+				}
+			}
+			res.setStatus(200);
+			return results;
 		} catch (Exception e) {
 			res.setStatus(404);
 			e.printStackTrace();
 		}
 
-		return posts;
+		return null;
 	}
 
 
-	@GetMapping("auth/posts")
+	@GetMapping("account/posts")
 	public List<Post> getLoggedInUserPosts(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		List<Post> posts = postServ.showLoggedInUserPosts(principal.getName());
 		if (posts == null) {
@@ -101,10 +108,10 @@ public class PostController {
 	}
 
 	@PutMapping("posts/{postId}")
-	public Post update(HttpServletRequest req, HttpServletResponse res, @PathVariable int tid, @RequestBody Post post,
-			Principal principal) {
+	public Post update(HttpServletRequest req, HttpServletResponse res, @PathVariable int postId, @RequestBody Post post, Principal principal) {
 		Post updatedPost = null;
 		try {
+			updatedPost = postServ.updatePost(post, postId, principal.getName());
 			res.setStatus(200);
 		} catch (Exception e) {
 			res.setStatus(400);
@@ -117,7 +124,11 @@ public class PostController {
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int postId,
 			Principal principal) {
 		try {
+			boolean worked = postServ.deletePost(postId, principal.getName());
 			res.setStatus(204);
+			if(!worked) {
+				res.setStatus(400);
+			}
 		} catch (Exception e) {
 			res.setStatus(400);
 			e.printStackTrace();
