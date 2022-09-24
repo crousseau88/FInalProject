@@ -1,10 +1,11 @@
 package com.skilldistillery.mentorme.services;
 
 import java.util.List;
-import java.util.TreeSet;
 
 import com.skilldistillery.mentorme.entities.Bootcamp;
+import com.skilldistillery.mentorme.entities.BootcampAdvice;
 import com.skilldistillery.mentorme.entities.BootcampReview;
+import com.skilldistillery.mentorme.entities.Tool;
 
 public interface BootcampService {
 
@@ -15,5 +16,9 @@ public interface BootcampService {
 	List<BootcampReview> getBootcampReviewsByUsername(String username);
 
 	List<Bootcamp> getBootcampsByKeyword(String keyword);
+
+	BootcampAdvice getBootcampAdviceByReviewId(int reviewId);
+
+	List<Tool> getBootTooldByAdviceId(int advice);
 
 }

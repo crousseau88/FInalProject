@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="bootcamp_advice")
 public class BootcampAdvice {
@@ -28,6 +30,7 @@ public class BootcampAdvice {
 	@JoinColumn(name = "bootcamp_review_id")
 	private BootcampReview bootcampReview;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="bootcampAdvice")
 	private List<Tool> tools;
 

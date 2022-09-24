@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mentorme.entities.Bootcamp;
+import com.skilldistillery.mentorme.entities.BootcampAdvice;
 import com.skilldistillery.mentorme.entities.BootcampReview;
+import com.skilldistillery.mentorme.entities.Tool;
+import com.skilldistillery.mentorme.repositories.BootcampAdviceRepository;
 import com.skilldistillery.mentorme.repositories.BootcampRepository;
 import com.skilldistillery.mentorme.repositories.BootcampReviewRepository;
+import com.skilldistillery.mentorme.repositories.ToolRepository;
 
 @Service
 public class BootcampServiceImpl implements BootcampService {
@@ -18,6 +22,10 @@ public class BootcampServiceImpl implements BootcampService {
 	private BootcampRepository bootRepo;
 	@Autowired
 	private BootcampReviewRepository bootRevRepo;
+	@Autowired
+	private BootcampAdviceRepository bootAdviceRepo;
+	@Autowired
+	private ToolRepository toolRepo;
 	
 	@Override
 	public List<Bootcamp> getAllBootcamps(){
@@ -73,6 +81,33 @@ public class BootcampServiceImpl implements BootcampService {
 		}
 		return bootcamps;
 		
+	}
+	
+	@Override
+	public BootcampAdvice getBootcampAdviceByReviewId(int reviewId) {
+		BootcampAdvice advice = null;
+		try {
+			advice = bootAdviceRepo.findByBootcampReviewId(reviewId);
+			return advice;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			advice = null;
+		}
+		return advice;
+	}
+	@Override
+	public List<Tool> getBootTooldByAdviceId(int adviceId) {
+		List<Tool> tools = null;
+		try {
+			tools = toolRepo.findByBootcampAdviceId(adviceId);
+			return tools;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			tools = null;
+		}
+		return tools;
 	}
 
 }

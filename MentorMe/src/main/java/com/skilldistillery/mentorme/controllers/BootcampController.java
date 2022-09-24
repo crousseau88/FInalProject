@@ -1,7 +1,6 @@
 package com.skilldistillery.mentorme.controllers;
 
 import java.util.List;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mentorme.entities.Bootcamp;
+import com.skilldistillery.mentorme.entities.BootcampAdvice;
 import com.skilldistillery.mentorme.entities.BootcampReview;
+import com.skilldistillery.mentorme.entities.Tool;
 import com.skilldistillery.mentorme.services.BootcampService;
 
 @RestController
@@ -63,6 +64,8 @@ public class BootcampController {
 		}
 		return bootcamps;
 	}
+	
+// XXX: SEARCH METHOD
 	@GetMapping("bootcamps/search/{keyword}")
 	public List<Bootcamp> getBootcampsByKeyword(@PathVariable String keyword, HttpServletResponse res){
 		List<Bootcamp> bootcamps = null;
@@ -75,6 +78,35 @@ public class BootcampController {
 			e.printStackTrace();
 		}
 		return bootcamps;
+	}
+	
+	@GetMapping("advice/{reviewId}")
+	public BootcampAdvice getBootcampAdviceThroughReview(@PathVariable int reviewId, HttpServletResponse res) {
+		BootcampAdvice advice = null;
+		try {
+			advice = bootServ.getBootcampAdviceByReviewId(reviewId);
+			res.setStatus(200);
+			return advice;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			res.setStatus(404);
+		}
+		return advice;
+	}
+	@GetMapping("tools/{adviceId}")
+	public List<Tool> getToolsUsedInBootcamp(@PathVariable int adviceId, HttpServletResponse res) {
+		List<Tool> tools = null;
+		try {
+			tools = bootServ.getBootTooldByAdviceId(adviceId);
+			res.setStatus(200);
+			return tools;
+		} catch (Exception e) {
+			res.setStatus(404);
+			tools = null;
+			e.printStackTrace();
+		}
+		return tools;
 	}
 	
 
