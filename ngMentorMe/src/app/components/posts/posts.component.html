@@ -1,0 +1,16 @@
+<div class="posts">
+  <h3 class="posts-subject">Posts</h3>
+  <div class="posts-form-subject">
+    <div class="posts-container">
+      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    </div>
+  </div>
+</div>
+
+<h3 class="posts-subject">Posts</h3>
+<div class="post-form-subject">Write comment</div>
+<app-post-form
+  submitLabel="Submit"
+  (handleSubmit)="addPost({ text: $event, postId: null })"
+>
+</app-post-form>
