@@ -1,55 +1,6 @@
-
-<!-- if not selected -->
-<div *ngIf="!selectedUser">
-<form name="makePost" class="text-center">
-  <input
-    type="text"
-    name="subject"
-    placeholder="Subject"
-    [(ngModel)]="newPost.subject"
-  /><br />
-  <textarea
-    name="text"
-    cols="20"
-    rows="5"
-    placeholder="Body"
-    [(ngModel)]="newPost.text"
-  ></textarea
-  ><br />
-  <button (click)="createNewPost(newPost)">Make Post</button>
-</form>
-<div *ngFor="let post of posts; let i = index">
-  <u><a (click)="setSelectedUser(post.userPost?.username)" >{{post.userPost?.username}}</a></u>
-  <h3>{{ post.subject }}</h3>
-  <blockquote>{{ post.text }}</blockquote>
-  <div *ngIf="post.userPost?.id === user?.id || user?.role === 'ADMIN'">
-    <button (click)="deletePost(post.id)">Delete Post</button>
-  </div>
-  <form *ngIf="user">
-    <br />
-    <input
-    type="text"
-    name="text"
-    placeholder="Comment"
-    [(ngModel)]="newPostReplies[i].text"
-    /><br />
-    <button (click)="createNewComment(newPostReplies[i], post.id)">Comment</button>
-  </form>
-  <div *ngFor="let comment of post.replies">
-    <p>{{ comment.text }}</p>
-    <div *ngIf="comment.user?.id === user?.id">
-      <button (click)="deleteComment(post.id, comment.id)">Delete Comment</button>
-    </div>
-  </div>
-  <hr />
-</div>
-</div>
-<!-- if selected -->
-<div *ngIf="selectedUser">
 <!-- ********************USER PERSONAL ACCOUNT PAGE******************** -->
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
 <div>
-  <button (click)="selectedUser = null">BACK</button>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
@@ -101,7 +52,7 @@
 <hr />
 <div>
   <br />
-
+ 
 <hr />
 <div>
   <br />
@@ -119,4 +70,5 @@
 </div>
 
 
-</div>
+
+

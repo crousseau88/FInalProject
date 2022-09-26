@@ -37,9 +37,9 @@ export class AccountService {
     };
     return options;
   }
-  byUsername(username: string) {
+  byUsername(username: any) {
     console.log(username);
-    return this.http.get<User>(this.url + '/account/' + username).pipe(
+    return this.http.get<User>(this.url + 'account/' + username).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
