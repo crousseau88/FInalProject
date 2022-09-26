@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { Reply } from 'src/app/models/reply';
 
 @Component({
   selector: 'app-posts',
@@ -15,13 +16,13 @@ import { User } from 'src/app/models/user';
   inputs: ['post'],
 })
 export class PostsComponent implements OnInit {
-  currentUserId: number | undefined;
   posts: PostInterface[] = [];
   @Input() post!: PostInterface;
   @Input() userId!: string;
   selected: PostInterface | null = null;
   loggedInUser: User | null = null;
   submittedPost!: PostInterface;
+  currentUserId: any  = this.loggedInUser?.id;
 
   constructor(
     private postService: PostService,
@@ -64,16 +65,17 @@ export class PostsComponent implements OnInit {
     this.postService.createPost(post).subscribe((createdPost) => {
       this.posts = [...this.posts, createdPost];
     });
-    // return this.postService.createPost(this.submittedPost, postId).subscribe({
-    //   next: (data) => {
-    //     this.submittedPost = data;
-    //   },
-    //   error: (err) => {
-    //     console.error('PostComponent.reload(): error loading posts:');
-    //     console.error(err);
-    //   },
-    // });
   }
+
+  getReplies(postId: string): PostInterface[] {
+    return this.posts
+      .filter((reply) => reply.id === postId)
+      .sort(
+        (a, b) =>
+          new Date(a.created).getTime() - new Date(b.created).getTime()
+      );
+  }
+
 
   // reload() {
   //   this.postService.index().subscribe({

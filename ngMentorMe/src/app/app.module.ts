@@ -1,3 +1,4 @@
+import { FeedComponent } from './components/feed/feed.component';
 import { PostService } from './services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { AuthService } from './services/auth.service';
     RegisterComponent,
     NavigationComponent,
     AccountComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,

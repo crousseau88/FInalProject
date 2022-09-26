@@ -12,4 +12,27 @@
     </div>
     <div class="comment-text">{{ post.text }}</div>
   </div>
-</div>
+  <br><br>
+    <div class="comment-actions">
+      <div
+        *ngIf="canReply"
+        class="comment-action"
+      ><br>
+        *********Reply
+      </div>
+      <div
+        *ngIf="this.currentUserId === this.post.userId"
+        class="comment-action"
+      >
+        Edit
+      </div>
+      <div
+        *ngIf="canDelete"
+        class="comment-action"
+      >
+        Delete
+      </div>
+    </div>
+
+  </div>
+

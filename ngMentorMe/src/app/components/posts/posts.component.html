@@ -2,7 +2,9 @@
   <h3 class="posts-subject"></h3>
   <div class="posts-form-subject">
     <div class="posts-container">
-      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+      <app-post *ngFor="let post of posts" [post]="post" [currentUserId]="currentUserId">
+
+      </app-post>
     </div>
   </div>
 </div>

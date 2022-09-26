@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Reply {
@@ -39,6 +40,7 @@ public class Reply {
 	
 	private Boolean enabled;
 	
+	@JsonIgnoreProperties({"replies"})
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Post post;

@@ -1,3 +1,4 @@
+import { Reply } from './../models/reply';
 import { User } from 'src/app/models/user';
 import { Post } from 'src/app/models/post';
 import { AppModule } from './../app.module';
@@ -67,11 +68,98 @@ export class PostService {
     return this.http.get<PostInterface[]>(this.url + '/posts');
   }
 
+
+
+
+
+
+  getAllRealPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.url + 'posts').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('PostService.getRealPosts():error retrieving Post list: ' + err)
+        );
+      })
+    );
+  }
+  getPostsReplies(postId: number) {
+    return this.http.get<Reply[]>(
+      this.url + 'replies/' + postId).pipe(catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('PostService.getPostReplies():error retrieving reply list: ' + err)
+        );
+      })
+    );
+  }
+  create(post: Post):Observable <Post> {
+    return this.http.post<Post>(this.url + 'posts', post, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('PostService.getPostReplies():error retrieving reply list: ' + err)
+        );
+      })
+    );
+  }
+
   createPost(post: any): Observable<PostInterface> {
     return this.http.post<PostInterface>(
       this.url + 'posts',
       post,
       this.getHttpOptions()
     );
+  }
+
+  delete(postId: number) {
+    return this.http.delete<Post>(
+      this.url + 'posts/' + postId,
+      this.getHttpOptions()
+    ).pipe( catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () =>
+          new Error('PostService.DELETE():error DELETING POST: ' + err)
+      );
+    })
+  );
+  }
+
+  createCommentOnPost(postId: number, comment: Reply) {
+    delete comment.postId;
+    delete comment.user;
+    delete comment.created;
+    delete comment.updated;
+    delete comment.replyId;
+    return this.http.post<Reply>(
+      this.url + 'replies/' + postId,
+      comment,
+      this.getHttpOptions()
+    ).pipe( catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () =>
+          new Error('PostService.CREATECOMMENTONPOST():error CREATING COMMENT: ' + err)
+      );
+    })
+  );
+  }
+
+  deleteCommentOnPost(postId: number, commentId: number) {
+    return this.http.delete<Reply>(
+      this.url + 'replies/' + postId + '/' + commentId,
+      this.getHttpOptions()
+    ).pipe( catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () =>
+          new Error('PostService.DELETECOMMENTONPOST():error DELETING COMMENT: ' + err)
+      );
+    })
+  );
   }
 }

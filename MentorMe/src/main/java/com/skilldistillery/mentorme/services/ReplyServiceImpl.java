@@ -61,11 +61,12 @@ public class ReplyServiceImpl implements ReplyService {
 		if(replyOpt.isPresent() && replyOpt.get().getUser() == user) {
 			Reply reply = replyOpt.get();
 			Optional<Post> postOpt = postRepo.findById(postId);
+			postOpt.get().removeReply(reply);
+			replyRepo.delete(reply);
+			
 			if(postOpt.isPresent()) {
 				Post post = postOpt.get();
-				post.removeReply(reply);
 				postRepo.saveAndFlush(post);
-				replyRepo.saveAndFlush(reply);
 				return !post.getReplies().contains(reply);
 			}
 		}

@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Post {
@@ -41,7 +42,7 @@ public class Post {
 	@OneToMany(mappedBy = "post")
 	private List<PostReview> postReviews;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"post"})
 	@OneToMany(mappedBy = "post")
 	private List<Reply> replies;
 	
