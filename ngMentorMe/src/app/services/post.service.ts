@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { Post } from 'src/app/models/post';
 import { AppModule } from './../app.module';
 import { PostModule } from './../post.module';
@@ -66,10 +67,11 @@ export class PostService {
     return this.http.get<PostInterface[]>(this.url + '/posts');
   }
 
-  createPost(
-    post: PostInterface,
-    postId: string | null = null
-  ): Observable<PostInterface> {
-    return this.http.post<PostInterface>(this.url + '/posts', post);
+  createPost(post: any): Observable<PostInterface> {
+    return this.http.post<PostInterface>(
+      this.url + 'posts',
+      post,
+      this.getHttpOptions()
+    );
   }
 }

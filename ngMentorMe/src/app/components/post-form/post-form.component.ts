@@ -11,8 +11,9 @@ export class PostFormComponent implements OnInit {
   @Input() submitLabel!: string;
   @Input() hasCancelButton: boolean = false;
   @Input() initialText: string = '';
+
   @Output()
-  handleSubmit = new EventEmitter<string>();
+  handleSubmit = new EventEmitter<any>();
   form!: FormGroup;
 
   constructor(private fb: FormBuilder) {}
@@ -25,7 +26,12 @@ export class PostFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.handleSubmit.emit(this.form.value.subject);
+    this.handleSubmit.emit({
+      subject: this.form.value.subject,
+      text: this.form.value.title,
+      postId: null,
+    });
+    //this.handleSubmit.emit(this.form.value.title);
     this.form.reset();
   }
 }

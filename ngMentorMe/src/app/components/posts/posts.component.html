@@ -9,8 +9,5 @@
 
 <h3 class="posts-subject">Create A New Post</h3>
 <div class="post-form-subject"></div>
-<app-post-form
-  submitLabel="Submit"
-  (handleSubmit)="addPost({ subject: $event, text: $event, postId: null })"
->
+<app-post-form submitLabel="Submit" (handleSubmit)="addPost($event)">
 </app-post-form>

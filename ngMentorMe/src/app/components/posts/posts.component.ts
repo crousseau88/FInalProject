@@ -18,6 +18,7 @@ export class PostsComponent implements OnInit {
   currentUserId: number | undefined;
   posts: PostInterface[] = [];
   @Input() post!: PostInterface;
+  @Input() userId!: string;
   selected: PostInterface | null = null;
   loggedInUser: User | null = null;
   submittedPost!: PostInterface;
@@ -55,31 +56,23 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  addPost({
-    subject,
-    text,
-    postId,
-  }: {
-    subject: any;
-    text: string;
-    postId: string | null;
-  }) {
+  addPost(post: any): void {
     //console.log('Posted Comment is: ', text, postId);
-    this.submittedPost.subject = subject;
+    // this.submittedPost.subject = subject;
     console.log('******************SUBJECT********************');
-    console.log(subject);
-    this.submittedPost.text = text;
-    console.log('****************TEXT**********************');
-    console.log(text);
-    return this.postService.createPost(this.submittedPost, postId).subscribe({
-      next: (data) => {
-        this.submittedPost = data;
-      },
-      error: (err) => {
-        console.error('PostComponent.reload(): error loading posts:');
-        console.error(err);
-      },
+    console.log('POST');
+    this.postService.createPost(post).subscribe((createdPost) => {
+      this.posts = [...this.posts, createdPost];
     });
+    // return this.postService.createPost(this.submittedPost, postId).subscribe({
+    //   next: (data) => {
+    //     this.submittedPost = data;
+    //   },
+    //   error: (err) => {
+    //     console.error('PostComponent.reload(): error loading posts:');
+    //     console.error(err);
+    //   },
+    // });
   }
 
   // reload() {
