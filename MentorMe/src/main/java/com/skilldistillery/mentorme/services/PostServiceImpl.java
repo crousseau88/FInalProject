@@ -59,6 +59,7 @@ public class PostServiceImpl implements PostService {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			post.setUserPost(user);
+			post.setEnabled(true);
 			post.setCreated(LocalDateTime.now());
 			return postRepo.saveAndFlush(post);
 		} else {
