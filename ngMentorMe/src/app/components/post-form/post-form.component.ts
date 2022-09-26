@@ -20,6 +20,7 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       title: [this.initialText, Validators.required],
+      subject: [this.initialText, Validators.required],
     });
   }
 

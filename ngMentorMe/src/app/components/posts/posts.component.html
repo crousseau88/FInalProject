@@ -1,5 +1,5 @@
 <div class="posts">
-  <h3 class="posts-subject">Posts</h3>
+  <h3 class="posts-subject"></h3>
   <div class="posts-form-subject">
     <div class="posts-container">
       <app-post *ngFor="let post of posts" [post]="post"></app-post>
@@ -7,10 +7,10 @@
   </div>
 </div>
 
-<h3 class="posts-subject">Posts</h3>
-<div class="post-form-subject">Write comment</div>
+<h3 class="posts-subject">Create A New Post</h3>
+<div class="post-form-subject"></div>
 <app-post-form
   submitLabel="Submit"
-  (handleSubmit)="addPost({ text: $event, postId: null })"
+  (handleSubmit)="addPost({ subject: $event, text: $event, postId: null })"
 >
 </app-post-form>
