@@ -31,7 +31,7 @@ If you would like to test the backend of the application, reference the table wi
 
 ## Description
 
-<p align="center"><img src="media/mentormeshcema.png" width="450"></p>
+<p align="center"><img src="media/mentormeschema.png" width="450"></p>
 
 
 The proof-of-concept phase of this applications development is an extremely simplified approach. Only one table in the database is used while multiple other tables, though not initially implemented, were created to enable greater functionality at a later time.
