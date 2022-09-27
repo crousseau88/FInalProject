@@ -200,4 +200,18 @@ export class AccountService {
         })
       );
   }
+  unFollowUser(userId: any, user: User) {
+    return this.http.put<User[]>(this.url + 'unfollow/' + userId, user)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'userService.show():error following user' + err
+              )
+          );
+        })
+      );
+  }
 }

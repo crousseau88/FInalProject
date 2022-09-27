@@ -51,7 +51,13 @@
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
 <div>
   <button (click)="selectedUser = null" class="btn btn-info">BACK</button><br><br>
-  <button class="text-center" (click)="followMe(selectedUser)">Follow</button>
+  <div *ngIf="isFollowing">
+  </div>
+  <button class="text-center btn btn-success" (click)="followMe(selectedUser)">Follow</button>
+  <!-- <div *ngIf="!isFollowing">
+    <button class="text-center btn btn-danger" (click)="unFollowMe(selectedUser)">Unfollow</button>
+  </div> -->
+
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
@@ -63,7 +69,6 @@
       width="75"
     />
   </picture>
-</div>
 <div>
   <p>PLACEHOLDER: basic user profile information</p>
   <h6>{{ selectedUser.role }}</h6>

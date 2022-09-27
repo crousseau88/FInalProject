@@ -92,9 +92,22 @@ public class User {
 			menteeFollowers.add(follower);
 		}
 	}
+	public void addFollowing(User follower) {
+		if(mentorFollowing == null) {
+			mentorFollowing = new ArrayList<>();
+		} if(!mentorFollowing.contains(follower)) {
+			mentorFollowing.add(follower);
+		}
+	}
 	public void removeFollower(User follower) {
+		if (menteeFollowers != null && menteeFollowers.contains(follower)) {
+			menteeFollowers.remove(follower);
+		}
+	}
+	public void removeFollowing(User follower) {
 		if (mentorFollowing != null && mentorFollowing.contains(follower)) {
 			mentorFollowing.remove(follower);
+			
 		}
 	}
 

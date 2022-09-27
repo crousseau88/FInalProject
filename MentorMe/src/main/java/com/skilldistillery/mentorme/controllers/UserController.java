@@ -121,6 +121,18 @@ public class UserController {
 		}
 		return followers;
 	}
+	@PutMapping("unfollow/{unfollowId}")
+	public List<User> unFollowAUser(@PathVariable int unfollowId, @RequestBody User user, HttpServletResponse res, Principal principal) {
+		List<User> followers = null;
+		try {
+			followers = userServ.addAFollower(unfollowId, user);
+			res.setStatus(200);
+			
+		} catch(Exception e) {
+			res.setStatus(400);
+		}
+		return followers;
+	}
 	
 	
 	

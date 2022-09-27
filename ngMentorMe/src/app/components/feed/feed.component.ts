@@ -34,6 +34,7 @@ export class FeedComponent implements OnInit {
   showReviews: boolean = false;
   allFollowers: User[] = [];
   allFollowing: User[] = [];
+  isFollowing: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -138,6 +139,7 @@ export class FeedComponent implements OnInit {
         this.allfollowing(this.selectedUser.username);
         this.bootcampsAttended(this.selectedUser.username);
         this.bootcampReviews(this.selectedUser.username);
+        this.checkIfFollowing();
       },
       error: (err) => {
         console.error('Error retrieving user');
@@ -145,6 +147,14 @@ export class FeedComponent implements OnInit {
       },
     });
   }
+checkIfFollowing() {
+  this.allFollowing.forEach(follower => {
+    if (follower.username === this.user.username) {
+      this.isFollowing = true;
+    }
+  });
+
+}
 
   allfollowers(user: User) {
     this.accountservice.getfollowers(user.username).subscribe({
@@ -257,5 +267,17 @@ export class FeedComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+  unFollowMe(user: User) {
+    this.accountservice.unFollowUser(user.id, this.user).subscribe({
+      next: (users) => {
+        this.setSelectedUser(this.selectedUser?.username);
+      },
+      error: (err) => {
+        console.error('Error following this user');
+        console.error(err);
+      },
+    });
+
   }
 }

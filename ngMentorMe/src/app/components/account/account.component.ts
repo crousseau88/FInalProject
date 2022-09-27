@@ -18,14 +18,10 @@ import { Post } from 'src/app/models/post';
 })
 export class AccountComponent implements OnInit {
   user: User = new User();
-
   users: User[] = []; //mentors/mentees
-
   selected: User | null = null;
   selectedBootcamp: Bootcamp | null = null;
-
   newUser: User = new User();
-
   allUsers: User[] = []; //display all users
   allFollowers: User[] = [];
   allFollowing: User[] = [];
@@ -37,6 +33,7 @@ export class AccountComponent implements OnInit {
   posts: Post[] = [];
   userIsMentor: boolean = false;
   showReviews: boolean = false;
+  isFollowing: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -123,6 +120,9 @@ export class AccountComponent implements OnInit {
     this.accountservice.getfollowing(username).subscribe({
       next: (followers) => {
         this.allFollowing = followers;
+        if(followers.includes(this.user)){
+          this.isFollowing = true;
+        }
       },
       error: (problem) => {
         console.error(

@@ -19,4 +19,6 @@ public interface UserService {
 
 	List<User> addAFollower(int followingId, User user);
 
+	List<User> removeAFollower(int followingId, User follower);
+
 }
