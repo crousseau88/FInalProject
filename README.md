@@ -15,6 +15,10 @@ Breaking into the developer industry can be difficult, especially when you aren'
 
 <p align="center"><img src="https://giphy.com/gifs/news-mentorship-virgil-abloh-everyone-needs-a-mentor-eVqUIgL0IVcis0RA1t.gif" /></p>
 
+<iframe src="https://giphy.com/embed/eVqUIgL0IVcis0RA1t.gif" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/news-mentorship-virgil-abloh-everyone-needs-a-mentor-eVqUIgL0IVcis0RA1t">via GIPHY</a></p>
+
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 Once this proof of concept is fleshed out, this application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
 
 > RECOMMENDED: Visit  www.hslda.org for potential requirement changes at least once each year, before beginning a new year of teaching.
