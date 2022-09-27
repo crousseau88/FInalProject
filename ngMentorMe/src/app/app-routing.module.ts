@@ -1,3 +1,4 @@
+import { FeedComponent } from './components/feed/feed.component';
 import { AccountComponent } from './components/account/account.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,12 +10,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { VisitorComponent } from './components/visitor/visitor.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'home', component: HomeComponent },
   {path: 'account/:username', component: AccountComponent},
   {path: 'account/visitor/:username', component: VisitorComponent},
+  {path: 'feed', component: FeedComponent},
   //last component
   { path: '**', component: NotFoundComponent }
 ];

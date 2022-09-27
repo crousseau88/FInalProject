@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  ViewChild } from '@angular/core';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { Bootcamp } from 'src/app/models/bootcamp';
+import { BootcampService } from 'src/app/services/bootcamp.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,18 +14,23 @@ export class HomeComponent implements OnInit {
   }
   loginUser: any;
 
-  constructor() { }
+  constructor(
+    private bootcampServ: BootcampService
+  ) { }
 
   ngOnInit(): void {
+    this.getAllBootcamps();
+    this.loadImages();
 
   }
-  images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images: string [] = []; //add our images array instead of the example
 
   paused = false;
   unpauseOnArrow = false;
   pauseOnIndicator = false;
   pauseOnHover = true;
   pauseOnFocus = true;
+  allBootcamps: Bootcamp [] = [];
 
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel | undefined;
 
@@ -45,4 +52,23 @@ export class HomeComponent implements OnInit {
       this.togglePaused();
     }
   }
-}
+
+  getAllBootcamps() {
+    this.bootcampServ.index().subscribe({
+      next: (data) => {
+        this.allBootcamps = data;
+      },
+      error: (err) => {
+        console.error('Error retrieving bootcamps');
+        console.error(err);
+      }
+    })
+  }
+
+  loadImages(): string[] {
+    this.allBootcamps.forEach((bootcamp) => {
+      this.images.push(bootcamp.imageUrl);
+    });
+    return this.images;
+  }
+  }

@@ -2,7 +2,7 @@ export class Bootcamp {
   id: number = 0;
   name: string = '';
   website: string = '';
-  imagUrl: string = '';
+  imageUrl: string = '';
   length: number = 0;
   description: string = '';
 
@@ -10,14 +10,14 @@ export class Bootcamp {
   id: number = 0,
   name: string = '',
   website: string = '',
-  imagUrl: string = '',
+  imageUrl: string = '',
   length: number = 0,
   description: string = ''
   ) {
     this.id = id;
     this.name = name;
     this.website = website;
-    this.imagUrl = imagUrl;
+    this.imageUrl = imageUrl;
     this.length = length;
     this.description = description;
   }
