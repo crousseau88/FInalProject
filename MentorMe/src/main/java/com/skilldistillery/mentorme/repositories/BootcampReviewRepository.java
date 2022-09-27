@@ -10,5 +10,7 @@ import com.skilldistillery.mentorme.entities.BootcampReview;
 public interface BootcampReviewRepository extends JpaRepository<BootcampReview, Integer>{
 	
 	List<BootcampReview> findByUser_username(String username);
+	
+	List<BootcampReview> findByBootcamp_id(int id);
 
 }

@@ -19,7 +19,9 @@ export class AuthService {
    return this.http.post<User>(this.url + 'register', user).pipe(
      catchError((err: any) => {
        console.log(err);
+       alert("Username is already taken");
        return throwError(
+
          () => new Error('AuthService.register(): error registering user.')
        );
      })

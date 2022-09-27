@@ -1,0 +1,26 @@
+.boot-reviews {
+  margin-top: 40px;
+  margin: 100px;
+  padding: 20px;
+  border: solid 1px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255) !important;
+}
+body{
+
+}
+.search-results{
+  margin-top: 40px;
+  margin: 100px;
+  padding: 20px;
+  border: solid 1px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255) !important;
+}
+.bottom-banner{
+  background-image: url(https://skilldistillery.com//wp-content/uploads/2020/08/updatedlogos-proper-size_ba558bc20352808a3c473243608ded4a.png);
+  background-size: cover;
+  height: 50vh;
+  background-image: no-repeat center center fixed;
+}
+.about-text{
+
+}

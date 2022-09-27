@@ -1,7 +1,7 @@
 
 <!-- if not selected -->
 <div *ngIf="!selectedUser">
-<form name="makePost" class="text-center ">
+<form name="makePost" class="text-center create-post">
   <input class="post-form-subject"
     type="text"
     name="subject"
@@ -18,7 +18,7 @@
   ><br />
   <button (click)="createNewPost(newPost)" class="post-form-button">Make Post</button>
 </form>
-<div *ngFor="let post of posts; let i = index" class="posts posts-container" >
+<div *ngFor="let post of posts; let i = index" class="posts posts-container shadow-lg p-3 mb-5 bg-white rounded" >
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img class="rounded-circle"

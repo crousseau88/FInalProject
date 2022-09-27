@@ -1,6 +1,9 @@
 .posts {
   margin-top: 20px;
 }
+.create-post{
+ text-align: center !important;
+}
 .deleteLink{
   color: gray;
   text-decoration: underline;
