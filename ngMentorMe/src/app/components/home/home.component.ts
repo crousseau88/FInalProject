@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   pauseOnHover = true;
   pauseOnFocus = true;
   allBootcamps: Bootcamp [] = [];
+  selectedBootcamp: Bootcamp | null = null;
 
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel | undefined;
 
@@ -71,4 +72,8 @@ export class HomeComponent implements OnInit {
     });
     return this.images;
   }
+
+  displayBootcamp(bootcamp: Bootcamp) {
+    this.selectedBootcamp = bootcamp;
   }
+}

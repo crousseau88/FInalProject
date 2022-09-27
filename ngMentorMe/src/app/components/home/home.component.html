@@ -1,20 +1,32 @@
-<ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+<ngb-carousel class="text-center" #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
   <ng-template ngbSlide *ngFor="let bootcamp of allBootcamps; index as i">
     <div class="carousel-caption">
-      <h3>My slide {{i + 1}} title</h3>
+
     </div>
-    <a href="bootcamp.website" target="_blank" rel="nofollow noopener noreferrer">
+
       <div class="picsum-img-wrapper">
-        <img [src]="bootcamp.imageUrl" alt="My image {{i + 1}} description">
+        <img (click)="displayBootcamp(bootcamp)" height="250px"[src]="bootcamp.imageUrl" alt="My image {{i + 1}} description">
       </div>
-    </a>
+
   </ng-template>
 </ngb-carousel>
 
 <hr>
 
+<div *ngIf="!selectedBootcamp">
+<p>This is a website for mentorship</p>
+</div>
 
+<div *ngIf="selectedBootcamp">
 
+<a href="{{selectedBootcamp.website}}" target="_blank">
+<h1 class="text-center" >{{selectedBootcamp.name}}</h1>
+
+</a>
+<!-- <h1>About:</h1> -->
+<blockquote>{{selectedBootcamp.description}}</blockquote>
+<button (click)="selectedBootcamp = null">Back</button>
+</div>
 
 
 

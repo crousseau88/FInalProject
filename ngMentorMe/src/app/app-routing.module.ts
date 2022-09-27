@@ -8,6 +8,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { VisitorComponent } from './components/visitor/visitor.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'account/:username', component: AccountComponent},
   {path: 'account/visitor/:username', component: VisitorComponent},
   {path: 'feed', component: FeedComponent},
+  {path: 'contact', component: ContactComponent},
   //last component
   { path: '**', component: NotFoundComponent }
 ];
