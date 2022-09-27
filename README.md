@@ -12,11 +12,15 @@
 
 <p align="center"><img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width="450" height="250" /></p>
 
-Breaking into the developer industry can be difficult, especially when you haven't built a network. Our application, MentorMe, solves this problem. MentorMe is an online application where bootcamp graduates register as mentors, post their review of the bootcamp they attended, the advice they have for any prospective student and the tools they recommend that will help any cohort be successful. The real impact, however, comes from the interaction between mentor and mentee. Non-bootcamp graduates register as mentees and can search for bootcamps or languages they're interested in to find mentors they can post messages to. These messages can then be marked as helpful or inappropriate so admins can determine whether or not they need to delete a post. Any user also has the option of deleting a comment they have posted should they choose to do so. 
+Created by developers to lift up those who endeavor to become developers.
 
-> RECOMMENDED: Visit  www.hslda.org for potential requirement changes at least once each year, before beginning a new year of teaching.
-> RECOMMENDED: Visit https://fhe-mo.org/ to stay informed of proposed legislative changes affecting homeshool freedom.
+Breaking into the developer industry can be difficult, especially when you haven't built a network. Our application, MentorMe, solves this problem. Here, bootcamp graduates register as mentors, post their review of the bootcamp they attended, the advice they have for any prospective student and the tools they recommend that will help any cohort be successful. The real impact, however, comes from the interaction between mentor and mentee. Those interested in enrolling in a software developer bootcamp register as mentees and can search for bootcamps or languages they're interested in to find mentors they can interact with. 
 
+A mentee has access to a mentors account page where they will be able to review everything the mentor has to share about their experience. Most importantly, the mentee can interact with the mentor through posting messages and replying to the mentors responses. Furthermore, these messages can then be marked as helpful or inappropriate so admins can determine whether or not they need to delete a post. Any user also has the option of deleting a comment they have posted should they choose to do so. 
+
+It doesn't stop there...
+
+After graduation, new graduates can learn from their mentors on what to expect during the job search and the lessons they learned. Having a network is priceless. MentorMe... priceless. 
 
 ## Visit MentorMe!
 
@@ -34,7 +38,6 @@ If you would like to test the backend of the application, reference the table wi
 <p align="center"><img src="media/mentormeschema.png" width="450"></p>
 
 
-The proof-of-concept phase of this applications development is an extremely simplified approach. Only one table in the database is used while multiple other tables, though not initially implemented, were created to enable greater functionality at a later time.
 
 In this alpha version, the backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. THe frontend has been built with, first using vanilla Javascript to link the backend with the frontend. The second approach utilized Angular and Boorstrap. 
 
