@@ -93,7 +93,7 @@ public class PostServiceImpl implements PostService {
 	public boolean deletePost(int postId, String username) {
 		User user = userRepo.findByUsername(username);
 		Optional<Post> postOpt = postRepo.findById(postId);
-		if (user == postOpt.get().getUserPost()) {
+		if (user == postOpt.get().getUserPost() || user.getRole().equals("ADMIN")) {
 			if (postOpt.isPresent() && postOpt.get().isEnabled()) {
 				Post post = postOpt.get();
 				post.setEnabled(false);
