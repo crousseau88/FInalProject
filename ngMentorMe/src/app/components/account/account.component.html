@@ -14,7 +14,7 @@
   </picture>
 </div>
 <div>
-  <p>PLACEHOLDER: basic user profile information</p>
+  <!-- <p>PLACEHOLDER: basic user profile information</p> -->
   <h6>{{ user.role }}</h6>
   <h6>{{ user.username }}</h6>
   <h6>{{ user.firstName }} {{ user.lastName }}</h6>
@@ -27,23 +27,34 @@
 <hr />
 <!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="user.role === 'MENTOR'">
-  <h4>Bootcamp(s) {{ user.username }} has attended.</h4>
+  <h4>Bootcamp {{ user.username }} has attended.</h4>
   <!-- iterate over the mentors bootcamps array and populate anchors with it -->
-  <div *ngFor="let bootcamp of bootcamps" (click)="showReview()">
-    {{ bootcamp.name }}
-
-    <div *ngIf="showReviews">
-      <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p>
+  <div *ngFor="let bootcamp of bootcamps">
+    <a href="{{bootcamp.website}}" target="_blank">
+   <u  style="color: blue;"> {{ bootcamp.name }} </u>
+  </a>
+    <div>
+      <!-- <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p> -->
       <!-- iterate over the mentors bootcamps array and populate anchors with it -->
       <ul *ngFor="let review of bootReviews">
-        <li (click)="bootcampAdvice(review.id)">{{ review.bootcampReview }}</li>
+        <li >{{ review.bootcampReview }}</li>
+        <button class= "btn btn-info" (click)="bootcampAdvice(review.id)">My Advice</button>
         <div *ngIf="advice">
-          <p (click)="bootcampTools(advice.id)">
-            CLick here for tools {{ advice.title }}
-          </p>
+          {{ advice.advice }}<br>
+          <button class= "btn btn-info" (click)="bootcampTools(advice.id)">
+            Tools Used {{user.firstName}} Recomends. </button>
+            <br>
+
         </div>
         <div *ngIf="tools">
-          <li *ngFor="let tool of tools">{{ tool.name }}</li>
+          <ul *ngFor="let tool of tools">
+            <a href="{{tool.website}}" target="_blank">
+          <li>{{ tool.name }}</li>
+        </a>
+          <ul>
+          <li>{{tool.why}}</li>
+        </ul>
+        </ul>
         </div>
       </ul>
     </div>
