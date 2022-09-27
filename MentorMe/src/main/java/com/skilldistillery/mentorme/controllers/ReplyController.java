@@ -60,9 +60,6 @@ public class ReplyController {
 	}
 	@DeleteMapping("replies/{postId}/{replyId}")
 	public void deleteAReplyToAPost(@PathVariable int postId, @PathVariable int replyId, HttpServletResponse res, Principal principal) {
-		System.out.println(postId);
-		System.out.println("*************");
-		System.out.println(replyId);
 		boolean worked = false;
 		try {
 			worked = replyServ.removeAReplyFromAPost(postId, replyId, principal.getName());

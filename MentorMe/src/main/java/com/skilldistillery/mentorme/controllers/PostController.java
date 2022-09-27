@@ -93,9 +93,7 @@ public class PostController {
 
 	@PostMapping("posts")
 	public Post create(HttpServletRequest req, HttpServletResponse res, @RequestBody Post post, Principal principal) {
-		System.out.println("POST IN CONTROLLER " + post);
 		Post newPost = null;
-		System.out.println("IN THE CREATE BACKEND: " + principal.getName());
 		try {
 			newPost = postServ.makePost(post, principal.getName());
 			res.setStatus(201);

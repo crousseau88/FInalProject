@@ -58,7 +58,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public boolean removeAReplyFromAPost(int postId, int replyId, String username) {
 		User user = userRepo.findByUsername(username);
 		Optional<Reply> replyOpt = replyRepo.findById(replyId);
-		if(replyOpt.isPresent() && replyOpt.get().getUser() == user) {
+		if(replyOpt.isPresent() && replyOpt.get().getUser() == user || user.getRole().equals("ADMIN")) {
 			Reply reply = replyOpt.get();
 			Optional<Post> postOpt = postRepo.findById(postId);
 			postOpt.get().removeReply(reply);
