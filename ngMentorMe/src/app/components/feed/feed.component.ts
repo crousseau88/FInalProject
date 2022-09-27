@@ -139,7 +139,6 @@ export class FeedComponent implements OnInit {
         this.allfollowing(this.selectedUser.username);
         this.bootcampsAttended(this.selectedUser.username);
         this.bootcampReviews(this.selectedUser.username);
-        this.checkIfFollowing();
       },
       error: (err) => {
         console.error('Error retrieving user');
@@ -147,14 +146,6 @@ export class FeedComponent implements OnInit {
       },
     });
   }
-checkIfFollowing() {
-  this.allFollowing.forEach(follower => {
-    if (follower.username === this.user.username) {
-      this.isFollowing = true;
-    }
-  });
-
-}
 
   allfollowers(user: User) {
     this.accountservice.getfollowers(user.username).subscribe({
@@ -174,6 +165,11 @@ checkIfFollowing() {
     this.accountservice.getfollowing(username).subscribe({
       next: (followers) => {
         this.allFollowing = followers;
+        followers.forEach(person => {
+          if(person.username === this.user.username){
+            this.isFollowing = true;
+          }
+        });
       },
       error: (problem) => {
         console.error(
@@ -271,6 +267,7 @@ checkIfFollowing() {
   unFollowMe(user: User) {
     this.accountservice.unFollowUser(user.id, this.user).subscribe({
       next: (users) => {
+        this.isFollowing = false;
         this.setSelectedUser(this.selectedUser?.username);
       },
       error: (err) => {

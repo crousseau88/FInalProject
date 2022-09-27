@@ -125,7 +125,7 @@ public class UserController {
 	public List<User> unFollowAUser(@PathVariable int unfollowId, @RequestBody User user, HttpServletResponse res, Principal principal) {
 		List<User> followers = null;
 		try {
-			followers = userServ.addAFollower(unfollowId, user);
+			followers = userServ.removeAFollower(unfollowId, user);
 			res.setStatus(200);
 			
 		} catch(Exception e) {
