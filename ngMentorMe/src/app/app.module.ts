@@ -1,3 +1,5 @@
+
+import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VisitorComponent } from './components/visitor/visitor.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { PostService } from './services/post.service';
@@ -30,7 +32,8 @@ import { AuthService } from './services/auth.service';
     NavigationComponent,
     AccountComponent,
     FeedComponent,
-    VisitorComponent
+    VisitorComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     HttpClientModule,
     PostModule,
+    NgbModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
