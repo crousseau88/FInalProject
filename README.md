@@ -12,25 +12,27 @@
 
 <p align="center"><img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width="450" height="250" /></p>
 
-
-Breaking into the developer industry can be difficult, especially when you aren't networked. Our application, MentorMe, solves this problem. MentorMe is an online application where bootcamp graduates register as mentors, post their review of the bootcamp they attended, the advice they have for any prospective student and the tools they recommend that will help any cohort be successful. The real impact, however, comes from the interaction between mentor and mentee. Non-bootcamp graduates register as mentees and can search for bootcamps or languages they're interested in to find mentors they can post messages to. These messages can then be marked as helpful or inappropriate so admins can determine whether or not they need to delete a post. Any user also has the option of deleting a comment they have posted should they choose to do so. 
-
-
-Once this proof of concept is fleshed out, this application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
+Breaking into the developer industry can be difficult, especially when you haven't built a network. Our application, MentorMe, solves this problem. MentorMe is an online application where bootcamp graduates register as mentors, post their review of the bootcamp they attended, the advice they have for any prospective student and the tools they recommend that will help any cohort be successful. The real impact, however, comes from the interaction between mentor and mentee. Non-bootcamp graduates register as mentees and can search for bootcamps or languages they're interested in to find mentors they can post messages to. These messages can then be marked as helpful or inappropriate so admins can determine whether or not they need to delete a post. Any user also has the option of deleting a comment they have posted should they choose to do so. 
 
 > RECOMMENDED: Visit  www.hslda.org for potential requirement changes at least once each year, before beginning a new year of teaching.
 > RECOMMENDED: Visit https://fhe-mo.org/ to stay informed of proposed legislative changes affecting homeshool freedom.
 
 
-## Take The HomeSchool Hours Tracker For A Test Drive!
+## Visit MentorMe!
 
-If you would like to visit the Education Event tracker site, please feel free to use the link below! When visiting the site, you can search for students data by the name "Timmy", "Sally", "Billy" and "Susan" or create a record for a new student.   If you have any questions or would like to discuss this project, please don't hesitate to email me at ken@kendev131.com. 
+If you would like to visit our site and take it for a test drive, see the link below. Any visitor can register a new account or utilize one of two accounts pre-built in the database...
 
-<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">Click Here to Visit Homeschool Hours Tracker Project Site</a></>
+* Mentee username: lightning, password: guest5
+* Mentor username: splinter, password: mentor4  
+
+<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">PLACEHOLDER: SITE NOT YET DEPLOYED</a></>
 
 If you would like to test the backend of the application, reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications functionality.
 
 ## Description
+
+<p align="center"><img src="media/mentormeshcema.png" width="450"></p>
+
 
 The proof-of-concept phase of this applications development is an extremely simplified approach. Only one table in the database is used while multiple other tables, though not initially implemented, were created to enable greater functionality at a later time.
 
@@ -122,7 +124,6 @@ This project proved vital in gaining the following experience...
 
 ## Stretch/Future Goals
 
-<p align="center"><img src="media/dbSchema.png" width="450"></p>
 
 After a minimum viable product is produced, the intent for this application is to incorporate the remaining tables of the database as seen above. At this time, only the "education_event" table is utilized. It is my intent to also use this first concept, once fully functional, to inspire new ideas beyond what I've already imagined. Current stretch goals include...
 * Google Maps through the address table for parents to be able to remember a site should they choose to later revisit and share the location with fellow homeschool families.
