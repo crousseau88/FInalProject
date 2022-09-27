@@ -1,14 +1,14 @@
 
 <!-- if not selected -->
 <div *ngIf="!selectedUser">
-<form name="makePost" class="text-center">
+<form name="makePost" class="text-center ">
   <input
     type="text"
     name="subject"
     placeholder="Subject"
     [(ngModel)]="newPost.subject"
   /><br />
-  <textarea
+  <textarea class="post-form-textarea"
     name="text"
     cols="20"
     rows="5"
@@ -16,15 +16,16 @@
     [(ngModel)]="newPost.text"
   ></textarea
   ><br />
-  <button (click)="createNewPost(newPost)">Make Post</button>
+  <button (click)="createNewPost(newPost)" class="post-form-button">Make Post</button>
 </form>
-<div *ngFor="let post of posts; let i = index">
-  <u><a (click)="setSelectedUser(post.userPost?.username)" >{{post.userPost?.username}}</a></u>
-  <h3>{{ post.subject }}</h3>
-  <blockquote>{{ post.text }}</blockquote>
+<div *ngFor="let post of posts; let i = index" class="posts posts-container">
+  <u><a (click)="setSelectedUser(post.userPost?.username)" class="post-author">{{post.userPost?.username}}</a></u>
+  <h3 class="posts-title">{{ post.subject }}</h3>
+  <blockquote class="post-text">{{ post.text }}</blockquote>
   <div *ngIf="post.userPost?.id === user?.id || user?.role === 'ADMIN'">
     <button (click)="deletePost(post.id)">Delete Post</button>
   </div>
+
   <form *ngIf="user">
     <br />
     <input
@@ -49,12 +50,12 @@
 <!-- ********************USER PERSONAL ACCOUNT PAGE******************** -->
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
 <div>
-  <button (click)="selectedUser = null">BACK</button>
+  <button (click)="selectedUser = null" class="btn btn-info">BACK</button><br><br>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
       img
-      src="{{ user.profileImg }}"
+      src="{{ selectedUser.profileImg }}"
       alt=""
       style="width: auto"
       height="75"
@@ -64,31 +65,31 @@
 </div>
 <div>
   <p>PLACEHOLDER: basic user profile information</p>
-  <h6>{{ user.role }}</h6>
-  <h6>{{ user.username }}</h6>
-  <h6>{{ user.firstName }} {{ user.lastName }}</h6>
+  <h6>{{ selectedUser.role }}</h6>
+  <h6>{{ selectedUser.username }}</h6>
+  <h6>{{ selectedUser.firstName }} {{ selectedUser.lastName }}</h6>
 </div>
 <hr />
 <div>
-  <h4>PLACEHOLDER: about me section</h4>
-  <p>{{ user.aboutMe }}</p>
+  <h4 class="text-center"><u>About Me</u></h4>
+  <p>{{ selectedUser.aboutMe }}</p>
 </div>
 <hr />
 <!-- ****************REVIEWS SECTION***************** -->
-<div *ngIf="user.role === 'MENTOR'">
-  <h4>Bootcamp(s) {{ user.username }} has attended.</h4>
+<div *ngIf="selectedUser.role === 'MENTOR'">
+  <h4>Bootcamp {{ selectedUser.username }} has attended.</h4>
   <!-- iterate over the mentors bootcamps array and populate anchors with it -->
-  <div *ngFor="let bootcamp of bootcamps" (click)="showReview()">
-    {{ bootcamp.name }}
+  <div *ngFor="let bootcamp of bootcamps">
+   <u  style="color: blue;"> {{ bootcamp.name }} </u>
 
-    <div *ngIf="showReviews">
+    <div>
       <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p>
       <!-- iterate over the mentors bootcamps array and populate anchors with it -->
       <ul *ngFor="let review of bootReviews">
         <li (click)="bootcampAdvice(review.id)">{{ review.bootcampReview }}</li>
         <div *ngIf="advice">
           <p (click)="bootcampTools(advice.id)">
-            CLick here for tools {{ advice.title }}
+            CLick here for tools {{selectedUser.firstName}} Recomends. <br>{{ advice.advice }}
           </p>
         </div>
         <div *ngIf="tools">
@@ -107,14 +108,16 @@
   <br />
   <h4>Currently Following</h4>
   <ul>
-    <li *ngFor="let follow of allFollowers">{{ follow.username }}</li>
+    <li *ngFor="let follow of allFollowers" (click)="setSelectedUser(follow.username)">
+      <u  style="color: blue;"> {{ follow.username }}</u></li>
   </ul>
 </div>
 
 <div>
   <h4>My Followers</h4>
   <ul>
-    <li *ngFor="let follow of allFollowing">{{ follow.username }}</li>
+    <li *ngFor="let follow of allFollowing" (click)="setSelectedUser(follow.username)">
+      <u  style="color: blue;"> {{ follow.username }}</u></li>
   </ul>
 </div>
 

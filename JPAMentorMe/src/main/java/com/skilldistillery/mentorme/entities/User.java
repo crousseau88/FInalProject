@@ -1,5 +1,7 @@
 package com.skilldistillery.mentorme.entities;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -82,6 +84,20 @@ public class User {
 	private List<Reply> replies;
 	
 	//////////////////////////////////// GENERATED////////////////////////////
+	
+	public void addFollower(User follower) {
+		if(menteeFollowers == null) {
+			menteeFollowers = new ArrayList<>();
+		} if(!menteeFollowers.contains(follower)) {
+			menteeFollowers.add(follower);
+			follower.setMentorFollowing(mentorFollowing);
+		}
+	}
+	public void removeFollower(User follower) {
+		if (mentorFollowing != null && mentorFollowing.contains(follower)) {
+			mentorFollowing.remove(follower);
+		}
+	}
 
 	public User() {
 		super();

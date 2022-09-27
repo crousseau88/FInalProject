@@ -130,6 +130,7 @@ export class FeedComponent implements OnInit {
   }
 // ---------------------------------Start of User----------------------------------------------------------
   setSelectedUser(username: any) {
+    this.selectedUser = null;
     this.userService.show(username).subscribe({
       next: (user) => {
         this.selectedUser = user;
@@ -144,7 +145,7 @@ export class FeedComponent implements OnInit {
       },
     });
   }
-  
+
   allfollowers(user: User) {
     this.accountservice.getfollowers(user.username).subscribe({
       next: (followers) => {
@@ -197,7 +198,7 @@ export class FeedComponent implements OnInit {
     this.accountservice.getBootcampReviews(username).subscribe({
       next: (bootcamps) => {
         this.bootReviews = bootcamps;
-        console.log(this.bootReviews);
+
       },
       error: (problem) => {
         console.error(
@@ -212,7 +213,6 @@ export class FeedComponent implements OnInit {
     this.accountservice.getBootcampAdvice(reviewId).subscribe({
       next: (advice) => {
         this.advice = advice;
-        console.log(this.advice);
       },
       error: (problem) => {
         console.error(
@@ -227,7 +227,6 @@ export class FeedComponent implements OnInit {
     this.accountservice.getTools(adviceId).subscribe({
       next: (tools) => {
         this.tools = tools;
-        console.log(this.tools);
       },
       error: (problem) => {
         console.error(

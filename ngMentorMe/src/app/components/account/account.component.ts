@@ -144,11 +144,9 @@ export class AccountComponent implements OnInit {
   }
 
   showReview() {
-    console.log('Show Review boolean before IF statement: ' + this.showReview);
     if (!this.showReviews) {
       this.showReviews = true;
       this.bootcampReviews(this.user.username);
-      console.log('Show Review boolean AFTER IF statement: ' + this.showReview);
     } else {
       this.showReviews = false;
     }
@@ -213,11 +211,9 @@ export class AccountComponent implements OnInit {
   }
 
   userPosts(username: string) {
-    console.log("look here" + this.posts);
     this.accountservice.getPosts(username).subscribe({
       next: (posts) => {
         this.posts = posts;
-        console.log(this.posts);
       },
       error: (problem) => {
         console.error(

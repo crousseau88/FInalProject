@@ -32,7 +32,6 @@ public class UserController {
 	
 	@GetMapping("{username}/followers")
 	public List<User> getUsersFollowers(@PathVariable String username, HttpServletResponse res){
-		System.out.println("PASSED IN USERNAME" + username);
 		List<User> followers = null;
 		try {
 			followers = userServ.getUsersFollowers(username);
