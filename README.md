@@ -14,7 +14,7 @@ Breaking into the developer industry can be difficult, especially when you aren'
 
 ![Alt Text ](https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif)
 
-<img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width=500" height="650" />
+<img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width="500" height="650" />
 
 Once this proof of concept is fleshed out, this application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
 
