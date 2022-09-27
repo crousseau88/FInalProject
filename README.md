@@ -4,9 +4,9 @@
 
 ## Authors
 
-<p align="left"><img src="media/AUstinProf.png" width="105"> Austin Borck (Scrum Master, Developer) </p>
+<p align="left"><img src="media/AustinProf.png" width="105"> Austin Borck (Scrum Master, Developer) </p>
 <p align="left"><img src="media/ChadProf2.png" width="105"> Chad  (Repo Owner, Developer) </p>
-<p align="left"><img src="media/kenProf.png" width="105"> Ken Pederson (Database Administrator, Developer) </p>
+<p align="left"><img src="media/KenProf.png" width="105"> Ken Pederson (Database Administrator, Developer) </p>
 
 ## Overview
 
