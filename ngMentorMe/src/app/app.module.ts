@@ -1,3 +1,4 @@
+import { VisitorComponent } from './components/visitor/visitor.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { PostService } from './services/post.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,7 +29,8 @@ import { AuthService } from './services/auth.service';
     RegisterComponent,
     NavigationComponent,
     AccountComponent,
-    FeedComponent
+    FeedComponent,
+    VisitorComponent
   ],
   imports: [
     BrowserModule,

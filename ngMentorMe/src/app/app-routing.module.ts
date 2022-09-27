@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
+import { VisitorComponent } from './components/visitor/visitor.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'home', component: HomeComponent },
   {path: 'account/:username', component: AccountComponent},
+  {path: 'account/visitor/:username', component: VisitorComponent},
   //last component
   { path: '**', component: NotFoundComponent }
 ];
