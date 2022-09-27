@@ -2,7 +2,7 @@
 <!-- if not selected -->
 <div *ngIf="!selectedUser">
 <form name="makePost" class="text-center ">
-  <input
+  <input class="post-form-subject"
     type="text"
     name="subject"
     placeholder="Subject"
@@ -18,31 +18,51 @@
   ><br />
   <button (click)="createNewPost(newPost)" class="post-form-button">Make Post</button>
 </form>
-<div *ngFor="let post of posts; let i = index" class="posts posts-container">
-  <u><a (click)="setSelectedUser(post.userPost?.username)" class="post-author">{{post.userPost?.username}}</a></u>
+<div *ngFor="let post of posts; let i = index" class="posts posts-container" >
+  <picture>
+    <!-- need to know how to reference the database to invoke the default image -->
+    <img class="rounded-circle"
+      img
+      src="{{ post.userPost?.profileImg }}"
+      alt="{{ post.userPost?.username }}"
+      style="width: auto"
+      height="75"
+      width="75"
+    />
+  </picture>
+  <a (click)="setSelectedUser(post.userPost?.username)" class="profileLink">{{post.userPost?.username}}</a>
   <h3 class="posts-title">{{ post.subject }}</h3>
   <blockquote class="post-text">{{ post.text }}</blockquote>
   <div *ngIf="post.userPost?.id === user?.id || user?.role === 'ADMIN'">
-    <button (click)="deletePost(post.id)">Delete Post</button>
+    <p (click)="deletePost(post.id)" class="deleteLink">Delete Post</p>
   </div>
 
-  <form *ngIf="user">
+  <div *ngFor="let comment of post.replies">
+    <img class="rounded-circle"
+    img
+    src="{{ comment.user?.profileImg }}"
+    alt="{{ comment.user?.username }}"
+    style="width: auto;"
+    height="30"
+    width="30"
+    />
+    <a (click)="setSelectedUser(comment.user?.username)" class="profileLink">{{comment.user?.username}}</a>
+    <p class="commentText">{{ comment.text }}</p>
+    <div *ngIf="comment.user?.id === user?.id">
+      <p (click)="deleteComment(post.id, comment.id)" class="deleteLink-comment">Delete Comment</p>
+    </div>
+  </div>
+  <form *ngIf="user" class="text-center">
     <br />
-    <input
+    <input class="commentInput"
     type="text"
     name="text"
     placeholder="Comment"
     [(ngModel)]="newPostReplies[i].text"
     /><br />
-    <button (click)="createNewComment(newPostReplies[i], post.id)">Comment</button>
+    <button (click)="createNewComment(newPostReplies[i], post.id)" class="post-form-button">Comment</button>
   </form>
-  <div *ngFor="let comment of post.replies">
-    <p>{{ comment.text }}</p>
-    <div *ngIf="comment.user?.id === user?.id">
-      <button (click)="deleteComment(post.id, comment.id)">Delete Comment</button>
-    </div>
-  </div>
-  <hr />
+
 </div>
 </div>
 <!-- if selected -->
@@ -114,16 +134,16 @@
   <br />
   <h4>Currently Following</h4>
   <ul>
-    <li *ngFor="let follow of allFollowers" (click)="setSelectedUser(follow.username)">
-      <u  style="color: blue;"> {{ follow.username }}</u></li>
+    <li *ngFor="let follow of allFollowers" class="profileLink" (click)="setSelectedUser(follow.username)">
+      {{ follow.username }}</li>
   </ul>
 </div>
 
 <div>
   <h4>My Followers</h4>
   <ul>
-    <li *ngFor="let follow of allFollowing" (click)="setSelectedUser(follow.username)">
-      <u  style="color: blue;"> {{ follow.username }}</u></li>
+    <li *ngFor="let follow of allFollowing" class="profileLink" (click)="setSelectedUser(follow.username)">
+      {{ follow.username }}</li>
   </ul>
 </div>
 

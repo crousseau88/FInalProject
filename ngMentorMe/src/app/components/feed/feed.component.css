@@ -1,6 +1,39 @@
 .posts {
   margin-top: 20px;
 }
+.deleteLink{
+  color: gray;
+  text-decoration: underline;
+}
+.deleteLink-comment{
+  font-size: 13px;
+  margin-top: 1px !important;
+  color: gray;
+  text-decoration: underline;
+}
+.deleteLink-comment:hover{
+  color: red;
+  cursor: pointer;
+}
+.commentInput{
+  width: 50%;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.deleteLink:hover{
+  color: red;
+  cursor: pointer;
+}
+.profileLink{
+  padding: 1%;
+  color: blue;
+  text-decoration: underline;
+}
+.profileLink:hover{
+  color: lightblue;
+  cursor: pointer;
+}
 
 .posts-title {
   font-size: 30px;
@@ -9,14 +42,20 @@
 
 .posts-container {
   margin-top: 40px;
+  margin: 100px;
+  padding: 20px;
+  border: solid 1px rgb(0, 0, 0);
 }
 
 .post-form-title {
   font-size: 22px;
 }
-
+.post-form-subject {
+  width: 40%;
+  margin-top: 10px;
+}
 .post-form-textarea {
-  width: 100%;
+  width: 40%;
   height: 80px;
   margin-bottom: 8px;
   margin-top: 8px;
