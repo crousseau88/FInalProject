@@ -246,4 +246,16 @@ export class FeedComponent implements OnInit {
       this.showReviews = false;
     }
   }
+
+  followMe(user: User) {
+    this.accountservice.followUser(user.id, this.user).subscribe({
+      next: (users) => {
+        this.setSelectedUser(this.selectedUser?.username);
+      },
+      error: (err) => {
+        console.error('Error following this user');
+        console.error(err);
+      },
+    });
+  }
 }

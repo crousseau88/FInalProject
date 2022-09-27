@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.mentorme.entities.Reply;
 import com.skilldistillery.mentorme.entities.User;
 import com.skilldistillery.mentorme.repositories.UserRepository;
 import com.skilldistillery.mentorme.services.UserService;
@@ -106,5 +108,30 @@ public class UserController {
 			res.setStatus(400);
 		}
 	}
+	
+	@PutMapping("follower/{followThisUserId}")
+	public List<User> followAUser(@PathVariable int followThisUserId, @RequestBody User user, HttpServletResponse res, Principal principal) {
+		List<User> followers = null;
+		try {
+			followers = userServ.addAFollower(followThisUserId, user);
+			res.setStatus(200);
+			
+		} catch(Exception e) {
+			res.setStatus(400);
+		}
+		return followers;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

@@ -90,7 +90,6 @@ public class User {
 			menteeFollowers = new ArrayList<>();
 		} if(!menteeFollowers.contains(follower)) {
 			menteeFollowers.add(follower);
-			follower.setMentorFollowing(mentorFollowing);
 		}
 	}
 	public void removeFollower(User follower) {
@@ -98,6 +97,7 @@ public class User {
 			mentorFollowing.remove(follower);
 		}
 	}
+
 
 	public User() {
 		super();

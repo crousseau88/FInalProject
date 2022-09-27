@@ -79,5 +79,18 @@ public class UserServiceImpl implements UserService {
 		}
 		return following;
 	}
+	
+	@Override
+	public List<User> addAFollower(int followingId, User follower){
+		Optional<User> followMe = userRepo.findById(followingId);
+		if(followMe.isPresent()) {
+			User follow = followMe.get();
+			follow.addFollower(follower);
+			userRepo.saveAndFlush(follow);
+			List<User> followers = getUsersFollowers(follow.getUsername());
+			return followers;
+		}
+		return null;
+	}
 
 }

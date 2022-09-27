@@ -28,6 +28,7 @@ export class AccountService {
       })
     );
   }
+
   getHttpOptions() {
     let options = {
       headers: {
@@ -129,16 +130,7 @@ export class AccountService {
       })
     );
   }
-  // getClickedBootcamp(username: string, bootcampReviewId: number) {
-  //   return this.http.get<Bootcamp>(this.url + 'bootcamps/' + username).pipe(
-  //     catchError((err: any) => {
-  //       console.log(err);
-  //       return throwError(
-  //         () => new Error('userService.show():error retrieving Bootcamps' + err)
-  //       );
-  //     })
-  //   );
-  // }
+
 
   getBootcampReviews(username: string) {
     return this.http
@@ -193,5 +185,19 @@ export class AccountService {
         );
       })
     );
+  }
+  followUser(userId: any, user: User) {
+    return this.http.put<User[]>(this.url + 'follower/' + userId, user)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'userService.show():error following user' + err
+              )
+          );
+        })
+      );
   }
 }
