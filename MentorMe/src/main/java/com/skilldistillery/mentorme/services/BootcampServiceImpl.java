@@ -2,6 +2,7 @@ package com.skilldistillery.mentorme.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,11 +70,11 @@ public class BootcampServiceImpl implements BootcampService {
 		
 	}
 	@Override
-	public List<Bootcamp> getBootcampsByKeyword(String keyword){
+	public Set<Bootcamp> getBootcampsByKeyword(String keyword){
 		keyword = "%" + keyword + "%";
 		String kw2 = "%" + keyword + "%";
 		String kw3 = "%" + keyword + "%";
-		List<Bootcamp> bootcamps = null;
+		Set<Bootcamp> bootcamps = null;
 		try {
 			bootcamps = bootRepo.findByNameIgnoreCaseLikeOrDescriptionIgnoreCaseLikeOrBootcampTech_TechNameIgnoreCaseLike(keyword, kw2, kw3);
 		} catch (Exception e) {
@@ -108,6 +109,18 @@ public class BootcampServiceImpl implements BootcampService {
 			tools = null;
 		}
 		return tools;
+	}
+	
+	@Override
+	public List<BootcampReview> getBootcampReviewsByBootcampId(int bootcampId){
+		List<BootcampReview> bootcamps = null;
+		try {
+			bootcamps = bootRevRepo.findByBootcamp_id(bootcampId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bootcamps;
+		
 	}
 
 }

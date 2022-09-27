@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
             this.router.navigateByUrl('/account');
           },
           error: (problem) => {
+
             console.error('RegisterComponent.register(): Error logging in user:');
             console.error(problem);
           }

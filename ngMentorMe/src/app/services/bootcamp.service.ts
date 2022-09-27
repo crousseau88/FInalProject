@@ -1,3 +1,4 @@
+import { BootcampReview } from 'src/app/models/bootcamp-review';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
@@ -23,4 +24,24 @@ export class BootcampService {
       })
     );
 }
+getReviews(id: number) {
+  return this.http.get<BootcampReview[]>(this.url + 'reviews/' + id).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError(
+        () => new Error('userService.index():error retreiving Users' + err)
+        );
+      })
+    );
+  }
+  getBootcampsByKeyword(keyword: string) {
+    return this.http.get<Bootcamp[]>(this.url + 'bootcamps/search/' + keyword).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('userService.index():error retreiving Users' + err)
+          );
+        })
+      );
+    }
 }

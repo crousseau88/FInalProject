@@ -1,6 +1,8 @@
 package com.skilldistillery.mentorme.controllers;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -67,8 +69,8 @@ public class BootcampController {
 	
 // XXX: SEARCH METHOD
 	@GetMapping("bootcamps/search/{keyword}")
-	public List<Bootcamp> getBootcampsByKeyword(@PathVariable String keyword, HttpServletResponse res){
-		List<Bootcamp> bootcamps = null;
+	public Set<Bootcamp> getBootcampsByKeyword(@PathVariable String keyword, HttpServletResponse res){
+		Set<Bootcamp> bootcamps = null;
 		try {
 			bootcamps = bootServ.getBootcampsByKeyword(keyword);
 			res.setStatus(200);
@@ -108,6 +110,18 @@ public class BootcampController {
 		}
 		return tools;
 	}
-	
+	@GetMapping("reviews/{bootcampId}")
+	public List<BootcampReview> getBootcampReviewsByBootcamp(@PathVariable int bootcampId, HttpServletResponse res){
+		List<BootcampReview> bootcamps = null;
+		try {
+			bootcamps = bootServ.getBootcampReviewsByBootcampId(bootcampId);
+			res.setStatus(200);
+			return bootcamps;
+		} catch (Exception e) {
+			res.setStatus(404);
+			e.printStackTrace();
+		}
+		return bootcamps;
+	}
 
 }

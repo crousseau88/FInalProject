@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  ViewChild } from '@angular/core';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { Bootcamp } from 'src/app/models/bootcamp';
+import { BootcampReview } from 'src/app/models/bootcamp-review';
 import { BootcampService } from 'src/app/services/bootcamp.service';
 @Component({
   selector: 'app-home',
@@ -32,6 +33,9 @@ export class HomeComponent implements OnInit {
   pauseOnFocus = true;
   allBootcamps: Bootcamp [] = [];
   selectedBootcamp: Bootcamp | null = null;
+  bootcampReviews: BootcampReview[] = [];
+  keyword: string = '';
+  searchResults: Bootcamp [] | null = null;
 
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel | undefined;
 
@@ -75,5 +79,28 @@ export class HomeComponent implements OnInit {
 
   displayBootcamp(bootcamp: Bootcamp) {
     this.selectedBootcamp = bootcamp;
+    this.getReviews(this.selectedBootcamp);
+  }
+  getReviews(bootcamp: Bootcamp) {
+    this.bootcampServ.getReviews(bootcamp.id).subscribe({
+      next: (data) => {
+        this.bootcampReviews = data;
+      },
+      error: (err) => {
+        console.error('Error retrieving reviews');
+        console.error(err);
+      }
+    })
+  }
+  searchByKeyword() {
+    this.bootcampServ.getBootcampsByKeyword(this.keyword).subscribe({
+      next: (data) => {
+        this.searchResults = data;
+      },
+      error: (err) => {
+        console.error('Error retrieving bootcamps');
+        console.error(err);
+      }
+    })
   }
 }

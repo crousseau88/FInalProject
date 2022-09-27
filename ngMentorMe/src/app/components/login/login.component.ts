@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/account/' + loggedInUser.username);
       },
       error: (problem) => {
+        alert("Invalid username or password");
         console.error('LoginComponent.login(): Error logging in user:');
         console.error(problem);
       }
