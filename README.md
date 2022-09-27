@@ -12,7 +12,9 @@
 
 Breaking into the developer industry can be difficult, especially when you aren't networked. Our application, MentorMe, solves this problem. MentorMe is an online application where bootcamp graduates register as mentors, post their review of the bootcamp they attended, the advice they have for any prospective student and the tools they recommend that will help any cohort be successful. The real impact, however, comes from the interaction between mentor and mentee. Non-bootcamp graduates register as mentees and can search for bootcamps or languages they're interested in to find mentors they can post messages to. These messages can then be marked as helpful or inappropriate so admins can determine whether or not they need to delete a post. Any user also has the option of deleting a comment they have posted should they choose to do so. 
 
-<p align="center">![Alt Text ](https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif)</p>
+![Alt Text ](https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif)
+
+<img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width="40" height="40" />
 
 Once this proof of concept is fleshed out, this application will provide our family and fellow Missouri parents with a solution that satisfies the Missouri hour record-keeping requirements. Any audit homeschooling parents may undergo will be easily managed through this one-stop solution. However, things change! While these requirements are not forecasted to evolve as of this writing (September of 2022), it is important to maintain situational awareness... 
 
