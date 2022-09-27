@@ -13,7 +13,7 @@
     cols="20"
     rows="5"
     placeholder="Body"
-    [(ngModel)]="newPost.text"
+    [(ngModel)]="newPost.text" required
   ></textarea
   ><br />
   <button (click)="createNewPost(newPost)" class="post-form-button">Make Post</button>

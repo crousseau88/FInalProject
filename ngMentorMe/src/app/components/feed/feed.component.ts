@@ -77,6 +77,10 @@ export class FeedComponent implements OnInit {
     });
   }
   createNewPost(post: Post) {
+    if(post.text === "" || post.subject === ""){
+       return alert("Please fill out all fields");
+    }
+
     this.postServ.create(post).subscribe({
       next: (post) => {
         this.posts.push(post);
@@ -89,14 +93,16 @@ export class FeedComponent implements OnInit {
   }
 
   deletePost(postId: number) {
-    this.postServ.delete(postId).subscribe({
-      next: (post) => {
-        this.loadPosts();
-      },
-      error: (err) => {
-        console.error('Error creating post: ' + err);
-      },
-    });
+    if(confirm("Are you sure you want to delete this post?")){
+      this.postServ.delete(postId).subscribe({
+        next: (post) => {
+          this.loadPosts();
+        },
+        error: (err) => {
+          console.error('Error creating post: ' + err);
+        },
+      });
+    }
   }
 
   reload() {
@@ -104,6 +110,9 @@ export class FeedComponent implements OnInit {
   }
 
   createNewComment(comment: Reply, postId: number) {
+    if(comment.text === ""){
+      return alert("Please fill out all fields");
+    }
     this.postServ.createCommentOnPost(postId, comment).subscribe({
       next: (comment) => {
         // this.reload();
@@ -116,14 +125,16 @@ export class FeedComponent implements OnInit {
   }
 
   deleteComment(postId: number, commentId: number) {
-    this.postServ.deleteCommentOnPost(postId, commentId).subscribe({
-      next: (comment) => {
-        this.loadPosts();
-      },
-      error: (err) => {
-        console.error('Error deleteing comment on post: ' + err);
-      },
-    });
+    if(confirm("Are you sure you want to delete this comment?")){
+      this.postServ.deleteCommentOnPost(postId, commentId).subscribe({
+        next: (comment) => {
+          this.loadPosts();
+        },
+        error: (err) => {
+          console.error('Error deleteing comment on post: ' + err);
+        },
+      });
+    }
   }
 
   visitUserPage(otherUser: string) {
