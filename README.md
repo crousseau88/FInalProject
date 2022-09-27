@@ -7,7 +7,8 @@
 <p align="left"><img src="media/AustinProf.png" width="105"> Austin Borck (Scrum Master, Developer) </p>
 <p align="left"><img src="media/ChadProf2.png" width="105"> Chad Rousseau (Repo Owner, Developer) </p>
 <p align="left"><img src="media/KenProf.png" width="105"> Ken Pederson (Database Administrator, Developer) </p>
-
+<br>
+<br>
 <p align="center"><img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width="450" height="250" /></p>
 
 ## Overview
