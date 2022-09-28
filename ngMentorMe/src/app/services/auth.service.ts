@@ -10,7 +10,7 @@ import { Buffer } from "buffer";
 export class AuthService {
  // Set port number to server's port
  private baseUrl = 'http://localhost:8090/';
- private url = this.baseUrl;
+ private url = environment.baseUrl;
 
  constructor(private http: HttpClient) {}
 
@@ -58,7 +58,7 @@ export class AuthService {
 
  logout(): void {
    localStorage.removeItem('credentials');
- }
+ } 
 
  getLoggedInUser(): Observable<User> {
    if (!this.checkLogin()) {
@@ -73,7 +73,7 @@ export class AuthService {
      },
    };
    return this.http
-     .get<User>(this.baseUrl + 'authenticate', httpOptions)
+     .get<User>(environment.baseUrl + 'authenticate', httpOptions)
      .pipe(
        catchError((err: any) => {
          console.log(err);
