@@ -20,6 +20,9 @@ public class AuthServiceImpl implements AuthService{
 	public User register(User user) {
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setActive(true);
+		if(user.getProfileImg() == null || user.getProfileImg().equals("")) {
+			user.setProfileImg("https://i.pinimg.com/564x/18/b9/ff/18b9ffb2a8a791d50213a9d595c4dd52.jpg");
+		}
 		return userRepo.saveAndFlush(user);
 	}
 
