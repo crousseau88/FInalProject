@@ -128,6 +128,7 @@ public class BootcampController {
 	@PostMapping("reviews/{bootcampId}")
 	public List<BootcampReview> addBootcampReviewToABootcamp(@PathVariable int bootcampId, @RequestBody BootcampReview review, Principal principal, HttpServletResponse res){
 		List<BootcampReview> reviews = null;
+		System.out.println(review);
 		try {
 			reviews = bootServ.addABootcampReview(principal.getName(), review, bootcampId);
 			res.setStatus(200);
