@@ -119,7 +119,6 @@ export class HomeComponent implements OnInit {
         review.jobAssistanceRating +
         review.curriculumRating) /
       3;
-    console.log(review);
     return Math.floor(average);
   }
 }
