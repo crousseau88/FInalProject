@@ -144,5 +144,19 @@ public class BootcampServiceImpl implements BootcampService {
 		}
 		return reviews;
 	}
+	
+	@Override
+	public BootcampAdvice addBootcampAdvice(String username, BootcampAdvice advice, int reviewId){
+		User user = userRepo.findByUsername(username);
+		Optional<BootcampReview> reviewOpt = bootRevRepo.findById(reviewId);
+		if(reviewOpt.isPresent()) {
+			BootcampReview review = reviewOpt.get();
+			advice.setBootcampReview(review);
+			bootAdviceRepo.saveAndFlush(advice);
+			bootRevRepo.saveAndFlush(review);
+			return advice;
+		}
+		return null;
+	}
 
 }

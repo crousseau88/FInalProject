@@ -128,7 +128,6 @@ public class BootcampController {
 	@PostMapping("reviews/{bootcampId}")
 	public List<BootcampReview> addBootcampReviewToABootcamp(@PathVariable int bootcampId, @RequestBody BootcampReview review, Principal principal, HttpServletResponse res){
 		List<BootcampReview> reviews = null;
-		System.out.println(review);
 		try {
 			reviews = bootServ.addABootcampReview(principal.getName(), review, bootcampId);
 			res.setStatus(200);
@@ -138,6 +137,19 @@ public class BootcampController {
 			e.printStackTrace();
 		}
 		return reviews;
+	}
+	@PostMapping("advice/{reviewId}")
+	public BootcampAdvice addBootcampAdvice(@PathVariable int reviewId, @RequestBody BootcampAdvice advice, Principal principal, HttpServletResponse res){
+		BootcampAdvice advices = null;
+		try {
+			advices = bootServ.addBootcampAdvice(principal.getName(), advice, reviewId);
+			res.setStatus(200);
+			return advices;
+		} catch (Exception e) {
+			res.setStatus(404);
+			e.printStackTrace();
+		}
+		return advices;
 	}
 
 }

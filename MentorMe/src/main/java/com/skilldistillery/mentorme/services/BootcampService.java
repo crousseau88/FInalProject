@@ -26,4 +26,6 @@ public interface BootcampService {
 
 	List<BootcampReview> addABootcampReview(String username, BootcampReview review, int bootId);
 
+	BootcampAdvice addBootcampAdvice(String username, BootcampAdvice advice, int reviewId);
+
 }
