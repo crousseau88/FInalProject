@@ -1,5 +1,7 @@
 package com.skilldistillery.mentorme.entities;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,6 +48,20 @@ public class Bootcamp {
 /////////////////////////////GENERATED///////////////////////////////
 	public Bootcamp() {
 		super();
+	}
+	public void addReview(BootcampReview review) {
+		if(reviews == null) {
+			reviews = new ArrayList<>();
+		} if(!reviews.contains(review)) {
+			reviews.add(review);
+			review.setBootcamp(this);
+			review.setReviewDate(LocalDateTime.now());
+		}
+	}
+	public void removeReply(BootcampReview review) {
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+		}
 	}
 
 

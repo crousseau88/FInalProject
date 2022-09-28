@@ -1,8 +1,8 @@
 package com.skilldistillery.mentorme.controllers;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -122,6 +124,19 @@ public class BootcampController {
 			e.printStackTrace();
 		}
 		return bootcamps;
+	}
+	@PostMapping("reviews/{bootcampId}")
+	public List<BootcampReview> addBootcampReviewToABootcamp(@PathVariable int bootcampId, @RequestBody BootcampReview review, Principal principal, HttpServletResponse res){
+		List<BootcampReview> reviews = null;
+		try {
+			reviews = bootServ.addABootcampReview(principal.getName(), review, bootcampId);
+			res.setStatus(200);
+			return reviews;
+		} catch (Exception e) {
+			res.setStatus(404);
+			e.printStackTrace();
+		}
+		return reviews;
 	}
 
 }

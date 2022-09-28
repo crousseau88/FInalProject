@@ -2,6 +2,7 @@ package com.skilldistillery.mentorme.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,12 @@ import com.skilldistillery.mentorme.entities.Bootcamp;
 import com.skilldistillery.mentorme.entities.BootcampAdvice;
 import com.skilldistillery.mentorme.entities.BootcampReview;
 import com.skilldistillery.mentorme.entities.Tool;
+import com.skilldistillery.mentorme.entities.User;
 import com.skilldistillery.mentorme.repositories.BootcampAdviceRepository;
 import com.skilldistillery.mentorme.repositories.BootcampRepository;
 import com.skilldistillery.mentorme.repositories.BootcampReviewRepository;
 import com.skilldistillery.mentorme.repositories.ToolRepository;
+import com.skilldistillery.mentorme.repositories.UserRepository;
 
 @Service
 public class BootcampServiceImpl implements BootcampService {
@@ -27,6 +30,8 @@ public class BootcampServiceImpl implements BootcampService {
 	private BootcampAdviceRepository bootAdviceRepo;
 	@Autowired
 	private ToolRepository toolRepo;
+	@Autowired
+	private UserRepository userRepo;
 	
 	@Override
 	public List<Bootcamp> getAllBootcamps(){
@@ -121,6 +126,23 @@ public class BootcampServiceImpl implements BootcampService {
 		}
 		return bootcamps;
 		
+	}
+	
+	@Override
+	public List<BootcampReview> addABootcampReview(String username, BootcampReview review, int bootId){
+		List<BootcampReview> reviews = null;
+		User user = userRepo.findByUsername(username);
+		Optional<Bootcamp> optBootcamp = bootRepo.findById(bootId);
+		if(optBootcamp.isPresent() && user != null) {
+			Bootcamp bootcamp = optBootcamp.get();
+			review.setUser(user);
+			bootcamp.addReview(review);
+			bootRevRepo.saveAndFlush(review);
+			bootRepo.saveAndFlush(bootcamp);
+			reviews = bootcamp.getReviews();
+			return reviews;
+		}
+		return reviews;
 	}
 
 }
