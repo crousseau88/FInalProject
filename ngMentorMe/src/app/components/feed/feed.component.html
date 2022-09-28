@@ -30,7 +30,7 @@
       width="75"
     />
   </picture>
-  <a (click)="setSelectedUser(post.userPost?.username)" class="profileLink">{{post.userPost?.username}}</a>
+  <a (click)="setSelectedUser(post.userPost?.username)" class="profileLink">{{post.userPost?.username}}</a> <p class ="date-created">{{post.created | date: 'short'}}</p>
   <h3 class="posts-title">{{ post.subject }}</h3>
   <blockquote class="post-text">{{ post.text }}</blockquote>
   <div *ngIf="post.userPost?.id === user?.id || user?.role === 'ADMIN'">
@@ -47,7 +47,7 @@
     width="30"
     />
     <a (click)="setSelectedUser(comment.user?.username)" class="profileLink">{{comment.user?.username}}</a>
-    <p class="commentText">{{ comment.text }}</p>
+    <p class="commentText">{{ comment.text }}</p> <p class ="date-created">{{comment.created | date: 'short'}}</p>
     <div *ngIf="comment.user?.id === user?.id || user?.role === 'ADMIN'">
       <p (click)="deleteComment(post.id, comment.id)" class="deleteLink-comment">Delete Comment</p>
     </div>

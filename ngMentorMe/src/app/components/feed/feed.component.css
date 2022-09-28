@@ -8,6 +8,14 @@
   color: gray;
   text-decoration: underline;
 }
+.comment-text{
+  margin-bottom: 1px;
+}
+.date-created{
+  color: lightgray;
+  text-decoration: underline;
+  font-size: 12px;
+}
 .deleteLink-comment{
   font-size: 13px;
   margin-top: 1px !important;
