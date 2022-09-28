@@ -1,7 +1,7 @@
 import { BootcampAdvice } from 'src/app/models/bootcamp-advice';
 import { BootcampService } from 'src/app/services/bootcamp.service';
 import { Tools } from './../../models/tools';
-import { BootcampAdvice } from './../../models/bootcamp-advice';
+//import { BootcampAdvice } from './../../models/bootcamp-advice';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,6 @@ import { AccountService } from 'src/app/services/account.service';
 import { Bootcamp } from 'src/app/models/bootcamp';
 import { BootcampReview } from 'src/app/models/bootcamp-review';
 import { Post } from 'src/app/models/post';
-
 
 @Component({
   selector: 'app-account',
@@ -42,6 +41,8 @@ export class AccountComponent implements OnInit {
   bootAdvice: BootcampAdvice = new BootcampAdvice();
   showButton: boolean = true;
   addAdvice: boolean = false;
+  addNewAdvice: boolean = false;
+  newAdvice: BootcampAdvice = new BootcampAdvice();
 
   constructor(
     private userService: UserService,
@@ -51,7 +52,6 @@ export class AccountComponent implements OnInit {
     private router: Router,
     private bootcampService: BootcampService
   ) {}
-
 
   ngOnInit(): void {
     this.authservice.getLoggedInUser().subscribe({
@@ -130,7 +130,7 @@ export class AccountComponent implements OnInit {
     this.accountservice.getfollowing(username).subscribe({
       next: (followers) => {
         this.allFollowing = followers;
-        if(followers.includes(this.user)){
+        if (followers.includes(this.user)) {
           this.isFollowing = true;
         }
       },
@@ -179,8 +179,8 @@ export class AccountComponent implements OnInit {
     this.accountservice.getBootcampReviews(username).subscribe({
       next: (bootcamps) => {
         this.bootReviews = bootcamps;
-        if(bootcamps.length === 0){
-            this.showButton = false;
+        if (bootcamps.length === 0) {
+          this.showButton = false;
         }
         console.log(this.bootReviews);
       },
@@ -254,8 +254,19 @@ export class AccountComponent implements OnInit {
     }
   }
 
-  addAdvice(advice: BootcampAdvice, reviewId: number) {
-          
+  submitAdvice(advice: BootcampAdvice, reviewId: number) {
+    this.bootcampService.createAdvice(reviewId, advice).subscribe({
+      next: (advice) => {
+        this.advice = advice;
+        this.addAdvice = false;
+        this.ngOnInit();
+        window.location.reload();
+      },
+      error: (err) => {
+        console.error('Error creating review');
+        console.error(err);
+      },
+    });
   }
   addReview(bootcampReview: BootcampReview, bootId: number) {
     this.bootcampService.createReview(bootcampReview, bootId).subscribe({
@@ -272,9 +283,12 @@ export class AccountComponent implements OnInit {
     });
   }
   calculateRating(review: BootcampReview) {
-    let average = (review.instructorRating + review.jobAssistanceRating + review.curriculumRating) / 3;
+    let average =
+      (review.instructorRating +
+        review.jobAssistanceRating +
+        review.curriculumRating) /
+      3;
     console.log(review);
     return Math.floor(average);
   }
 }
-

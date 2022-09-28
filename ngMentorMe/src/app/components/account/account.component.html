@@ -30,39 +30,56 @@
   <h4>Bootcamp {{ user.username }} has attended.</h4>
   <!-- iterate over the mentors bootcamps array and populate anchors with it -->
   <div *ngFor="let bootcamp of bootcamps">
-    <a href="{{bootcamp.website}}" target="_blank">
-   <u  style="color: blue;"> {{ bootcamp.name }} </u>
-  </a>
+    <a href="{{ bootcamp.website }}" target="_blank">
+      <u style="color: blue"> {{ bootcamp.name }} </u>
+    </a>
     <div>
       <!-- <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p> -->
       <!-- iterate over the mentors bootcamps array and populate anchors with it -->
       <ul *ngFor="let review of bootReviews">
-        <li>Overall Rating {{calculateRating(review)}} </li>
-        <li >{{ review.bootcampReview }}</li>
-        <button class= "btn btn-info" (click)="bootcampAdvice(review.id)">My Advice</button>
+        <li>Overall Rating {{ calculateRating(review) }}</li>
+        <li>{{ review.bootcampReview }}</li>
+        <button class="btn btn-info" (click)="bootcampAdvice(review.id)">
+          My Advice
+        </button>
         <div *ngIf="advice">
-          {{ advice.advice }}<br>
-          <button class= "btn btn-info" (click)="bootcampTools(advice.id)">
-            Tools Used {{user.firstName}} Recomends. </button>
-            <br>
-        <!-- if advice is not present add advice -->
-            <div *ngIf="bootcampReviews">
-              <button (click)="showAdvice()">Add Advice</button>
-              <textarea placeholder="Bootcamp Advice" name="advice" id="advice" cols="30" rows="10"></textarea>
-              <button (click)="addAdvice()">Submit</button>
-              <button (click)="hideAdvice()">Cancel</button>
-            </div>
-
+          {{ advice.advice }}<br />
+          <button class="btn btn-info" (click)="bootcampTools(advice.id)">
+            Tools Used {{ user.firstName }} Recomends.
+          </button>
+          <br />
+          <!-- if advice is not present add advice -->
+          <!-- <div *ngIf="">
+            <button (click)="showAdvice()">Add Advice</button>
+            <textarea
+              placeholder="Your Advice For Success at Your Bootcamp"
+              name="advice"
+              id="advice"
+              cols="30"
+              rows="10"
+              [(ngModel)]="newAdvice.advice"
+            ></textarea>
+            <button (click)="submitAdvice(newAdvice, review.id)">Submit</button>
+            <button (click)="hideAdvice()">Cancel</button>
+          </div> -->
         </div>
+        <!-- <div>
+          <form *ngIf="addNewAdvice">
+            <label
+              >Advice For Success at Your Bootcamp
+              <textarea></textarea>
+            </label>
+          </form>
+        </div> -->
         <div *ngIf="tools">
           <ul *ngFor="let tool of tools">
-            <a href="{{tool.website}}" target="_blank">
-          <li>{{ tool.name }}</li>
-        </a>
-          <ul>
-          <li>{{tool.why}}</li>
-        </ul>
-        </ul>
+            <a href="{{ tool.website }}" target="_blank">
+              <li>{{ tool.name }}</li>
+            </a>
+            <ul>
+              <li>{{ tool.why }}</li>
+            </ul>
+          </ul>
         </div>
       </ul>
     </div>
@@ -179,34 +196,57 @@
   </ul>
 </div>
 
-
-
 <!-- ********************Mentor Add Review******************** -->
 <div *ngIf="!showButton">
-<button (click)="toggleReview()">Add Review</button>
+  <button (click)="toggleReview()">Add Review</button>
 </div>
 <div *ngIf="user.role === 'MENTOR' && createReview">
-<form class="css-form form-control">
-<label for="bootcamp-dropdown">Bootcamps
-<select name="bootcamps" id="bootcamp-dropdown" [(ngModel)]="bootcampId">
-<option for="bootcamp" value= 3>Code Platoon</option>
-<option for="bootcamp" value= 2>Hack Reactor</option>
-<option for="bootcamp" value= 1>Skill Distillery</option>
-</select></label><br>
-<label for="instructorRating">Instructor Rating
-  <ngb-rating [max]="5" [(rate)]="newReview.instructorRating"></ngb-rating>
-</label><br>
-<label for="curriculumRating">Curriculum Rating
-  <ngb-rating [max]="5" [(rate)]="newReview.curriculumRating"></ngb-rating>
-</label><br>
-<label for="jobAssistRating">Job Assistance Rating
-  <ngb-rating [max]="5" [(rate)]="newReview.jobAssistanceRating"></ngb-rating>
-</label><br>
-<ngb-datepicker #d></ngb-datepicker><br>
-<textarea placeholder="Bootcamp Review" name="bootcampReview" id="bootcamp-review" cols="30" rows="10" [(ngModel)]="newReview.bootcampReview"></textarea><br>
+  <form class="css-form form-control">
+    <label for="bootcamp-dropdown"
+      >Bootcamps
+      <select name="bootcamps" id="bootcamp-dropdown" [(ngModel)]="bootcampId">
+        <option for="bootcamp" value="3">Code Platoon</option>
+        <option for="bootcamp" value="2">Hack Reactor</option>
+        <option for="bootcamp" value="1">Skill Distillery</option>
+      </select></label
+    ><br />
+    <label for="instructorRating"
+      >Instructor Rating
+      <ngb-rating
+        [max]="5"
+        [(rate)]="newReview.instructorRating"
+      ></ngb-rating> </label
+    ><br />
+    <label for="curriculumRating"
+      >Curriculum Rating
+      <ngb-rating
+        [max]="5"
+        [(rate)]="newReview.curriculumRating"
+      ></ngb-rating> </label
+    ><br />
+    <label for="jobAssistRating"
+      >Job Assistance Rating
+      <ngb-rating
+        [max]="5"
+        [(rate)]="newReview.jobAssistanceRating"
+      ></ngb-rating> </label
+    ><br />
+    <ngb-datepicker #d></ngb-datepicker><br />
+    <textarea
+      placeholder="Bootcamp Review"
+      name="bootcampReview"
+      id="bootcamp-review"
+      cols="30"
+      rows="10"
+      [(ngModel)]="newReview.bootcampReview"
+    ></textarea
+    ><br />
 
-<button class="btn btn-outline-success" (click)="addReview(newReview, bootcampId)">Add Bootcamp Review</button>
-</form>
+    <button
+      class="btn btn-outline-success"
+      (click)="addReview(newReview, bootcampId)"
+    >
+      Add Bootcamp Review
+    </button>
+  </form>
 </div>
-
-
