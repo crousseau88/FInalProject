@@ -18,7 +18,10 @@
   ><br />
   <button (click)="createNewPost(newPost)" class="post-form-button">Make Post</button>
 </form>
-<div *ngFor="let post of posts; let i = index" class="posts posts-container shadow-lg p-3 mb-5 bg-white rounded" >
+
+
+
+<div *ngFor="let post of posts | slice: (page - 1) * pageSize: page * pageSize; let i = index" class="posts posts-container shadow-lg p-3 mb-5 bg-white rounded" >
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img class="rounded-circle"
@@ -64,6 +67,7 @@
   </form>
 
 </div>
+<ngb-pagination [collectionSize]="posts.length" [(page)]="page" [pageSize]="pageSize"> </ngb-pagination>
 </div>
 <!-- if selected -->
 <div *ngIf="selectedUser">

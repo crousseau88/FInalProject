@@ -12,6 +12,7 @@ import { Bootcamp } from 'src/app/models/bootcamp';
 import { BootcampAdvice } from 'src/app/models/bootcamp-advice';
 import { BootcampReview } from 'src/app/models/bootcamp-review';
 import { Tools } from 'src/app/models/tools';
+import { AngularPaginatorModule } from 'angular-paginator';
 
 @Component({
   selector: 'app-feed',
@@ -19,6 +20,8 @@ import { Tools } from 'src/app/models/tools';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
+  page = 1;
+  pageSize = 5;
   posts: Post[] = [];
   newPostReplies: Reply[] = [];
   newPost: Post = new Post();
@@ -46,6 +49,7 @@ export class FeedComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
@@ -61,11 +65,14 @@ export class FeedComponent implements OnInit {
   }
   loadPosts() {
     this.postServ.getAllRealPosts().subscribe({
+
       next: (posts) => {
+        console.log(posts.length);
         this.posts = posts.sort(
           (a, b) =>
             new Date(b.created).getTime() - new Date(a.created).getTime()
         );
+
         this.newPostReplies = [];
         for (let i = 0; i < this.posts.length; i++) {
           this.newPostReplies.push(new Reply());

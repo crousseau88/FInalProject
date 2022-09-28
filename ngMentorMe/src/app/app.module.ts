@@ -19,6 +19,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { PostModule } from './post.module';
 import { AuthService } from './services/auth.service';
+import { AngularPaginatorModule } from 'angular-paginator';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AuthService } from './services/auth.service';
     HttpClientModule,
     PostModule,
     NgbModule,
+    AngularPaginatorModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
