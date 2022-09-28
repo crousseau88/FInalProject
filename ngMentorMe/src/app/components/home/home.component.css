@@ -10,7 +10,7 @@
     rgb(175, 197, 239) 100.2%
   );
 }
-body {
+.body {
   background-image: radial-gradient(
     circle farthest-corner at 22.4% 21.7%,
     rgb(249, 249, 252) 0%,
