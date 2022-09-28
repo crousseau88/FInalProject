@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       next: (registeredUser) => {
         this.auth.login(user.username, user.password).subscribe({
           next: (loggedInUser) => {
-            this.router.navigateByUrl('/account');
+            this.router.navigateByUrl('/account/' + loggedInUser.username);
           },
           error: (problem) => {
 

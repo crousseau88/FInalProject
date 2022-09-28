@@ -1,3 +1,5 @@
+import { BootcampAdvice } from 'src/app/models/bootcamp-advice';
+import { BootcampService } from 'src/app/services/bootcamp.service';
 import { Tools } from './../../models/tools';
 import { BootcampAdvice } from './../../models/bootcamp-advice';
 import { AuthService } from 'src/app/services/auth.service';
@@ -27,21 +29,29 @@ export class AccountComponent implements OnInit {
   allFollowing: User[] = [];
   editUser: User | null = null;
   bootcamps: Bootcamp[] = [];
+  bootcampId: number = 0;
   bootReviews: BootcampReview[] = [];
+  newReview: BootcampReview = new BootcampReview();
   advice: BootcampAdvice | null = null;
   tools: Tools[] = [];
   posts: Post[] = [];
   userIsMentor: boolean = false;
   showReviews: boolean = false;
   isFollowing: boolean = false;
+  createReview: boolean = false;
+  bootAdvice: BootcampAdvice = new BootcampAdvice();
+  showButton: boolean = true;
+  addAdvice: boolean = false;
 
   constructor(
     private userService: UserService,
     private accountservice: AccountService,
     private route: ActivatedRoute,
     private authservice: AuthService,
-    private router: Router
+    private router: Router,
+    private bootcampService: BootcampService
   ) {}
+
 
   ngOnInit(): void {
     this.authservice.getLoggedInUser().subscribe({
@@ -169,6 +179,9 @@ export class AccountComponent implements OnInit {
     this.accountservice.getBootcampReviews(username).subscribe({
       next: (bootcamps) => {
         this.bootReviews = bootcamps;
+        if(bootcamps.length === 0){
+            this.showButton = false;
+        }
         console.log(this.bootReviews);
       },
       error: (problem) => {
@@ -223,5 +236,45 @@ export class AccountComponent implements OnInit {
       },
     });
   }
+  toggleReview() {
+    if (!this.createReview) {
+      this.createReview = true;
+    } else {
+      this.createReview = false;
+    }
+  }
+  showAdvice() {
+    if (!this.addAdvice) {
+      this.addAdvice = true;
+    }
+  }
+  hideAdvice() {
+    if (this.addAdvice) {
+      this.addAdvice = false;
+    }
+  }
 
+  addAdvice(advice: BootcampAdvice, reviewId: number) {
+          
+  }
+  addReview(bootcampReview: BootcampReview, bootId: number) {
+    this.bootcampService.createReview(bootcampReview, bootId).subscribe({
+      next: (review) => {
+        this.bootReviews.push(review);
+        this.createReview = false;
+        this.ngOnInit();
+        window.location.reload();
+      },
+      error: (err) => {
+        console.error('Error creating review');
+        console.error(err);
+      },
+    });
+  }
+  calculateRating(review: BootcampReview) {
+    let average = (review.instructorRating + review.jobAssistanceRating + review.curriculumRating) / 3;
+    console.log(review);
+    return Math.floor(average);
+  }
 }
+

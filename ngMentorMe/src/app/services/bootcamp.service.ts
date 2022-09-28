@@ -24,6 +24,15 @@ export class BootcampService {
       })
     );
 }
+getHttpOptions() {
+  let options = {
+    headers: {
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  };
+  return options;
+}
 getReviews(id: number) {
   return this.http.get<BootcampReview[]>(this.url + 'reviews/' + id).pipe(
     catchError((err: any) => {
@@ -44,4 +53,14 @@ getReviews(id: number) {
         })
       );
     }
+    createReview(review: BootcampReview, bootId: number) {
+      return this.http.post<BootcampReview>(this.url + 'reviews/' + bootId, review, this.getHttpOptions() ).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('userService.index():error retreiving Users' + err)
+            );
+          })
+        );
+      }
 }

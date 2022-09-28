@@ -1,9 +1,10 @@
+import { Bootcamp } from "./bootcamp";
 import { User } from "./user";
 
 export class BootcampReview {
   id: number = 0;
   user: User | null = null;
-  bootcampId: number = 0;
+  bootcamp: Bootcamp | null = null;
   overallRating: number = 0;
   instructorRating: number = 0;
   jobAssistanceRating: number = 0;
@@ -16,7 +17,7 @@ export class BootcampReview {
   constructor(
     id: number = 0,
     user: User | null = null,
-    bootcampId: number = 0,
+    bootcamp: Bootcamp | null = null,
     overallRating: number = 0,
     instructorRating: number = 0,
     jobAssistanceRating: number = 0,
@@ -27,7 +28,7 @@ export class BootcampReview {
   ) {
     this.id = id;
     this.user = user;
-    this.bootcampId = bootcampId;
+    this.bootcamp = bootcamp;
     this.overallRating = overallRating;
     this.instructorRating = instructorRating;
     this.jobAssistanceRating = jobAssistanceRating;
