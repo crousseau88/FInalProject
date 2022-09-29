@@ -30,17 +30,15 @@ If you would like to visit our site and take it for a test drive, see the link b
 * Mentee username: lightning, password: guest5
 * Mentor username: splinter, password: mentor4  
 
-<p align="center"><a href="http://3.21.142.131:8080/HSHTracker">PLACEHOLDER: SITE NOT YET DEPLOYED</a></>
+<p align="center"><a href="http://184.169.170.189:8080/MentorMe/#/home">MentorMe</a></>
 
 If you would like to test the backend of the application, reference the table within the "Testing With Postman" section below for example URI's you can use to interact with the applications functionality.
 
 ## Description
 
-<p align="center"><img src="media/mentormeschema.png" width="450"></p>
+<p align="center"><img src="media/mentormeschema.png" width="500"></p>
 
-
-
-In this alpha version, the backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. THe frontend has been built with, first using vanilla Javascript to link the backend with the frontend. The second approach utilized Angular and Boorstrap. 
+The backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. The frontend has been built with, first using vanilla JavaScript to link the backend with the frontend. The second approach utilized Angular and Bootstrap. 
 
 ## Methodology
 
@@ -54,37 +52,42 @@ The second frontend creation, using Angular, was similarly organized but with mo
 
 ## Testing the Backend With Postman
 
-<p align="center"><img src="media/postman.png" width="450"></p>
+<p align="center"><img src="media/Postman.png" width="500"></p>
 
-To test the backend of the application, a user may visit the <a href="https://www.postman.com/">Postman</a> site. Once set up, reference the table below for URI's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard.
+To test the backend of the application, a user may visit the <a href="https://www.postman.com/">Postman</a> site. Once set up, reference the table below for URI's testing the validity of the code once you've started up the program in the SpringToolSuite4 Boot Dashboard. For the URI's below to function, ensure the authorization type is set to basic. Set the username to "sage" and the password to "mentor". 
 
-> For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8083"
-> Testing in a deployed environment, the prefix to the URI is "http://3.21.142.131:8080/HSHTracker"
+> For testing a non-deployed, local version of the application, each URI is preceded with "http://localhost:8090/api/"
 
-| HTTP Verb | URI                  | Request Body | Response Body    | Functionality                                              |
-|:---------:|:---------------------|:------------:|:-----------------|:--------------------------------------------------------------------------|
-| GET       | '/api/edEvents'      |              |  List of events  | Return a list of all education events                                      |
-| GET       | '/api/edEvents/4'    |              |  Single event    | Return an education event by Id                                            |
-| GET       | '/api/edEventsSubject/Math'         |                  |  List of events  | Return a list of education events by subject                               |
-| GET       | '/api/edEventsLocation/home'|       |  List of events  | Return a list of education events by location                              |
-| GET       | '/api/edEventsStudent/Billy'|       |  List of events  | Return a list of education events by student name                          |
-| GET       | '/api/edEventsNotes/search/on'|     |  List of events  | Return a list of education events searching by keyword in the notes field  |
-| GET       | '/api/edEventsLocSubStuOrNot/search/science'|              |  List of events  | Return a list of education events searching by keyword in the location, subject, student or notes field |
-| GET       | '/api/edEvtsBtwnDts/search/date/2022-09-02T01:00:00/2022-09-04T01:00:00'|              |  List of events  | Return a list of education events occurring between submitted dates        |
-| POST      | '/api/newEdEvent'     | JSON         |  Created event   | Adds a new EducationEvent (see example code for a new event below)         |
-| PUT       | '/api/updateEdEvent/2'| JSON         |  Updated event   | Modifies an existing EducationEvent (6 events exist in the database)       |
-| DEL       | '/api/deleteEdEvent/7'|              |                  | Deletes an EducationEvent. Assumes you have created 1 new EducationEvent   |
-
+| HTTP Verb | URI                        | Request Body | Response Body        | Functionality                                                              |
+|:---------:|:---------------------------|:------------:|:---------------------|:---------------------------------------------------------------------------|
+| GET       | 'account/grasshopper'      |              | Single user          | Return a user by their id                                                  |
+| GET       | 'bootcamps'                |              | List of bootcamps    | Return a list of all bootcamps                                             |
+| GET       | 'bootcamps/search/KEYWORD' |              | List of bootcamps    | Return a list of boot camps by searching their name or tech                |
+| POST      | 'posts'                    |     JSON     | Created post message | Create a new message posting                                               |
+| POST      | 'replies/1'                |     JSON     | Created Post reply   | Create a reply to a posted message                                         |
+| PUT       | 'account'                  |     JSON     | Updated user account | Update a users account information                                         |
+| DELETE    | 'posts/3'                  |              |                      | Delete a post belonging to the logged in user                              |
 
 * Example code to use for POST routes below. Note that the date and subject may be omitted due to default values being set in the service file.
 
 > {
-    "date" : "2022-09-04T12:59:11.332",
-    "duration" : 15,
-    "subject" : "Language Arts",
-    "location" : "Home",
-    "student" : "Sally",
-    "notes" : "Test adding event, all fields included."
+        "text": "New Post text",
+        "subject": "New Post Subject"
+   }
+   
+* Example code to post a reply to a posted comment
+
+> {   "text": "NEW REPLY TO THIS POST" }
+
+* Example code to update a users account information
+
+> {
+    “username”: “New username”,
+    “password”: “New password”,
+    “firstName”: “New first name”,
+    “lastName”: “New last name”,
+    “email”: “New email”,
+    “aboutMe”: “New aboout me”
 }
 
 * Example code to use for PUT URI can utilize any variation of the code above. The example URI in the table is set to 2 but may be changed to 3 through 6 or any events added with the POST route. Please do not modify EducationEvent 1 due to all JUnit tests being written for its original data.
