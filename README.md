@@ -51,7 +51,7 @@ When a user visits our site, there are 4 possible paths...
 
 ## Methodology
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](https://media.giphy.com/media/wjs6PzkRfaw48/giphy.gif)
 
 ![Alt Text](https://media.giphy.com/media/v1qwIBdb0kZOkeEzYR/giphy.gif)
 
