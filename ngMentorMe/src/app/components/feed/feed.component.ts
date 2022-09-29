@@ -275,6 +275,8 @@ export class FeedComponent implements OnInit {
     this.accountservice.followUser(user.id, this.user).subscribe({
       next: (users) => {
         this.setSelectedUser(this.selectedUser?.username);
+        this.allFollowing = users;
+
       },
       error: (err) => {
         console.error('Error following this user');
@@ -287,6 +289,8 @@ export class FeedComponent implements OnInit {
       next: (users) => {
         this.isFollowing = false;
         this.setSelectedUser(this.selectedUser?.username);
+        this.allFollowers = users;
+        this.allfollowers(user);
       },
       error: (err) => {
         console.error('Error following this user');
