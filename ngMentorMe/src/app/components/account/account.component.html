@@ -1,6 +1,8 @@
 <!-- ********************USER PERSONAL ACCOUNT PAGE******************** -->
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
-<div>
+<body>
+  <div class="profile-info">
+<div >
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
@@ -18,13 +20,15 @@
   <h6>{{ user.role }}</h6>
   <h6>{{ user.username }}</h6>
   <h6>{{ user.firstName }} {{ user.lastName }}</h6>
+  <button id="update-button" class="btn btn-outline-warning" (click)="editUser = user">Update Account</button>
 </div>
+</div><br>
 <hr />
 <div>
   <h4>PLACEHOLDER: about me section</h4>
   <p>{{ user.aboutMe }}</p>
 </div>
-<hr />
+
 <!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="user.role === 'MENTOR'">
   <h4>Bootcamp {{ user.username }} has attended.</h4>
@@ -96,32 +100,26 @@
   </div>
 </div> -->
 
-<!-- **********Post Replies********** -->
-<div></div>
-<hr />
+
+
 <!-- **********UPDATE USER PROFILE********** -->
-<button (click)="editUser = user">Update User?</button>
+
 <div *ngIf="editUser">
   <form class="css-form form-control">
     <label for="password">Password</label>
     <input
-      class="css-form form-control"
+      class="css-form1 form-control"
       type="password"
       id="password"
       name="password"
       required
     />
 
-    <button (click)="updateUser(user)">Update</button>
-    <button
-      (click)="[deleteUser(user.id), routeHomeAfterDelete()]"
-      class="btn btn-danger"
-    >
-      DELETE ACCOUNT
-    </button>
+
+
     <label for="email">Email</label>
     <input
-      class="css-form form-control"
+      class="css-form1 form-control"
       [(ngModel)]="user.email"
       type="email"
       id="email"
@@ -131,14 +129,14 @@
     /><br />
 
     <label for="role">Role</label><br />
-    <select name="role" class="form-control" [(ngModel)]="user.role">
+    <select name="role" class="css-form1 form-control" [(ngModel)]="user.role">
       <option value="mentor">Mentor</option>
       <option value="mentee">Mentee</option>
     </select>
 
     <label for="firstName">First Name </label>
     <input
-      class="css-form form-control"
+      class="css-form2 form-control"
       [(ngModel)]="user.firstName"
       type="text"
       id="firstName"
@@ -147,7 +145,7 @@
     /><br />
     <label for="lastName">Last Name </label>
     <input
-      class="css-form form-control"
+      class="css-form3 form-control"
       [(ngModel)]="user.lastName"
       type="text"
       id="lastName"
@@ -157,7 +155,7 @@
 
     <label for="aboutMe">About Me</label>
     <textarea
-      class="css-form form-control"
+      class="css-form4 form-control"
       [(ngModel)]="user.aboutMe"
       type="text"
       id="aboutMe"
@@ -170,7 +168,7 @@
 
     <label for="profileImg">Profile Picture URL</label>
     <input
-      class="css-form form-control"
+      class="css-form5 form-control"
       [(ngModel)]="user.profileImg"
       type="profileImg"
       id="profileImg"
@@ -178,10 +176,19 @@
       value="{{ user.profileImg }}"
       required
     /><br />
+    <button class="btn btn-outline-success" (click)="updateUser(user)">Update</button> <br><br>
+    <button
+    (click)="[deleteUser(user.id), routeHomeAfterDelete()]"
+    class="btn btn-outline-danger"
+  >
+    DELETE ACCOUNT
+  </button>
   </form>
 </div>
-<hr />
-<div>
+
+<div class="following">
+<div >
+
   <br />
   <h4>Currently Following</h4>
   <ul>
@@ -195,7 +202,7 @@
     <li *ngFor="let follow of allFollowing">{{ follow.username }}</li>
   </ul>
 </div>
-
+</div>
 <!-- ********************Mentor Add Review******************** -->
 <div *ngIf="!showButton">
   <button (click)="toggleReview()">Add Review</button>
@@ -250,3 +257,4 @@
     </button>
   </form>
 </div>
+</body>
