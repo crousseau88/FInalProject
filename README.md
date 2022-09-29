@@ -111,13 +111,13 @@ To test the backend of the application, a user may visit the <a href="https://ww
 
 ## Lessons Learned
 
-Chad Rousseau
-
-* Teamwork is essential to success. Everyone on the team put their minds together to overcome issues and solve problems. Constant communication has helped us succeed as a team and stay on top of any issues that we had or could have had. We have maintained comms throughout changes in code in order to avoid merge conflicts that take valuable time away from building the app.
-
 Austin Borck
 
 * The biggest lesson I learned is how to properly plan and design an application, what classes/components should do what and to think in English before thinking in code. Jumping directly into the coding without a detailed plan is the best way to get confused, frustrated and produce poorly written code. A small issue I would change in the future is management of components and services since it felt like we had a couple things doing the same job. I learned being more defined on simple things such as naming a boolean to toggle information on a page, and field names in the backend to match the front end on the first try.
+
+Chad Rousseau
+
+* Teamwork is essential to success. Everyone on the team put their minds together to overcome issues and solve problems. Constant communication has helped us succeed as a team and stay on top of any issues that we had or could have had. We have maintained comms throughout changes in code in order to avoid merge conflicts that take valuable time away from building the app.
 
 Ken Pederson
 
