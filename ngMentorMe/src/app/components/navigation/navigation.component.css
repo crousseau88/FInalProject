@@ -40,4 +40,11 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
+  font-family: 'Anton', sans-serif;
+  color: black !important;
+  outline-color: white;
+  text-shadow: -1px -1px 0 rgb(252, 251, 251), 1px -1px 0 rgb(247, 243, 243), -1px 1px 0 rgb(251, 247, 247),
+    1px 1px 0 rgb(247, 244, 244);
+  font-weight: bold;
+  outline-width: 500px !important;
 }

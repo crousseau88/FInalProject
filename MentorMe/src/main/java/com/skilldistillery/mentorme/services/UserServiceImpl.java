@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
 		if(unFollowMe.isPresent()) {
 			User unFollow = unFollowMe.get();
 			unFollow.removeFollower(follower);
-			follower.removeFollowing(unFollow);
-			userRepo.saveAndFlush(follower);
+//			follower.removeFollowing(unFollow);
+//			userRepo.saveAndFlush(follower);
 			userRepo.saveAndFlush(unFollow);
 			List<User> followers = getUsersFollowers(unFollow.getUsername());
 			return followers;
