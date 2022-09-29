@@ -99,7 +99,6 @@ export class AccountService {
   }
 
   getfollowers(username: string) {
-    console.log('USERNAME PASSED FOR FOLLOWERS: ' + username);
     return this.http.get<User[]>(this.url + username + '/followers').pipe(
       catchError((err: any) => {
         console.log(err);

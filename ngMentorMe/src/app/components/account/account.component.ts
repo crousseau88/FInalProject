@@ -182,7 +182,6 @@ export class AccountComponent implements OnInit {
         if (bootcamps.length === 0) {
           this.showButton = false;
         }
-        console.log(this.bootReviews);
       },
       error: (problem) => {
         console.error(
@@ -288,7 +287,6 @@ export class AccountComponent implements OnInit {
         review.jobAssistanceRating +
         review.curriculumRating) /
       3;
-    console.log(review);
     return Math.floor(average);
   }
 }
