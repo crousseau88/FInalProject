@@ -24,6 +24,7 @@ body, main {
     rgb(249, 249, 252) 0%,
     rgb(1, 34, 99) 100.2%
   );
+  margin-bottom: -15px;
 }
 
 input[type="email"], input[type="password"], input[type="text"], input[type="profileImg"]
@@ -47,8 +48,9 @@ input[type="email"], input[type="password"], input[type="text"], input[type="pro
     rgb(1, 34, 99) 100.2%
   );
   margin-bottom: -9px;
-  margin-top: -7px;
+  margin-top: -19px;
 }
+
 
 .profile-info {
   text-align: center;

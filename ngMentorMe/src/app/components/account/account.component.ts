@@ -196,7 +196,6 @@ export class AccountComponent implements OnInit {
     this.accountservice.getBootcampAdvice(reviewId).subscribe({
       next: (advice) => {
         this.advice = advice;
-        console.log(this.advice);
       },
       error: (problem) => {
         console.error(
@@ -211,7 +210,6 @@ export class AccountComponent implements OnInit {
     this.accountservice.getTools(adviceId).subscribe({
       next: (tools) => {
         this.tools = tools;
-        console.log(this.tools);
       },
       error: (problem) => {
         console.error(

@@ -362,3 +362,7 @@
   outline-width: 500px !important;
 }
 
+#follow-button {
+  float: right;
+  margin-right: 15px;
+}

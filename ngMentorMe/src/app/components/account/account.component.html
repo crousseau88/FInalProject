@@ -57,6 +57,7 @@
 
 <!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="user.role === 'MENTOR'">
+  <div class="css-form">
   <h4>Bootcamp {{ user.username }} has attended.</h4>
   <!-- iterate over the mentors bootcamps array and populate anchors with it -->
   <div *ngFor="let bootcamp of bootcamps">
@@ -80,7 +81,7 @@
           <br />
         </div>
     
-        <div *ngIf="tools" class="tools-list">
+        <div *ngIf="tools" >
           <ul *ngFor="let tool of tools">
             <a href="{{ tool.website }}" target="_blank">
               <li>{{ tool.name }}</li>
@@ -93,6 +94,7 @@
       </ul>
     </div>
   </div>
+</div>
 </div>
 <hr />
 

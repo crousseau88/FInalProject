@@ -87,13 +87,13 @@
 <div class="profile-info">
   <button (click)="selectedUser = null" class="btn btn-info">BACK</button><br><br>
   <div *ngIf="!isFollowing">
-    <button class="text-center btn btn-success" (click)="followMe(selectedUser)">Follow</button>
+    <button class="text-right btn btn-success" (click)="followMe(selectedUser)">Follow</button>
   </div>
   <div *ngIf="isFollowing">
-    <button class="text-center btn btn-danger" (click)="unFollowMe(selectedUser)">Unfollow</button>
-  </div>
-<div>
-  <h4>{{ selectedUser.username }}</h4>
+    <button class="text-right btn btn-danger" (click)="unFollowMe(selectedUser)">Unfollow</button>
+  </div> <br>
+  <div> 
+  <h4>{{ selectedUser.username }}</h4> <br>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
@@ -106,8 +106,7 @@
       width="200"
     />
   </picture>
-<div class= "text-center">
-  <p>PLACEHOLDER: basic user profile information</p>
+<div class= "text-center"> <br>
   <div *ngIf="selectedUser.role === 'MENTOR'">
     <img img
     src="https://www.mentorease.com/wp-content/uploads/2019/11/mentor_badge.png"
@@ -133,7 +132,6 @@
     width="75"/>
   </div>
   
-  <h6>{{ selectedUser.firstName }} {{ selectedUser.lastName }}</h6>
 </div>
 <hr />
 <div>
@@ -145,14 +143,59 @@
 
 <!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="selectedUser.role === 'MENTOR'">
-  <h4>Bootcamp {{ selectedUser.username }} has attended.</h4>
-  <!-- iterate over the mentors bootcamps array and populate anchors with it -->
+
+    <div class="css-form">
+    <h4>Bootcamp {{ selectedUser.username }} has attended.</h4>
+    <!-- iterate over the mentors bootcamps array and populate anchors with it -->
+    <div *ngFor="let bootcamp of bootcamps">
+      <a href="{{ bootcamp.website }}" target="_blank">
+        <u style="color: blue"> {{ bootcamp.name }} </u>
+      </a>
+      <div>
+        <!-- <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p> -->
+        <!-- iterate over the mentors bootcamps array and populate anchors with it -->
+        <ul *ngFor="let review of bootReviews" style="list-style: none">
+          <li>{{ review.bootcampReview }}</li>
+          <button class="btn btn-info" (click)="bootcampAdvice(review.id)">
+            My Advice
+          </button>
+          <div *ngIf="advice">
+            {{ advice.advice }}<br />
+            <button class="btn btn-info" (click)="bootcampTools(advice.id)">
+              Tools Used {{ selectedUser.username }} Recomends.
+            </button>
+            <br />
+          </div>
+      
+          <div *ngIf="tools" >
+            <ul *ngFor="let tool of tools" style="list-style: none">
+              <a href="{{ tool.website }}" target="_blank">
+                <li>{{ tool.name }}</li>
+              </a>
+              <ul style="list-style: none">
+                <li>{{ tool.why }}</li>
+              </ul>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr />
+
+
+
+
+
+
+
+
+  <!-- <h4>Bootcamp {{ selectedUser.username }} has attended.</h4>
   <div *ngFor="let bootcamp of bootcamps">
    <u  style="color: blue;"> {{ bootcamp.name }} </u>
 
     <div>
       <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p>
-      <!-- iterate over the mentors bootcamps array and populate anchors with it -->
       <ul style="list-style: none" *ngFor="let review of bootReviews">
         <li (click)="bootcampAdvice(review.id)">{{ review.bootcampReview }}</li>
         <div *ngIf="advice">
@@ -166,12 +209,10 @@
       </ul>
     </div>
   </div>
-</div>
-<hr />
+</div> -->
 <div>
   <br />
 
-<hr />
 <div>
   <br />
   <h4>Currently Following</h4>
