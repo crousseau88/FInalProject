@@ -2,7 +2,8 @@
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
 <body>
   <div class="profile-info">
-<div >
+<div > <br>
+  <h4>{{ user.username }}</h4>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
@@ -10,22 +11,47 @@
       src="{{ user.profileImg }}"
       alt=""
       style="width: auto"
-      height="75"
-      width="75"
+      height="200"
+      width="200"
     />
   </picture>
 </div>
 <div>
   <!-- <p>PLACEHOLDER: basic user profile information</p> -->
-  <h6>{{ user.role }}</h6>
-  <h6>{{ user.username }}</h6>
-  <h6>{{ user.firstName }} {{ user.lastName }}</h6>
+  <div *ngIf="user.role === 'MENTOR'">
+    <img img
+    src="https://www.mentorease.com/wp-content/uploads/2019/11/mentor_badge.png"
+    alt="Mentor"
+    style="width: auto"
+    height="75"
+    width="75"/>
+  </div>
+  <div *ngIf="user.role === 'MENTEE'">
+    <img img
+    src="https://www.mentorease.com/wp-content/uploads/2019/11/mentee_badge.png"
+    alt="Mentee"
+    style="width: auto"
+    height="75"
+    width="75"/>
+  </div>
+  <div *ngIf="user.role === 'ADMIN'">
+    <img img
+    src="https://cdn3.iconfinder.com/data/icons/ui-icon-part-3/128/protect_administrator-512.png"
+    alt="Admin"
+    style="width: auto"
+    height="75"
+    width="75"/>
+  </div>
+
+  
+  
+  <h6>Welcome, {{ user.firstName }} {{ user.lastName }}</h6>
   <button id="update-button" class="btn btn-outline-warning" (click)="editUser = user">Update Account</button>
 </div>
 </div><br>
 <hr />
 <div>
-  <h4>PLACEHOLDER: about me section</h4>
+  <h4>About Me</h4>
   <p>{{ user.aboutMe }}</p>
 </div>
 
@@ -52,30 +78,9 @@
             Tools Used {{ user.firstName }} Recomends.
           </button>
           <br />
-          <!-- if advice is not present add advice -->
-          <!-- <div *ngIf="">
-            <button (click)="showAdvice()">Add Advice</button>
-            <textarea
-              placeholder="Your Advice For Success at Your Bootcamp"
-              name="advice"
-              id="advice"
-              cols="30"
-              rows="10"
-              [(ngModel)]="newAdvice.advice"
-            ></textarea>
-            <button (click)="submitAdvice(newAdvice, review.id)">Submit</button>
-            <button (click)="hideAdvice()">Cancel</button>
-          </div> -->
         </div>
-        <!-- <div>
-          <form *ngIf="addNewAdvice">
-            <label
-              >Advice For Success at Your Bootcamp
-              <textarea></textarea>
-            </label>
-          </form>
-        </div> -->
-        <div *ngIf="tools">
+    
+        <div *ngIf="tools" class="tools-list">
           <ul *ngFor="let tool of tools">
             <a href="{{ tool.website }}" target="_blank">
               <li>{{ tool.name }}</li>
@@ -90,15 +95,7 @@
   </div>
 </div>
 <hr />
-<!-- <div>
-  <br />
-  <h4>PLACEHOLDER: mentors posts (accordian)</h4>
-  Need iteration over posts made by mentor that have the replies and reviews appended to it. Button functionality to update/delete/reply needs to come with it
-  Present each post as an accordian with the subject of the post being the header, in order by most recent to oldest
-  <div *ngFor="let post of posts">
-    <p>{{ post.text }}</p>
-  </div>
-</div> -->
+
 
 
 

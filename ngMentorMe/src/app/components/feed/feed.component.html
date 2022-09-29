@@ -93,6 +93,7 @@
     <button class="text-center btn btn-danger" (click)="unFollowMe(selectedUser)">Unfollow</button>
   </div>
 <div>
+  <h4>{{ selectedUser.username }}</h4>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
@@ -101,14 +102,37 @@
       src="{{ selectedUser.profileImg }}"
       alt=""
       style="width: auto;"
-      height="75"
-      width="75"
+      height="200"
+      width="200"
     />
   </picture>
 <div class= "text-center">
   <p>PLACEHOLDER: basic user profile information</p>
-  <h6>{{ selectedUser.role }}</h6>
-  <h6>{{ selectedUser.username }}</h6>
+  <div *ngIf="selectedUser.role === 'MENTOR'">
+    <img img
+    src="https://www.mentorease.com/wp-content/uploads/2019/11/mentor_badge.png"
+    alt="Mentor"
+    style="width: auto"
+    height="75"
+    width="75"/>
+  </div>
+  <div *ngIf="selectedUser.role === 'MENTEE'">
+    <img img
+    src="https://www.mentorease.com/wp-content/uploads/2019/11/mentee_badge.png"
+    alt="Mentee"
+    style="width: auto"
+    height="75"
+    width="75"/>
+  </div>
+  <div *ngIf="selectedUser.role === 'ADMIN'">
+    <img img
+    src="https://cdn3.iconfinder.com/data/icons/ui-icon-part-3/128/protect_administrator-512.png"
+    alt="Admin"
+    style="width: auto"
+    height="75"
+    width="75"/>
+  </div>
+  
   <h6>{{ selectedUser.firstName }} {{ selectedUser.lastName }}</h6>
 </div>
 <hr />
