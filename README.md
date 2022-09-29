@@ -52,7 +52,7 @@ When a user visits our site, there are 4 possible paths...
 ## Methodology
 
 <p align="center"><img src="https://media.giphy.com/media/v1qwIBdb0kZOkeEzYR/giphy.gif" width="450" height="250" /></p>
-
+<p align="center"><img src="https://media.giphy.com/media/eVqUIgL0IVcis0RA1t/giphy.gif" width="450" height="250" /></p>
 
 Teamwork. Full stop. 
 
