@@ -34,7 +34,6 @@ If you would like to test the backend of the application, reference the table wi
 
 ## Description
 
-<p align="center"><img src="media/mentormeschema.png" width="500"></p>
 
 When a user visits our site, there are 4 possible paths...
 
@@ -81,6 +80,16 @@ Ken Pederson
 
 * This project expanded our use of Angular beyond anything we had ever done before. Learning how to work with multiple Components and Services and how they "talk" to the backed was probably my favorite "light bulb" moment of the project. I look forward to going back to earlier projects and implementing more components and services. 
 Communication is always something I aim to improve at. Working a project remotely presents unique challenge of only one person being able to talk at a time. I feel I was able to gain a better sense of when to speak up so that I wouldn't "step on" someone else talking.  
+
+## Unimplemented Features
+
+<p align="center"><img src="media/mentormeschema.png" width="500"></p>
+
+As discussed earlier, timeboxing was critical to our success. Given that our sprint lasted only a week, the team established a timehack two and a half days before presentation for ceasing functionality creation. Once we were outside of that timebox, we transitioned to the Bootstrap and CSS aspects of the application. Because of this, some functionality remains to be implemented. The following remain to be implemented at a later date (not an exhaustive list)...
+
+1. Instant messaging between users (the yellow table at the six o'clock position of the database schema above)
+2. The ability for a new mentor to fully register the bootcamp they attended. At this stage, only the review itself and not the advice or tools portion, can be created.
+3. The ability for a new mentor to send a request to admin to create a bootcamp that isn't included yet in the drop-down selection menu.
 
 ## Testing the Backend With Postman
 
