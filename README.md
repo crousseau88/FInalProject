@@ -1,6 +1,6 @@
 # MentorMe
 
-<p align="center"><img src="homepage.png" width="550"></p>
+<p align="center"><img src="media/homepage.png" width="550"></p>
 
 ## Authors
 
