@@ -39,11 +39,11 @@ When a user visits our site, there are 4 possible paths...
 
 1. A visitor who has access to view bootcamps and their associated reviews and discussions. Furthermore, the user can perform a search from the home page for a specific bootcamp, different languages or tech they're interested in such as "Java" or "Angular". With this general access, the intent is to prove to the visitor that they will highly benefit from creating a personal account and thereby being able to ask their personal questions to mentor that helps them shape their approach to being successful in their future bootcamp environment. If the visitor is a prior bootcamp graduate, the site is designed to inspire them to register an account and become an additional mentor and add a new bootcamp to the pool. 
 
-2. In addition to the access granted to a visitor, a mentee, once logged in, can actively engage with the MentorMe community via the post/reply system. Furthermore, they can choose to "follow" a mentor to add a convenient link to their account page for instant access back to the mentors account page. Additionally, a mentee can flag messages as being either helpful or inappropriate. Finally, the relationship between mentee and mentor culminates in the mentee reaching out to the mentor for job-search advice and networking.
+2. In addition to the access granted to a visitor, a mentee, once logged in, can actively engage with the MentorMe community via the post/reply system. Furthermore, they can choose to "follow" a mentor to add a convenient link to their account page for instant access back to the mentors account page. Finally, the relationship between mentee and mentor culminates in the mentee reaching out to the mentor for job-search advice and networking.
 
 3. A mentor posts their review, advice and tools for mentees to view and create a starting point to initiate a "mentoring" conversation with them. 
 
-4. An administrator can ensure inappropriate activities are policed as well as add additional bootcamps as mentors register who have graduated from bootcamps not yet in the collection of bootcamps in the database. 
+4. An administrator can ensure inappropriate activities are policed.
 
 
 ## Methodology
