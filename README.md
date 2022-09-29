@@ -1,6 +1,6 @@
 # MentorMe
 
-<p align="center"><img src="" width="550"></p>
+<p align="center"><img src="homepage.png" width="550"></p>
 
 ## Authors
 
@@ -55,8 +55,20 @@ When a user visits our site, there are 4 possible paths...
 
 Teamwork. Full stop. 
 
+As a team of veterans, we each understood the division and sharing of responsibilities. Our 1-week sprint to achieve an MVP fully depended on this foundation and the reliance on the tools common among professional developers, specifically Agile methodologies...
 
-The database was built using MySQL Workbench. As seen in the schema above, the teams approach was to keep the architecture as simple as possible to allow the most progress possible given our timeline of a 1-week sprint. The core backend was created using REST and thoroughly tested using Postman. The frontend has been built utilizing Angular and Bootstrap. 
+Planning
+
+* Each day began with Austin leading a scrum meeting. After referencing our Trello board and wiring diagram as needed, tasks were laid out and any blockers were made known. 
+
+Executing
+
+* Each team member worked in Zoom to maintain constant communication when development required a swarm technique to push past a blocker. Any work performed during off hours was pre-coordinated and communicated via the teams Slack channel to ensure merge conflicts were avoided. Additionally, each member of the team kept their respective work on their own branch before commiting changes to the main branch. All merges with main were pre coordinated as well to ensure pulls were performed and no ones branch was left behind. As a result, only a single merge conflict occurred during the entire sprint (a minor spacing difference). 
+
+Evaluating
+
+* In conjunction with the Trello board, timeboxing proved vital to make the timely transition from building functionality to focusing on the styling of the site and preparation for our presentation. As a result, the transitioning from the different focuses were smooth and alleviated the majority of the stress that would occur with falling behind. A side benefit that cannot be understated is the team stayed healthy because of communication and planning. 
+
 ## Testing the Backend With Postman
 
 <p align="center"><img src="media/Postman.png" width="500"></p>
@@ -99,7 +111,18 @@ To test the backend of the application, a user may visit the <a href="https://ww
 
 ## Lessons Learned
 
-* 
+Chad Rousseau
+
+* Teamwork is essential to success. Everyone on the team put their minds together to overcome issues and solve problems. Constant communication has helped us succeed as a team and stay on top of any issues that we had or could have had. We have maintained comms throughout changes in code in order to avoid merge conflicts that take valuable time away from building the app.
+
+Austin Borck
+
+* The biggest lesson I learned is how to properly plan and design an application, what classes/components should do what and to think in English before thinking in code. Jumping directly into the coding without a detailed plan is the best way to get confused, frustrated and produce poorly written code. A small issue I would change in the future is management of components and services since it felt like we had a couple things doing the same job. I learned being more defined on simple things such as naming a boolean to toggle information on a page, and field names in the backend to match the front end on the first try.
+
+Ken Pederson
+
+* This project expanded our use of Angular beyond anything we had ever done before. Learning how to work with multiple Components and Services and how they "talk" to the backed was probably my favorite "light bulb" moment of the project. I look forward to going back to earlier projects and implementing more components and services. 
+Communication is always something I aim to improve at. Working a project remotely presents unique challenge of only one person being able to talk at a time. I feel I was able to gain a better sense of when to speak up so that I wouldn't "step on" someone else talking.  
 
 
 ## Technologies 
@@ -123,22 +146,21 @@ To test the backend of the application, a user may visit the <a href="https://ww
 
 ## A Few Screen Shots Of Code Taken During The Development Journey
 
-* Code excerpt for adding a new Education Event in the database. Extra code was written to ensure default values for the subject being recorded and the date when the event occurred. By setting the subject to "Not Declared" the intent is to raise awareness to the user so they will update then event with the correct subject. The date is set to "now" as this will most likely be the case if the user is recording updates in real time. Regardless, it serves as a starting point.
+* These two images compare and contrast where the team started to being nearly ready for presentation. A ton of moving pieces simplified through Agile teamwork and solid communication!
 
- <p align="center"><img src="media/codeAddEvent.png" width="350"></p>
- 
-* Code excerpt of how an event is updated. Every field is verified through if/else logic.
+ <p align="center"><img src="media/trelloStart.png" width="350"></p>
 
- <p align="center"><img src="media/codeUpdateEvent.png" width="350"></p>
+ <p align="center"><img src="media/trello.png" width="350"></p>
  
-* Code excerpt of how an event is deleted and ensuring a 404 code is returned when the event being referred to no longer exists.
+* Code excerpt of how a post is loaded. This was probably one of the most challenging aspects of the code to make functional.
 
- <p align="center"><img src="media/codeControllerDelete.png" width="350"></p>
+ <p align="center"><img src="media/codepost.png" width="350"></p>
  
-* Example code excerpt showing the verboseness of using vanilla Javascript to tie the backend to the frontend. This excerpt uses the DOM to populate the HTML file with a pre-populated form for the user to perform updates to a record and continues past what you see here. 
+* Code excerpt of creating interactivity in messages to enable admins to police the site, track the most effective contributors and give a greater sense of community.
 
- <p align="center"><img src="media/vanillaJSExample.png" width="350"></p>
+ <p align="center"><img src="media/codefollowers.png" width="350"></p>
  
- * The very first iteration of the Angular/Bootstrap frontend. Not much to look at just yet but work has just begun!
+* A portion of the Angular files created to make MentorMe a reality. 
+
+ <p align="center"><img src="media/angularfiles.png" width="350"></p>
  
- <p align="center"><img src="media/angularFirstPass.png" width="350"></p>
