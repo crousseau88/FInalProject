@@ -51,7 +51,6 @@ When a user visits our site, there are 4 possible paths...
 
 ## Methodology
 
-
 <p align="center"><img src="https://media.giphy.com/media/v1qwIBdb0kZOkeEzYR/giphy.gif" width="450" height="250" /></p>
 
 
