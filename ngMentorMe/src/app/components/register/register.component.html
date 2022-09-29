@@ -1,3 +1,5 @@
+<body>
+
 <form class="css-form form-control" >
   <label for="username">Username</label>
   <input class="css-form form-control" [(ngModel)]="newUser.username" type="text" id="username" name="username" required>
@@ -9,7 +11,7 @@
   <input class="css-form form-control" [(ngModel)]="newUser.email" type="email" id="email" name="email"  required><br>
 
   <label for="role">Role</label><br>
-  <select name="role" class="form-control" [(ngModel)]="newUser.role">
+  <select name="role" class="css-form1 form-control" [(ngModel)]="newUser.role">
     <option value="MENTOR">Mentor</option>
     <option value="MENTEE">Mentee</option>
   </select>
@@ -25,6 +27,7 @@
   <label for="profileImg">Profile Picture URL</label>
   <input class="css-form form-control" [(ngModel)]="newUser.profileImg" type="profileImg" id="profileImg" name="profileImg"  required><br>
 
-  <button (click)="register(newUser)">Register</button>
+  <button class="btn btn-outline-info" (click)="register(newUser)">Register</button>
 
 </form>
+</body>
