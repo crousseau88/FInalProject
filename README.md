@@ -51,7 +51,6 @@ When a user visits our site, there are 4 possible paths...
 
 ## Methodology
 
-![Alt Text](https://media.giphy.com/media/wjs6PzkRfaw48/giphy.gif)
 <p align="center"><img src="https://media.giphy.com/media/wjs6PzkRfaw48/giphy.gif" width="450" height="250" /></p>
 
 Teamwork. Full stop. 
