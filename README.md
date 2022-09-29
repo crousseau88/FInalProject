@@ -69,6 +69,21 @@ Evaluating
 
 * In conjunction with the Trello board, timeboxing proved vital to make the timely transition from building functionality to focusing on the styling of the site and preparation for our presentation. As a result, the transitioning from the different focuses were smooth and alleviated the majority of the stress that would occur with falling behind. A side benefit that cannot be understated is the team stayed healthy because of communication and planning. 
 
+## Lessons Learned
+
+Austin Borck
+
+* The biggest lesson I learned is how to properly plan and design an application, what classes/components should do what and to think in English before thinking in code. Jumping directly into the coding without a detailed plan is the best way to get confused, frustrated and produce poorly written code. A small issue I would change in the future is management of components and services since it felt like we had a couple things doing the same job. I learned being more defined on simple things such as naming a boolean to toggle information on a page, and field names in the backend to match the front end on the first try.
+
+Chad Rousseau
+
+* Teamwork is essential to success. Everyone on the team put their minds together to overcome issues and solve problems. Constant communication has helped us succeed as a team and stay on top of any issues that we had or could have had. We have maintained comms throughout changes in code in order to avoid merge conflicts that take valuable time away from building the app.
+
+Ken Pederson
+
+* This project expanded our use of Angular beyond anything we had ever done before. Learning how to work with multiple Components and Services and how they "talk" to the backed was probably my favorite "light bulb" moment of the project. I look forward to going back to earlier projects and implementing more components and services. 
+Communication is always something I aim to improve at. Working a project remotely presents unique challenge of only one person being able to talk at a time. I feel I was able to gain a better sense of when to speak up so that I wouldn't "step on" someone else talking.  
+
 ## Testing the Backend With Postman
 
 <p align="center"><img src="media/Postman.png" width="500"></p>
@@ -108,22 +123,6 @@ To test the backend of the application, a user may visit the <a href="https://ww
     “email”: “New email”,
     “aboutMe”: “New aboout me”
 }
-
-## Lessons Learned
-
-Austin Borck
-
-* The biggest lesson I learned is how to properly plan and design an application, what classes/components should do what and to think in English before thinking in code. Jumping directly into the coding without a detailed plan is the best way to get confused, frustrated and produce poorly written code. A small issue I would change in the future is management of components and services since it felt like we had a couple things doing the same job. I learned being more defined on simple things such as naming a boolean to toggle information on a page, and field names in the backend to match the front end on the first try.
-
-Chad Rousseau
-
-* Teamwork is essential to success. Everyone on the team put their minds together to overcome issues and solve problems. Constant communication has helped us succeed as a team and stay on top of any issues that we had or could have had. We have maintained comms throughout changes in code in order to avoid merge conflicts that take valuable time away from building the app.
-
-Ken Pederson
-
-* This project expanded our use of Angular beyond anything we had ever done before. Learning how to work with multiple Components and Services and how they "talk" to the backed was probably my favorite "light bulb" moment of the project. I look forward to going back to earlier projects and implementing more components and services. 
-Communication is always something I aim to improve at. Working a project remotely presents unique challenge of only one person being able to talk at a time. I feel I was able to gain a better sense of when to speak up so that I wouldn't "step on" someone else talking.  
-
 
 ## Technologies 
 
