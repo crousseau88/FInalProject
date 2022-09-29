@@ -1,13 +1,18 @@
 .contact {
-  background-image: radial-gradient(
+  background-image:
+  radial-gradient(
     circle farthest-corner at 22.4% 21.7%,
     rgb(249, 249, 252) 0%,
     rgb(1, 34, 99) 100.2%
   );
+  margin-inline: -11px;
+  padding-inline: 8px;
 }
 
-html {
-  background-image: radial-gradient(
+body, main {
+  margin-inline: -150px;
+  background-image:
+  radial-gradient(
     circle farthest-corner at 22.4% 21.7%,
     rgb(249, 249, 252) 0%,
     rgb(1, 34, 99) 100.2%

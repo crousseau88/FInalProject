@@ -1,5 +1,5 @@
 <div>
   <input type="text" placeholder="username" class="form" [(ngModel)]="loginUser.username">
   <input type="password" placeholder="password" class="form" [(ngModel)]="loginUser.password">
-  <button (click)="login(loginUser)" class="btn btn-outline-success">Login</button>
+  <input type="submit" (click)="login(loginUser)" value="Login" class="btn btn-outline-success">
   </div>

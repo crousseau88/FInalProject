@@ -1,4 +1,5 @@
-
+<body>
+<main class="container-fluid">
 <!-- if not selected -->
 <div *ngIf="!selectedUser">
 <form name="makePost" class="text-center create-post">
@@ -31,6 +32,7 @@
       style="width: auto"
       height="75"
       width="75"
+
     />
   </picture>
   <a (click)="setSelectedUser(post.userPost?.username)" class="profileLink">{{post.userPost?.username}}</a> <p class ="date-created">{{post.created | date: 'short'}}</p>
@@ -67,7 +69,9 @@
   </form>
 
 </div>
+<div >
 <ngb-pagination [collectionSize]="posts.length" [(page)]="page" [pageSize]="pageSize"> </ngb-pagination>
+</div>
 </div>
 <!-- if selected -->
 <div *ngIf="selectedUser">
@@ -105,6 +109,7 @@
   <p>{{ selectedUser.aboutMe }}</p>
 </div>
 <hr />
+
 <!-- ****************REVIEWS SECTION***************** -->
 <div *ngIf="selectedUser.role === 'MENTOR'">
   <h4>Bootcamp {{ selectedUser.username }} has attended.</h4>
@@ -150,6 +155,5 @@
       {{ follow.username }}</li>
   </ul>
 </div>
-
-
 </div>
+

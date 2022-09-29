@@ -1,0 +1,55 @@
+
+
+body, main {
+  margin-inline: -9px;
+  margin-bottom: -9px;
+  height: 110vh;
+  background-image:
+  radial-gradient(
+    circle farthest-corner at 22.4% 21.7%,
+    rgb(249, 249, 252) 0%,
+    rgb(1, 34, 99) 100.2%
+  );
+}
+
+.css-form {
+  background-image:
+  radial-gradient(
+    circle farthest-corner at 22.4% 21.7%,
+    rgb(249, 249, 252) 0%,
+    rgb(1, 34, 99) 100.2%
+  );
+}
+
+input[type="email"], input[type="password"], input[type="text"], input[type="profileImg"]
+ {
+  background-color: rgb(234, 243, 248);
+}
+
+.css-form1 {
+  background-color: rgb(234, 243, 248);
+}
+
+.css-form4 {
+  background-color: rgb(234, 243, 248);
+}
+
+.following {
+  background-image:
+  radial-gradient(
+    circle farthest-corner at 22.4% 21.7%,
+    rgb(249, 249, 252) 0%,
+    rgb(1, 34, 99) 100.2%
+  );
+  margin-bottom: -9px;
+  margin-top: -7px;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+#update-button {
+  float: right;
+  margin-right: 15px;
+}
