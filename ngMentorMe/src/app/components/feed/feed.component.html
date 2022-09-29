@@ -1,7 +1,7 @@
-<body>
-<main class="container-fluid">
+
 <!-- if not selected -->
-<div *ngIf="!selectedUser">
+<div id="main-div" >
+  <div *ngIf="!selectedUser">
 <form name="makePost" class="text-center create-post">
   <input class="post-form-subject"
     type="text"
@@ -69,15 +69,22 @@
   </form>
 
 </div>
-<div >
+<div class="container">
+  <div class="row">
+  <div class="col-5"></div>
+  <div class="col-sm">
 <ngb-pagination [collectionSize]="posts.length" [(page)]="page" [pageSize]="pageSize"> </ngb-pagination>
 </div>
+<div class="col-sm"></div>
+</div>
+</div>
+
 </div>
 <!-- if selected -->
 <div *ngIf="selectedUser">
 <!-- ********************USER PERSONAL ACCOUNT PAGE******************** -->
 <!-- **********NON-INTERACTIVE INFORMATION********** -->
-<div>
+<div class="profile-info">
   <button (click)="selectedUser = null" class="btn btn-info">BACK</button><br><br>
   <div *ngIf="!isFollowing">
     <button class="text-center btn btn-success" (click)="followMe(selectedUser)">Follow</button>
@@ -85,19 +92,20 @@
   <div *ngIf="isFollowing">
     <button class="text-center btn btn-danger" (click)="unFollowMe(selectedUser)">Unfollow</button>
   </div>
-
+<div>
   <picture>
     <!-- need to know how to reference the database to invoke the default image -->
     <img
+      class="center"
       img
       src="{{ selectedUser.profileImg }}"
       alt=""
-      style="width: auto"
+      style="width: auto;"
       height="75"
       width="75"
     />
   </picture>
-<div>
+<div class= "text-center">
   <p>PLACEHOLDER: basic user profile information</p>
   <h6>{{ selectedUser.role }}</h6>
   <h6>{{ selectedUser.username }}</h6>
@@ -107,6 +115,7 @@
 <div>
   <h4 class="text-center"><u>About Me</u></h4>
   <p>{{ selectedUser.aboutMe }}</p>
+</div>
 </div>
 <hr />
 
@@ -120,7 +129,7 @@
     <div>
       <p>PLACEHOLDER: Reviews when bootcamp name is clicked</p>
       <!-- iterate over the mentors bootcamps array and populate anchors with it -->
-      <ul *ngFor="let review of bootReviews">
+      <ul style="list-style: none" *ngFor="let review of bootReviews">
         <li (click)="bootcampAdvice(review.id)">{{ review.bootcampReview }}</li>
         <div *ngIf="advice">
           <p (click)="bootcampTools(advice.id)">
@@ -142,7 +151,7 @@
 <div>
   <br />
   <h4>Currently Following</h4>
-  <ul>
+  <ul style="list-style: none">
     <li *ngFor="let follow of allFollowers" class="profileLink" (click)="setSelectedUser(follow.username)">
       {{ follow.username }}</li>
   </ul>
@@ -150,10 +159,10 @@
 
 <div>
   <h4>My Followers</h4>
-  <ul>
+  <ul style="list-style: none">
     <li *ngFor="let follow of allFollowing" class="profileLink" (click)="setSelectedUser(follow.username)">
       {{ follow.username }}</li>
   </ul>
 </div>
 </div>
-
+</div>

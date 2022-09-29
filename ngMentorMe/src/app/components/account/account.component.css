@@ -10,6 +10,11 @@ body, main {
     rgb(249, 249, 252) 0%,
     rgb(1, 34, 99) 100.2%
   );
+  font-family: 'Anton', sans-serif;
+  color: black !important;
+  font-weight: bold;
+  outline-width: 5px !important;
+
 }
 
 .css-form {
@@ -46,6 +51,10 @@ input[type="email"], input[type="password"], input[type="text"], input[type="pro
 }
 
 .profile-info {
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  color: black !important;
+  font-weight: bold;
   text-align: center;
 }
 
