@@ -162,5 +162,5 @@ Communication is always something I aim to improve at. Working a project remotel
  
 * A portion of the Angular files created to make MentorMe a reality. 
 
- <p align="center"><img src="media/angularfiles.png" width="350"></p>
+ <p align="center"><img src="media/angularfiles.png" width="250"></p>
  
