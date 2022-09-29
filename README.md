@@ -38,18 +38,27 @@ If you would like to test the backend of the application, reference the table wi
 
 <p align="center"><img src="media/mentormeschema.png" width="500"></p>
 
-The backend has been created using REST and thoroughly tested using Postman to ensure URL's invoke the desired results. The frontend has been built with, first using vanilla JavaScript to link the backend with the frontend. The second approach utilized Angular and Bootstrap. 
+When a user visits our site, there are 4 possible paths...
+
+1. A visitor who has access to view bootcamps and their associated reviews and discussions. Furthermore, the user can perform a search from the home page for a specific bootcamp, different languages or tech they're interested in such as "Java" or "Angular". With this general access, the intent is to prove to the visitor that they will highly benefit from creating a personal account and thereby being able to ask their personal questions to mentor that helps them shape their approach to being successful in their future bootcamp environment. If the visitor is a prior bootcamp graduate, the site is designed to inspire them to register an account and become an additional mentor and add a new bootcamp to the pool. 
+
+2. In addition to the access granted to a visitor, a mentee, once logged in, can actively engage with the MentorMe community via the post/reply system. Furthermore, they can choose to "follow" a mentor to add a convenient link to their account page for instant access back to the mentors account page. Additionally, a mentee can flag messages as being either helpful or inappropriate. Finally, the relationship between mentee and mentor culminates in the mentee reaching out to the mentor for job-search advice and networking.
+
+3. A mentor posts their review, advice and tools for mentees to view and create a starting point to initiate a "mentoring" conversation with them. 
+
+4. An administrator can ensure inappropriate activities are policed as well as add additional bootcamps as mentors register who have graduated from bootcamps not yet in the collection of bootcamps in the database. 
+
 
 ## Methodology
 
-One pillar at a time.
 
-What I enjoyed most about the backend-building stage the application is the very straight forward approach of building the backend from "the ground up". Each functionality "pillar" began with the Repository (where applicable), then the Service layer, the Service Implementation layer, next the Controller and finally using Postman to prove functionality. No other functionality was started until the current capability proved successful. This approach kept each stage of functionality development clear and distinct from the others, thereby preventing getting "lost in the sauce" and ensuring troubleshooting was straight forward.
+<p align="center"><img src="https://media.giphy.com/media/v1qwIBdb0kZOkeEzYR/giphy.gif" width="450" height="250" /></p>
 
-The frontend, using  vanilla JavaScript to build the DOM, required a disciplined approach of organization. The DOM was divided into sections based on initialization and CRUD to ensure easier navigation. My desire would be to break up these functions across several JavaScript files but givent the short amount of time to develop this stage of the project, everything was kept in one place for simplicity. 
 
-The second frontend creation, using Angular, was similarly organized but with more segregating in the Typescript file to organize the many functions into their roles such as methods for changing boolean values, methods used to change other variable assignments to objects or back to null when no longer needed. Finally, as before, using comments, the CRUD functions were divided in the order presented by the acronym. Each time a pillar of functionality was created, the site would be refreshed and tested for the desired result. At first, the desired result was for the minimum viable product. Event if the site didn't present the information the way I wanted, the only objective that mattered was the basic functionality (create, retrieve, etc.). If the application at least performed that operation, it was time to move to the next minimum viable functionality piece. Once a minimum viable product was established, the desired interaction results and appearance were tackled.
+Teamwork. Full stop. 
 
+
+The database was built using MySQL Workbench. As seen in the schema above, the teams approach was to keep the architecture as simple as possible to allow the most progress possible given our timeline of a 1-week sprint. The core backend was created using REST and thoroughly tested using Postman. The frontend has been built utilizing Angular and Bootstrap. 
 ## Testing the Backend With Postman
 
 <p align="center"><img src="media/Postman.png" width="500"></p>
@@ -90,24 +99,9 @@ To test the backend of the application, a user may visit the <a href="https://ww
     “aboutMe”: “New aboout me”
 }
 
-* Example code to use for PUT URI can utilize any variation of the code above. The example URI in the table is set to 2 but may be changed to 3 through 6 or any events added with the POST route. Please do not modify EducationEvent 1 due to all JUnit tests being written for its original data.
-
-* Example URL to test searching for events between two dates in Postman below.
-
-> http://3.21.142.131:8080/HSHTracker/api/edEvtsBtwnDts/search/date/2022-09-02T01:00:00/2022-09-04T01:00:00
-
 ## Lessons Learned
 
-This project proved vital in gaining the following experience...
-* How the Controllers mapping annotation directly links with what appears in the URL
-* The strict syntax requirements of the methods listed in the Repository for successful SQL queries (specific references to fields of an entity and exact wording for "finding" what you're looking for)
-* The inability to write in certain methods in the Repository (such as findAll, findById, adding new instances of an event, etc.). These examples all cause the application to break, leading to a quick realization of the appropriate types of methods that belong in the Repository.
-* The requirement for Controllers to use wrapper classes in order to function
-* The use of the @CreationTimestamp greatly simplifies the use of LocalDateTime fields
-* The use of Postman for testing code and correlating the direct relationship of the URL to the methods as well as further verification of changes through writing SQL queries to the database in the zsh Terminal.
-* The creation of HTML elements through the DOM was especially insightful for ensuring the page only presents data when it's asked for. This code is especially verbose and requires the use of commments to assist in the organization of the many functions.
-* Working around issues presents problems for later down the road. When creating the DOM, the function to update an education event worked for recording the data in the database but did not give any data back from the controller to the DOM. I was able to code around the problem and still get the data to the frontend but I wasn't able to determine why the controller function was not behaving as expected. The following weekend, during the Angular frontend creation assignment, I essentially ran into the same problem. The error did not present itself as succinctly as it did when creating the DOM but I knew it had to be the same issue since the result was the same. Deciding to revisit the issue I was able to come up with better questions that lead to the answer I wasn't able to determine the previous weekend. The controller was setting an HTTP response code of 204 which I discovered doesn't return data. Changing the response code to 201 allowed my Angular frontend to function as desired. 
-* Building up an Angular frontend for the first time I got a much better understanding of the three-layers of the front end (model, component and service), how they interact and how the connection between the service and the backend controller is made. The brightest lightbulb moment for this service-to-controller connction for me was the realization that the service DOES NOT need to provide arguments for a controllers parameter annotated as a path variable. Instead, the path variable is provider for in the URL path itself. 
+* 
 
 
 ## Technologies 
@@ -128,20 +122,6 @@ This project proved vital in gaining the following experience...
 * Spring MVC
 * Terminal -zsh
 * TypeScript
-
-## Stretch/Future Goals
-
-
-After a minimum viable product is produced, the intent for this application is to incorporate the remaining tables of the database as seen above. At this time, only the "education_event" table is utilized. It is my intent to also use this first concept, once fully functional, to inspire new ideas beyond what I've already imagined. Current stretch goals include...
-* Google Maps through the address table for parents to be able to remember a site should they choose to later revisit and share the location with fellow homeschool families.
-* Create a login functionality 
-* Allow users to download an Excel or Numbers version of their data as a backup or for audit purposes
-* Create charts and graphs that show progress over time through each grade year
-* Allow for tracking of resources used to teach different subjects across each grade
-* Use the application as a centerpiece for a homeschool forum
-* The final HTML file should be extremely limited with only the options to view the different data presented. Once viewed, each resulting data field should be closable to ensure minimal clutter.
-
-After careful consideration of all the desired functionality with my wife has been made, work will begin on a separate branch while retaining the original work. 
 
 ## A Few Screen Shots Of Code Taken During The Development Journey
 
